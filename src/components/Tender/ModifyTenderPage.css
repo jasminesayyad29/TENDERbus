@@ -1,0 +1,85 @@
+/* src/components/Tender/ModifyTenderPage.css */
+
+.modify-tender-page {
+    max-width: 600px; /* Set a maximum width for the form */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px; /* Inner spacing */
+    background-color: #f9f9f9; /* Light background for the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center align items */
+  }
+  
+  .modify-tender-page h1 {
+    color: #6a0dad; /* Vibrant purple for the heading */
+    margin-bottom: 20px;
+    text-align: center; /* Center heading */
+  }
+  
+  .modify-tender-page form {
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    width: 100%; /* Full width for the form */
+  }
+  
+  .modify-tender-page label {
+    margin-bottom: 8px; /* Space below labels */
+    font-weight: bold; /* Bold labels for emphasis */
+    align-self: flex-start; /* Align labels to the start */
+  }
+  
+  .modify-tender-page input[type="text"],
+  .modify-tender-page textarea {
+    padding: 10px; /* Inner spacing for inputs */
+    margin-bottom: 15px; /* Space below inputs */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded edges */
+    font-size: 1rem; /* Base font size */
+    transition: border-color 0.3s; /* Transition effect on focus */
+    width: 100%; /* Full width for input fields */
+  }
+  
+  .modify-tender-page input[type="text"]:focus,
+  .modify-tender-page textarea:focus {
+    border-color: #6a0dad; /* Change border color on focus */
+  }
+  
+  .modify-tender-page button {
+    padding: 10px; /* Inner spacing for buttons */
+    background-color: #ff6347; /* Coral background for buttons */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded edges */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1rem; /* Base font size */
+    transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+    margin-top: 10px; /* Space above button */
+  }
+  
+  .modify-tender-page button:hover {
+    background-color: #e55347; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+  }
+  
+  .modify-tender-page h3 {
+    text-align: center; /* Center heading for the confirmation */
+    color: #333; /* Dark text for contrast */
+    margin: 20px 0; /* Space above and below */
+  }
+  
+  .modify-tender-page div {
+    text-align: center; /* Centering confirmation options */
+  }
+  
+  .modify-tender-page button[type="button"] {
+    background-color: #ddd; /* Grey background for cancel button */
+    color: #333; /* Text color for cancel button */
+    margin-top: 10px; /* Space above cancel button */
+  }
+  
+  .modify-tender-page button[type="button"]:hover {
+    background-color: #ccc; /* Darker grey on hover */
+  }
+  

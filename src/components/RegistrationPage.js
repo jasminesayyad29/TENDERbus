@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import './RegistrationPage.css';  // Make sure this CSS file is identical to your HTML version
+import './RegistrationPage.css';  // Assuming you have CSS for styling
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
 const RegistrationPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -39,7 +40,7 @@ const RegistrationPage = () => {
               <input type="email" id="email" name="email" placeholder="Your Email" required />
             </div>
             <div className="input-group">
-              <label htmlFor="password"><i className="fas fa-lock"></i></label>
+              <label htmlFor="password"></label>
               <input
                 type={showPassword ? 'text' : 'password'}
                 id="password"
@@ -53,12 +54,12 @@ const RegistrationPage = () => {
               ></i>
             </div>
             <div className="input-group">
-              <label htmlFor="confirm-password"><i className="fas fa-lock"></i></label>
+              <label htmlFor="confirm-password"></label>
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 id="confirm-password"
                 name="confirm-password"
-                placeholder="Repeat your password"
+                placeholder="Confirm your password"
                 required
               />
               <i
@@ -68,11 +69,13 @@ const RegistrationPage = () => {
             </div>
             <div className="input-group checkbox">
               <input type="checkbox" id="terms" name="terms" required />
-              <label htmlFor="terms">I agree all statements in <a href="#">Terms of service</a></label>
+              <label htmlFor="terms">
+                I agree to all statements in the <Link to="/terms">Terms of service</Link>
+              </label>
             </div>
             <button type="submit">Register</button>
           </form>
-          <p><a href="/login">I am already a member</a></p>
+          <p><Link to="/login">I am already a member</Link></p>  {/* Use Link for internal navigation */}
         </div>
         <div className="image-container">
           <img src="/signup-image.jpg" alt="Illustration" />

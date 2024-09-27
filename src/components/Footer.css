@@ -1,9 +1,10 @@
 /* src/components/Footer.css */
 .footer {
-    background-color: #333;
+    background-color: #3e3e3e;
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    margin-top: 100px;
   }
   
   .footer-content {
@@ -24,7 +25,7 @@
   }
   
   .footer-links a {
-    color: #fff;
+    color: #c58282;
     text-decoration: none;
     font-weight: bold;
   }
