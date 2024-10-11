@@ -10,16 +10,16 @@ const Navbar = () => {
       <ul className="nav-links">
         {/* Dropdown for Account (Register/Login) */}
         <li className="dropdown">
-          <button className="dropbtn">Register</button>
+          <button className="dropbtn"><Link to="/register">Register</Link>
+          </button>
           <div className="dropdown-content">
-            <Link to="/register">Register</Link>
             {/* <Link to="/login">Login</Link> */}
           </div>
         </li>
 
         {/* Dropdown for Dashboards */}
         <li className="dropdown">
-          <button className="dropbtn">Login</button>
+          <button className="dropbtn"><Link to="/login">Login</Link></button>
           {/* <div className="dropdown-content">
             <Link to="/admin/dashboard">Tender Admin</Link>
             <Link to="/bidder/dashboard">Bidder</Link>

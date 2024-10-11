@@ -1,4 +1,4 @@
-//  auth , isStudent , isAdmin
+//  auth , isuser , isAdmin
 
 const jwt= require("jsonwebtoken") ;
 require("dotenv").config() ;
@@ -40,10 +40,10 @@ exports.auth = (req,res,next) => {
 
 exports.isStudent = (req,res,next) => {
     try{
-        if( req.user.role !== "Student" ) {
+        if( req.user.role !== "User" ) {
             return res.status(401).json({
                 success:false ,
-                message:'This is a protected route for students',
+                message:'This is a protected route for users',
             }) ;
         }
         next() ;

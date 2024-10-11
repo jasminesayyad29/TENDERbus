@@ -4,10 +4,27 @@ import { Link, useNavigate } from 'react-router-dom';  // Import Link and useNav
 import axios from 'axios'; // Import axios for API requests
 
 const RegistrationPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    role: '',
+    password: '',
+    confirmPassword: '',
+    agreeTerms: false,
+  });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [error, setError] = useState(''); // To store error messages
-  const navigate = useNavigate(); // Hook for navigation
+  const [error, setError] = useState('');  // To store error messages
+  const navigate = useNavigate();  // Hook for navigation
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -19,108 +36,145 @@ const RegistrationPage = () => {
 
   const validatePasswords = async (e) => {
     e.preventDefault();
-    const password = e.target.password.value;
-    const confirmPassword = e.target['confirm-password'].value;
+    const { name, email, password, confirmPassword, role, agreeTerms } = formData;
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match'); // Set error message
+      setError('Passwords do not match');  // Set error message
     } else {
       try {
-        // Make API request to register the user
-        await axios.post(`${process.env.REACT_APP_API_URL}/api/register`, {
-          name: e.target.name.value,
-          email: e.target.email.value,
-          password,
+        // Example API request
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/Auth`, {
+          name, email, password, role,
         });
 
-        // Handle successful registration (optional)
         alert('Registration successful!');
-        navigate('/login'); // Redirect to login page after successful registration
+        navigate('/login');
       } catch (error) {
         console.error('Registration failed', error);
-        // Improved error handling with specific messages from the server
+
         if (error.response && error.response.data.message) {
           setError(error.response.data.message);
         } else {
-          setError('Registration failed. Please try again.'); // Set general error message
+          setError('Registration failed. Please try again.');
         }
       }
     }
   };
 
   return (
-    <div className="container">
-      <div className="signup-container">
-        <div className="form-container">
-          <h1>Sign up</h1>
-          <form onSubmit={validatePasswords}>
-            <div className="input-group">
-              <label htmlFor="name"><i className="fas fa-user"></i></label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your Name"
-                aria-label="Your Name" // Added for accessibility
-                required
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="email"><i className="fas fa-envelope"></i></label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your Email"
-                aria-label="Your Email" // Added for accessibility
-                required
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="password"></label>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                placeholder="Password"
-                aria-label="Password" // Added for accessibility
-                required
-              />
-              <i
-                className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
-                onClick={togglePasswordVisibility}
-              ></i>
-            </div>
-            <div className="input-group">
-              <label htmlFor="confirm-password"></label>
-              <input
-                type={showConfirmPassword ? 'text' : 'password'}
-                id="confirm-password"
-                name="confirm-password"
-                placeholder="Confirm your password"
-                aria-label="Confirm Password" // Added for accessibility
-                required
-              />
-              <i
-                className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}
-                onClick={toggleConfirmPasswordVisibility}
-              ></i>
-            </div>
-            <div className="input-group checkbox">
-              <input type="checkbox" id="terms" name="terms" required />
-              <label htmlFor="terms">
-                I agree to all statements in the <Link to="/terms-of-service">Terms of service</Link>
-              </label>
-            </div>
-            <button type="submit">Register</button>
-            {error && <p className="error-message">{error}</p>} {/* Display error message */}
-          </form>
-          <p><Link to="/login">I am already a member</Link></p> {/* Use Link for internal navigation */}
+    <div className="signup-container">
+      <form onSubmit={validatePasswords} className="signup-form">
+        <h2>Register Here!</h2>
+
+        {/* Name Field */}
+        <div className="form-group">
+          <label htmlFor="name"><i className="fas fa-user"></i></label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <div className="image-container">
-          <img src="/signup-image.jpg" alt="Illustration" />
+
+        {/* Email Field */}
+        <div className="form-group">
+          <label htmlFor="email"><i className="fas fa-envelope"></i></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
         </div>
-      </div>
+
+        {/* Role Dropdown */}
+        <div className="form-group">
+          <label>Are you a:</label>
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Role</option>
+            <option value="bidder">Bidder</option>
+            <option value="tender-officer">Tender Officer</option>
+          </select>
+        </div>
+
+        {/* Password Field */}
+        <div className="form-group">
+          <label htmlFor="password"></label>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            name="password"
+            placeholder="Create Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <i
+            className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+            onClick={togglePasswordVisibility}
+          ></i>
+        </div>
+
+        {/* Confirm Password Field */}
+        <div className="form-group">
+          <label htmlFor="confirmPassword"></label>
+          <input
+            type={showConfirmPassword ? 'text' : 'password'}
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+          <i
+            className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+            onClick={toggleConfirmPasswordVisibility}
+          ></i>
+        </div>
+
+        {/* Agree to Terms Checkbox */}
+        <div className="form-group">
+          <input
+            type="checkbox"
+            id="agreeTerms"
+            name="agreeTerms"
+            checked={formData.agreeTerms}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="agreeTerms">
+            I agree to all statements in the <Link to="/terms-of-service">Terms of service</Link>
+          </label>
+        </div>
+
+        {/* Register Button */}
+        <button type="submit">Register</button>
+
+        {/* Error Message */}
+        {error && <p className="error-message">{error}</p>}
+
+        {/* Already a member */}
+        <p>
+          <Link to="/login">Already a member? Login</Link>
+        </p>
+        
+      </form>
+      <div className="image-container">
+          <img src="/signup-image.jpg" alt="Sign up illustration" />
+        </div>
     </div>
   );
 };
