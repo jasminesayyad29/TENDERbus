@@ -38,6 +38,30 @@ const RegistrationPage = () => {
     e.preventDefault();
     const { name, email, password, confirmPassword, role, agreeTerms } = formData;
 
+    // Password validation checks
+    const passwordValidationErrors = [];
+    
+    if (password.length < 8) {
+      passwordValidationErrors.push('Password must be at least 8 characters long.');
+    }
+    if (!/[A-Z]/.test(password)) {
+      passwordValidationErrors.push('Password must contain at least one uppercase letter.');
+    }
+    if (!/[a-z]/.test(password)) {
+      passwordValidationErrors.push('Password must contain at least one lowercase letter.');
+    }
+    if (!/[0-9]/.test(password)) {
+      passwordValidationErrors.push('Password must contain at least one number.');
+    }
+    if (!/[!@#$%^&*]/.test(password)) {
+      passwordValidationErrors.push('Password must contain at least one special character.');
+    }
+    
+    if (passwordValidationErrors.length > 0) {
+      setError(passwordValidationErrors.join(' ')); // Set error message if there are validation errors
+      return; // Stop further processing
+    }
+
     if (password !== confirmPassword) {
       setError('Passwords do not match');  // Set error message
     } else {

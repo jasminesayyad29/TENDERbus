@@ -1,14 +1,62 @@
 .landing-container {
-    text-align: center;
-    padding: 50px;
+  text-align: center;
+  padding: 50px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.landing-container h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.landing-container p {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .landing-container {
+    padding: 40px;
   }
-  
+
   .landing-container h1 {
-    color: #333;
+    font-size: 2.2rem;
   }
-  
+
   .landing-container p {
-    font-size: 1.2em;
-    color: #555;
+    font-size: 1.1rem;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .landing-container {
+    padding: 30px;
+  }
+
+  .landing-container h1 {
+    font-size: 2rem;
+  }
+
+  .landing-container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .landing-container {
+    padding: 20px;
+  }
+
+  .landing-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .landing-container p {
+    font-size: 0.95rem;
+  }
+}

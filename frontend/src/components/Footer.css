@@ -9,6 +9,7 @@ footer {
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px; /* Add some padding to handle small screens */
 }
 
 .footer-links {
@@ -17,6 +18,7 @@ footer {
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap; /* Allow links to wrap on small screens */
 }
 
 .footer-links li {
@@ -35,4 +37,37 @@ footer {
   color: #99dbff;
   transform: translateY(-3px);
   text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .footer-links {
+    gap: 15px; /* Reduce gap between links on smaller screens */
+  }
+
+  footer {
+    padding: 15px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    gap: 10px;
+    justify-content: space-around; /* Adjust spacing for better layout */
+  }
+  
+  .footer-content {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-links {
+    flex-direction: column; /* Stack links vertically on small screens */
+    gap: 10px;
+  }
+
+  .footer-links li {
+    margin-bottom: 10px; /* Add space between links */
+  }
 }

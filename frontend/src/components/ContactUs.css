@@ -5,6 +5,8 @@
     padding: 20px;
     background-color: #f0f8ff; /* Light blue background */
     color: #333;
+    max-width: 1200px; /* Limit width for large screens */
+    margin: auto; /* Center the content */
 }
 
 .header {
@@ -15,11 +17,13 @@
 .header h1 {
     font-size: 2.5rem;
     color: #6a0dad; /* Vibrant purple for the header */
+    margin-bottom: 10px;
 }
 
 .header p {
     font-size: 1.2rem;
     color: #555; /* Darker grey for readability */
+    margin-bottom: 20px;
 }
 
 /* Grid layout for contact info and form */
@@ -34,12 +38,17 @@
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    transition: transform 0.3s ease; /* Subtle hover effect */
+}
+
+.info-card:hover, .form-card:hover {
+    transform: scale(1.05); /* Slight scale on hover */
 }
 
 .info-card h2, .form-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #4d4847; /* Faint coral for card titles */
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .info-card p {
@@ -64,16 +73,24 @@ input, textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+    border-color: #6a0dad; /* Purple border on focus */
+    outline: none;
 }
 
 button {
     margin-top: 15px;
-    padding: 10px;
+    padding: 12px;
     background-color: #271a30; /* Purple background for the button */
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -81,8 +98,77 @@ button:hover {
 }
 
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+    .contact-container {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 2.2rem;
+    }
+
+    .header p {
+        font-size: 1.1rem;
+    }
+
+    .info-card h2, .form-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .contact-grid {
+        gap: 15px;
+    }
+
+    input, textarea {
+        font-size: 0.95rem;
+    }
+
+    button {
+        font-size: 0.95rem;
+    }
+}
+
 @media (max-width: 768px) {
     .contact-grid {
-        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+        grid-template-columns: 1fr; /* Stack cards vertically */
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    input, textarea {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-container {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header p {
+        font-size: 0.95rem;
+    }
+
+    input, textarea {
+        font-size: 0.85rem;
+    }
+
+    button {
+        font-size: 0.85rem;
+        padding: 10px;
     }
 }
