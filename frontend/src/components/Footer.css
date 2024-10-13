@@ -1,38 +1,60 @@
-footer {
-  background-color: #3e3e3e;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-  margin-top: 100px;
+/* Footer.css */
+
+.footer {
+  background-color: #3b3b3b; /* Dark gray background */
+  color: #f1f1f1; /* Light gray text color */
+  padding: 30px 20px; /* Padding for spacing */
+  text-align: center; /* Center align text */
+  border-top: 5px solid #ff6f61; /* Decorative border at the top */
+  position: relative; /* Relative positioning */
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px; /* Maximum width of the footer content */
+  margin: 0 auto; /* Center the footer content */
 }
 
 .footer-links {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  display: flex; /* Flex display for horizontal alignment */
+  justify-content: center; /* Center the links */
+  gap: 25px; /* Space between links */
+  flex-wrap: wrap; /* Wrap links onto next line if needed */
 }
 
 .footer-links li {
-  display: inline;
+  display: inline; /* Inline display for links */
 }
 
 .footer-links a {
-  color: #cea6a6;
-  text-decoration: none;
-  font-weight: bold;
-  position: relative;
-  transition: color 0.3s ease, transform 0.3s ease;
+  color: #ffd700; /* Gold color for links */
+  text-decoration: none; /* Remove underline */
+  font-weight: 600; /* Bold font weight */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  padding: 5px 15px; /* Padding around the link */
+  border-radius: 5px; /* Rounded corners */
 }
 
 .footer-links a:hover {
-  color: #99dbff;
-  transform: translateY(-3px);
-  text-decoration: underline;
+  color: #ffcc00; /* Change color on hover */
+  transform: translateY(-2px); /* Slightly lift the link on hover */
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+}
+
+.footer p {
+  margin-top: 20px; /* Margin above copyright text */
+  font-size: 14px; /* Font size for copyright */
+  font-weight: 400; /* Normal weight for copyright */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .footer-links {
+    flex-direction: column; /* Stack links vertically on small screens */
+    margin: 0; /* Remove margin */
+  }
+  .footer-links li {
+    margin: 10px 0; /* Spacing between stacked links */
+  }
 }
