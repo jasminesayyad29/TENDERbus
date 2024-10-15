@@ -1,8 +1,10 @@
-require("dotenv").config();
 const mongoose = require("mongoose") ;
 
-const connectDB = () => {
-    mongoose.connect(process.env.MONGODB_URL , {})
+require("dotenv").config() ;
+
+exports.connect = () => {
+    mongoose.connect(process.env.MONGODB_URL , {
+    })
     .then( () => {
         console.log("DB Connected successfully") 
     })
@@ -12,5 +14,3 @@ const connectDB = () => {
         process.exit(1) ;
     }) ;
 }
-
-module.exports = connectDB ;

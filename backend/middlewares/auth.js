@@ -1,4 +1,4 @@
-//  auth , isuser , isAdmin
+//  auth , isBidder , isAdmin
 
 const jwt= require("jsonwebtoken") ;
 require("dotenv").config() ;
@@ -38,12 +38,12 @@ exports.auth = (req,res,next) => {
 }
 
 
-exports.isStudent = (req,res,next) => {
+exports.isBidder = (req,res,next) => {
     try{
-        if( req.user.role !== "User" ) {
+        if( req.user.role !== "Bidder" ) {
             return res.status(401).json({
                 success:false ,
-                message:'This is a protected route for users',
+                message:'This is a protected route for Bidder',
             }) ;
         }
         next() ;

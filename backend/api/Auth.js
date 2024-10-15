@@ -1,16 +1,15 @@
-const express = require("express");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 require("dotenv").config();
-
+const express = require('express');
 const router = express.Router();
 
 // Signup Route
 router.post('/signup', async (req, res) => {
     try {
         const { name, email, password, role } = req.body;
-
         // Check if the user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -19,13 +18,10 @@ router.post('/signup', async (req, res) => {
                 message: "User already exists",
             });
         }
-
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-
         // Create new user
         const user = await User.create({ name, email, password: hashedPassword, role });
-
         res.status(200).json({
             success: true,
             message: "User registered successfully",
