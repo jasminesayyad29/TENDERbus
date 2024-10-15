@@ -7,6 +7,11 @@ const CreateTenderPage = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
+  const [sectorType, setSectorType] = useState('');
+  const [tenderID, setTenderID] = useState('');
+  const [city, setCity] = useState('');
+  const [time, setTime] = useState('');
+  const [quotation, setQuotation] = useState('');
   const [status, setStatus] = useState('Active');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -19,6 +24,11 @@ const CreateTenderPage = () => {
     formData.append('title', title);
     formData.append('description', description);
     formData.append('type', type);
+    formData.append('sectorType', sectorType);
+    formData.append('tenderID', tenderID);
+    formData.append('city', city);
+    formData.append('time', time);
+    formData.append('quotation', quotation);
     formData.append('status', status);
     formData.append('startDate', startDate);
     formData.append('endDate', endDate);
@@ -34,6 +44,11 @@ const CreateTenderPage = () => {
       setTitle('');
       setDescription('');
       setType('');
+      setSectorType('');
+      setTenderID('');
+      setCity('');
+      setTime('');
+      setQuotation('');
       setStatus('Active');
       setStartDate('');
       setEndDate('');
@@ -53,6 +68,7 @@ const CreateTenderPage = () => {
     <div className="create-tender">
       <h1>Create Tender</h1>
       <form onSubmit={handleSubmit}>
+        {/* Title */}
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
@@ -64,6 +80,7 @@ const CreateTenderPage = () => {
           />
         </div>
 
+        {/* Description */}
         <div className="form-group">
           <label htmlFor="description">Description</label>
           <textarea
@@ -74,6 +91,71 @@ const CreateTenderPage = () => {
           />
         </div>
 
+        {/* Sector Type */}
+        <div className="form-group">
+          <label htmlFor="sectorType">Sector Type</label>
+          <select
+            id="sectorType"
+            value={sectorType}
+            onChange={(e) => setSectorType(e.target.value)}
+            required
+          >
+            <option value="">Select Sector Type</option>
+            <option value="Public">Public</option>
+            <option value="Private">Private</option>
+            <option value="Government">Government</option>
+          </select>
+        </div>
+
+        {/* Tender ID */}
+        <div className="form-group">
+          <label htmlFor="tenderID">Tender ID</label>
+          <input
+            type="text"
+            id="tenderID"
+            value={tenderID}
+            onChange={(e) => setTenderID(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* City */}
+        <div className="form-group">
+          <label htmlFor="city">City</label>
+          <input
+            type="text"
+            id="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Time */}
+        <div className="form-group">
+          <label htmlFor="time">Time</label>
+          <input
+            type="time"
+            id="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Quotation */}
+        <div className="form-group">
+          <label htmlFor="quotation">Quotation</label>
+          <input
+            type="number"
+            id="quotation"
+            value={quotation}
+            onChange={(e) => setQuotation(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Type */}
         <div className="form-group">
           <label htmlFor="type">Type</label>
           <select
@@ -91,6 +173,7 @@ const CreateTenderPage = () => {
           </select>
         </div>
 
+        {/* Start Date */}
         <div className="form-group">
           <label htmlFor="startDate">Start Date</label>
           <input
@@ -102,6 +185,7 @@ const CreateTenderPage = () => {
           />
         </div>
 
+        {/* End Date */}
         <div className="form-group">
           <label htmlFor="endDate">End Date</label>
           <input
@@ -113,11 +197,13 @@ const CreateTenderPage = () => {
           />
         </div>
 
+        {/* Upload Document */}
         <div className="form-group">
           <label htmlFor="document">Upload Document</label>
           <input type="file" id="document" onChange={handleDocumentChange} required />
         </div>
 
+        {/* Submit Button */}
         <div className="form-actions">
           <button type="submit">Create Tender</button>
         </div>
