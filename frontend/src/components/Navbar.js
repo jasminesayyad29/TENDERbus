@@ -6,7 +6,7 @@ import './Navbar.css';
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="logo">TENDERbus</div>
+      <div className="tender"><a href="/" className="link">TENDERbus</a></div>
       <ul className="nav-links">
         {/* Dropdown for Account (Register/Login) */}
         <li className="dropdown">
