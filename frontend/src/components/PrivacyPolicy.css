@@ -17,6 +17,8 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 /* Header Styling */
@@ -49,11 +51,10 @@ body {
   color: #252627 !important;
   margin-bottom: 2px;
   text-align: left;
-  padding-left: 30px;
 }
 
 .privacy-content p{
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     color: #252627 !important;
     margin-bottom: 5px;
     text-align: left;

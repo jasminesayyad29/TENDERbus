@@ -1,5 +1,3 @@
-/* src/components/Tender/CreateTenderPage.css */
-
 .create-tender {
   max-width: 600px;
   margin: 0 auto;
@@ -30,7 +28,10 @@
 .form-group input[type="text"],
 .form-group textarea,
 .form-group select,
-.form-group input[type="file"] {
+.form-group input[type="file"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="number"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -39,7 +40,7 @@
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-group input[type="text"]:focus,
+.form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus,
 .form-group input[type="file"]:focus {

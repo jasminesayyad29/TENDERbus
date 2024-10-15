@@ -105,3 +105,20 @@ const Pagination = ({ tendersPerPage, totalTenders, paginate }) => {
 };
 
 export default TenderListPage;
+
+
+
+
+
+/*
+1)Sector Type
+2)TenderID
+3)City
+4)Tender Description
+5)Start Date
+6)End date
+7)Time 
+8)Quotation
+9)Document upload
+*/
+
