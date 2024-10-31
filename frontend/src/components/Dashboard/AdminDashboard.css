@@ -1,0 +1,51 @@
+/* src/components/Dashboard/AdminDashboard.css */
+
+.admin-dashboard {
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background for the dashboard */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard h1 {
+  text-align: center;
+  color: #6a0dad; /* Vibrant purple for the title */
+  margin-bottom: 20px;
+}
+
+.admin-options {
+  max-width: 600px; /* Limit the width for better readability */
+  margin: 0 auto; /* Center the options */
+}
+
+.admin-options h2 {
+  text-align: center;
+  color: #333; /* Dark color for the subtitle */
+  margin-bottom: 15px;
+}
+
+.admin-options ul {
+  list-style: none; /* Remove default list style */
+  padding: 0; /* Remove default padding */
+}
+
+.admin-options li {
+  margin: 10px 0; /* Add margin between options */
+}
+
+.admin-options a {
+  display: block; /* Make the link a block for the whole area */
+  padding: 15px; /* Add padding for clickable area */
+  background-color: #fff; /* White background for each option */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-decoration: none; /* Remove underline */
+  color: #6a0dad; /* Link color */
+  text-align: center; /* Center text */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transition effects */
+}
+
+.admin-options a:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}

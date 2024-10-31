@@ -1,0 +1,84 @@
+/* Importing Google Font for better typography */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f6f9; /* Neutral light background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Container for Privacy Policy */
+.privacy-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Header Styling */
+.header {
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #47b8ff;
+}
+
+.header h1 {
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: #01060b;
+    margin-bottom: 15px;
+}
+
+.header p {
+    font-size: 1.3rem;
+    color: #333;
+    margin: 0;
+}
+
+.privacy-content{
+    margin: 10px;
+
+}
+.privacy-content h2{
+  font-size: 1.3rem;
+  color: #252627 !important;
+  margin-bottom: 2px;
+  text-align: left;
+  padding-left: 30px;
+}
+
+.privacy-content p{
+    font-size: 1.125rem;
+    color: #252627 !important;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-left: 70px;
+  }
+  
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .privacy-grid {
+        grid-template-columns: 1fr; /* Stack sections on smaller screens */
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .header p {
+        font-size: 1.125rem;
+    }
+
+    .policy-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .policy-card p {
+        padding-left: 30px;
+    }
+}
