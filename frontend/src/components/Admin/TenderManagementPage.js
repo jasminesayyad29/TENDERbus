@@ -53,6 +53,7 @@ const TenderManagementPage = () => {
             <li key={tender._id}>
               <Link to={`/view-tender/${tender._id}`}>{tender.title}</Link>
               <h2>{tender.title}</h2>
+              <p>Tender ID: {tender._id}</p>
               <p>{tender.description}</p>
               <p>Type: {tender.type}</p>
               <p>Status: {tender.status}</p>

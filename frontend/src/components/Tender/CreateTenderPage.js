@@ -11,6 +11,7 @@ const CreateTenderPage = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [document, setDocument] = useState(null);
+  const [tenderId, setTenderId] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,8 +31,10 @@ const CreateTenderPage = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      const tenderId = response.data._id;
-      alert(`Tender created successfully! ID: ${tenderId}`);
+      const createdTenderId = response.data._id;
+      alert(`Tender created successfully! ID: ${createdTenderId}`);
+      setTenderId(createdTenderId);
+
       // Reset the form
       setTitle('');
       setDescription('');
@@ -44,6 +47,11 @@ const CreateTenderPage = () => {
       console.error('Error creating tender', error);
       alert('Error creating tender');
     }
+    if (new Date(startDate) >= new Date(endDate)) {
+      alert('End Date must be after Start Date');
+      return;
+  }
+  
   };
 
   const handleDocumentChange = (e) => {
@@ -123,6 +131,13 @@ const CreateTenderPage = () => {
           <button type="submit">Create Tender</button>
         </div>
       </form>
+       {/* Conditionally render the tender ID if it exists */}
+       {tenderId && (
+        <div>
+          <h2>Tender Created!</h2>
+          <p>Your tender ID is: <strong>{tenderId}</strong></p>
+        </div>
+      )}
       <Link to="/admin/tender-management">Manage Tenders</Link>
     </div>
   );

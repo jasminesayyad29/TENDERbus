@@ -55,7 +55,7 @@
 // export default ViewTenderPage;
 // src/components/Tender/ViewTenderPage.js
 import React, { useEffect, useState } from 'react';
-import { fetchTenders } from '../../services/tenderService';
+import {fetchTenders} from '../../services/tenderService';
 import { useParams } from 'react-router-dom';
 
 const ViewTenderPage = () => {
@@ -94,6 +94,7 @@ const ViewTenderPage = () => {
         <ul>
           {tenders.map((tender) => (
             <li key={tender._id}>
+              <h2>Tender ID: {tenderId}</h2> 
               <h2>{tender.title}</h2>
               <p>{tender.description}</p>
               <p>Type: {tender.type}</p>
