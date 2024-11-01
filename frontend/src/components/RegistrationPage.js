@@ -67,15 +67,9 @@ const RegistrationPage = () => {
     } else {
       try {
         // Example API request
-        await axios.post("http://localhost:5000/api/register", {
-          name,
-          email,
-          password,
-          role,
-      });
-
-      console.log("shweta")
-      
+        await axios.post(`${process.env.REACT_APP_API_URL}`, {
+          name, email, password, role,
+        });
 
         alert('Registration successful!');
         navigate('/login');
@@ -92,12 +86,12 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div className="signup-container">
-      <form onSubmit={validatePasswords} className="signup-form">
-        <h2>Register Here!</h2>
+    <div className="registration-container">
+      <form onSubmit={validatePasswords} className="registration-form">
+        <h3>Create Your  Account </h3>
 
         {/* Name Field */}
-        <div className="form-group">
+        <div className="input-group">
           <label htmlFor="name"><i className="fas fa-user"></i></label>
           <input
             type="text"
@@ -111,7 +105,7 @@ const RegistrationPage = () => {
         </div>
 
         {/* Email Field */}
-        <div className="form-group">
+        <div className="input-group">
           <label htmlFor="email"><i className="fas fa-envelope"></i></label>
           <input
             type="email"
@@ -125,8 +119,8 @@ const RegistrationPage = () => {
         </div>
 
         {/* Role Dropdown */}
-        <div className="form-group">
-          <label>Are you a:</label>
+        <div className="input-group">
+          <label>Role:</label>
           <select
             name="role"
             value={formData.role}
@@ -140,7 +134,7 @@ const RegistrationPage = () => {
         </div>
 
         {/* Password Field */}
-        <div className="form-group">
+        <div className="input-group">
           <label htmlFor="password"></label>
           <input
             type={showPassword ? 'text' : 'password'}
@@ -158,7 +152,7 @@ const RegistrationPage = () => {
         </div>
 
         {/* Confirm Password Field */}
-        <div className="form-group">
+        <div className="input-group">
           <label htmlFor="confirmPassword"></label>
           <input
             type={showConfirmPassword ? 'text' : 'password'}
@@ -176,7 +170,7 @@ const RegistrationPage = () => {
         </div>
 
         {/* Agree to Terms Checkbox */}
-        <div className="form-group">
+        <div className="input-group">
           <input
             type="checkbox"
             id="agreeTerms"
@@ -186,12 +180,12 @@ const RegistrationPage = () => {
             required
           />
           <label htmlFor="agreeTerms">
-            I agree to all statements in the <Link to="/terms-of-service">Terms of service</Link>
+            I agree to the  <pre> <Link to="/terms-of-service">Terms of service</Link></pre>
           </label>
         </div>
 
         {/* Register Button */}
-        <button type="submit">Register</button>
+        <button type="submit" className="register-button">Register</button>
 
         {/* Error Message */}
         {error && <p className="error-message">{error}</p>}
@@ -202,9 +196,9 @@ const RegistrationPage = () => {
         </p>
         
       </form>
-      <div className="image-container">
-          <img src="/signup-image.jpg" alt="Sign up illustration" />
-        </div>
+      <div className="illustration-container">
+        <img src="/signup-image.jpg" alt="Sign up illustration" />
+      </div>
     </div>
   );
 };

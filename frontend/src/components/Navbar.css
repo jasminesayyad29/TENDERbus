@@ -1,117 +1,111 @@
-/* src/components/Navbar.css */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: #2c3e50;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
-  border-radius: 30px;
-  margin: 20px;
+  background-color: #ffffff; /* Change to a white background for contrast */
+  /* border-radius: 30px; */
+  /* margin: 20px; */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transform: translateY(-20px); /* Initial position for slide-in effect */
+  opacity: 0; /* Start invisible for fade-in */
+  animation: slideIn 1s ease forwards; /* Slide-in animation */
 }
 
-.logo{
-  font-size: 1.8rem;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
-  font-weight: lighter;
-  color: #ffffff;
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px); /* Start from above */
+    opacity: 0; /* Start invisible */
+  }
+  to {
+    transform: translateY(0); /* End at original position */
+    opacity: 1; /* Fade in */
+  }
+}
+
+.logo {
+  font-size: larger ; /* Increased logo size */
+  font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
+  font-weight:bolder; /* Make logo bold */
+  color: #3a3b3c; /* Dark color for contrast */
   margin-right: auto;
+  list-style-type: none;
+
 }
 
 .nav-links {
   display: flex;
+  align-items: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.navbut{
-  /* text-align: center; */
-  margin-top: 15px;
-}
-
 .nav-links li {
-  margin-left: 20px;
+  margin-left: 1px; /* Space between links */
   position: relative;
 }
-
-.nav-links a, .dropbtn {
+.nav-links a,
+.dropbtn {
   text-decoration: none;
   font-size: 1rem;
-  color: #ecf0f1;
-  padding: 10px 15px;
+  color: #3a3b3c; /* Dark color for links */
+  padding: 10px 15px; /* Consistent padding */
   border: none;
   background: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 30px;
-}
-
-.nav-links a:hover, .dropbtn:hover {
-  background-color: #fff;
-  color: #080707;
+  border-radius: 20px; /* Rounded buttons */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 1s ease, box-shadow 0.3s ease; /* Added transition */
   
-  transform: scale(1.05);
-  border-radius: 30px;
+  /* Change the font family for buttons */
+  font-family: 'Poppins', sans-serif; /* Use Poppins for buttons */
 }
 
-/* Dropdown button */
-.dropbtn {
-  background-color: transparent;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
+.nav-links a:hover,
+.dropbtn:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  color: #3a3b3c; /* Dark text on hover */
+  transform: translateY(-2px); /* Slightly raise on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
 }
 
-/* Dropdown content */
+/* Dropdown styles */
 .dropdown-content {
-  display: none;
+  display: none; /* Keep it hidden by default */
   position: absolute;
-  background-color: #34495e;
+  background-color: #ffffff; /* White dropdown background */
   min-width: 160px;
-  border-radius: 4px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 4px; /* Rounded corners */
   top: 100%;
   left: 0;
   z-index: 1;
-  transition: opacity 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for dropdown */
+  opacity: 10; /* Start invisible for fade-in */
+  transform: translateY(-10px); /* Start slightly above */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
 }
 
+/* Dropdown item styles */
 .dropdown-content a {
-  color: #ecf0f1;
+  color: #3a3b3c; /* Dark color for dropdown items */
   padding: 12px 16px;
   display: block;
   text-align: left;
 }
 
-.dropdown-content a:hover {
-  background-color: #2980b9;
-  color: #fff;
-}
 
 /* Show dropdown content on hover */
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: block; /* Show the dropdown */
+  opacity: 1; /* Fade in */
+  transform: translateY(0); /* Move to original position */
 }
 
-.dropdown:hover .dropbtn {
-  background-color: #fff;
-  color: #080707;
-}
-
-/* Navbar animation */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.navbar {
-  animation: fadeInDown 0.5s ease forwards;
+/* Specific link styling for .tender class */
+.tender .link {
+  color: #3a3b3c !important; /* Ensures it matches the navbar links */
+  font-size: 29px; /* Increased font size for visibility */
+  font-family: 'Poppins', sans-serif; /* Consistent font family */
+  font-weight: 520;
 }
