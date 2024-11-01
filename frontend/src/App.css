@@ -1,3 +1,5 @@
+/* src/App.css */
+
 /* General Reset */
 * {
   margin: 0;
@@ -180,8 +182,7 @@ footer {
   color: white;
   padding: 20px 0;
   text-align: center;
-  position: absolute;
-  bottom: 0;
+  position: relative; /* Changed to relative for correct positioning */
   width: 100%;
 }
 
@@ -196,46 +197,4 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .container {
-    width: 95%;
-    padding: 10px;
-  }
-
-  .navbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .navbar a {
-    padding: 10px;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .page-title {
-    font-size: 1.8rem;
-  }
-
-  .page-content {
-    padding: 15px;
-  }
-
-  button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  form input,
-  form textarea {
-    padding: 8px;
-  }
-
-  footer {
-    font-size: 14px;
-  }
 }

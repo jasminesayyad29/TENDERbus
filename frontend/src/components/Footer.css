@@ -1,14 +1,18 @@
 /* src/components/Footer.css */
-*{
-
+* {
+  margin-top: 0; /* Corrected margin to zero */
 }
+
 .footer {
-  background-color: #d1d5db; /* Base background */
-  color: #1f2937; /* Base text color */
-  padding: 2.5rem; /* 10rem padding */
+  background-color: #202021; /* Base background */
+  color: #ffffff; /* Base text color */
+  font-size: 0.9rem;
   display: flex;
+  padding-top: 20px;
+  padding-left: 50px;
   justify-content: space-evenly;
-  height : 30vh;
+  height: 25vh;
+  font-family: 'Poppins', sans-serif; /* Set font family */
 }
 
 .footer nav {
@@ -24,15 +28,15 @@
 }
 
 .link {
-  color: #1f2937; /* Text color */
+  font-size: 0.9rem;
+  color: #f7f7f7; /* Text color */
   text-decoration: none;
   transition: color 0.3s ease;
   line-height: 20px;
-
 }
 
 .link:hover {
-  color: #3b82f6; /* Hover color (blue) */
+  color: #2c71df; /* Hover color (blue) */
 }
 
 .social-icons {
