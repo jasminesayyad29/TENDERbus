@@ -37,10 +37,11 @@ const LoginPage = () => {
   return ( 
   <>
 
-    <h2>Login Here</h2>
+    
     <div className="login-container">
-      
+    
       <form onSubmit={handleSubmit} className="login-form">
+      <h2>Login Here</h2>
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -72,8 +73,8 @@ const LoginPage = () => {
             <option value="admin">Tender Officer</option>
           </select>
         </div>
-        {error && <p className="error">{error}</p>} {/* Display error */}
-        <button type="submit">Login</button>
+        {error && <p className="error">{error}</p>} 
+        <button type="submit" className='loginbutton'>Login</button>
         <p>
           Don't have an account? <a href="/Register">Sign up</a>
         </p>

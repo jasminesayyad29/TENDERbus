@@ -15,7 +15,7 @@ const Footer = () => {
       <nav>
         <h6 className="footer-title">TENDERbus</h6>
         <a href="/about" className="link">About us</a>
-        <a href="/contact" className="link">Contact</a>
+        <a href="/contact" className="link">Contact Us</a>
         <a href="/privacy-policy" className="link">Privacy Policy</a>
         <a href="/terms-of-service" className="link">Terms & Conditions</a>
       </nav>
