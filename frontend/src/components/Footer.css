@@ -8,11 +8,11 @@
   color: #ffffff; /* Base text color */
   font-size: 0.9rem;
   display: flex;
-  margin-top: 8PX;
-  padding-top: 5px;
+  margin-top: 80PX;
+  padding-top: 15px;
   padding-left: 50px;
   justify-content: space-evenly;
-  height: 25vh;
+  height: 29vh;
   font-family: 'Poppins', sans-serif; /* Set font family */
 }
 

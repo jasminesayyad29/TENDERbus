@@ -25,7 +25,7 @@ h3 {
   font-family: 'Poppins', sans-serif !important;
   font-size: 24px;
   color: #000000;
-  margin-bottom: 1px;
+  margin-bottom: 20px;
 }
 
 .form-group {
@@ -68,6 +68,7 @@ select:focus {
 .input-group i {
   position: absolute;
   top: 50%;
+  margin-top: 15px;
   right: 10px; /* Positions icon on the right side */
   transform: translateY(-50%); /* Centers icon vertically */
   cursor: pointer;
@@ -76,6 +77,7 @@ select:focus {
 }
 
 input[type="checkbox"] {
+  margin-left: 150px;
   margin-right: 10px;
 }
 
@@ -92,11 +94,12 @@ label[for="agreeTerms"] {
   color: white;
   padding: 12px;
   border: none;
-  border-radius: 4px;
+  border-radius: 40px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
-  width: 100%;
+  width: 80%;
+  margin: auto;
 }
 
 .register-button:hover {
@@ -124,4 +127,10 @@ label[for="agreeTerms"] {
   width: 100%;
   height: auto;
   border-radius: 8px;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
 }

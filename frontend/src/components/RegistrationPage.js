@@ -88,16 +88,17 @@ const RegistrationPage = () => {
   return (
     <div className="registration-container">
       <form onSubmit={validatePasswords} className="registration-form">
+        <br/>
         <h3>Create Your  Account </h3>
-
+<br/>
         {/* Name Field */}
         <div className="input-group">
+        <label>Name :</label>
           <label htmlFor="name"><i className="fas fa-user"></i></label>
           <input
             type="text"
             id="name"
             name="name"
-            placeholder="Enter your name"
             value={formData.name}
             onChange={handleChange}
             required
@@ -106,12 +107,12 @@ const RegistrationPage = () => {
 
         {/* Email Field */}
         <div className="input-group">
+        <label>Email :</label>
           <label htmlFor="email"><i className="fas fa-envelope"></i></label>
           <input
             type="email"
             id="email"
             name="email"
-            placeholder="Enter your email"
             value={formData.email}
             onChange={handleChange}
             required
@@ -120,7 +121,7 @@ const RegistrationPage = () => {
 
         {/* Role Dropdown */}
         <div className="input-group">
-          <label>Role:</label>
+          <label>Role :</label>
           <select
             name="role"
             value={formData.role}
@@ -135,12 +136,12 @@ const RegistrationPage = () => {
 
         {/* Password Field */}
         <div className="input-group">
+        <label>Enter Password :</label>
           <label htmlFor="password"></label>
           <input
             type={showPassword ? 'text' : 'password'}
             id="password"
             name="password"
-            placeholder="Create Password"
             value={formData.password}
             onChange={handleChange}
             required
@@ -153,12 +154,12 @@ const RegistrationPage = () => {
 
         {/* Confirm Password Field */}
         <div className="input-group">
+        <label>Confirm Password :</label>
           <label htmlFor="confirmPassword"></label>
           <input
             type={showConfirmPassword ? 'text' : 'password'}
             id="confirmPassword"
             name="confirmPassword"
-            placeholder="Confirm Password"
             value={formData.confirmPassword}
             onChange={handleChange}
             required
@@ -175,12 +176,13 @@ const RegistrationPage = () => {
             type="checkbox"
             id="agreeTerms"
             name="agreeTerms"
+            className='checkbox'
             checked={formData.agreeTerms}
             onChange={handleChange}
             required
           />
           <label htmlFor="agreeTerms">
-            I agree to the  <pre> <Link to="/terms-of-service">Terms of service</Link></pre>
+          <pre>I agree to the <Link to="/terms-of-service">Terms of service</Link></pre>
           </label>
         </div>
 
@@ -191,9 +193,9 @@ const RegistrationPage = () => {
         {error && <p className="error-message">{error}</p>}
 
         {/* Already a member */}
-        <p>
-          <Link to="/login">Already a member? Login</Link>
-        </p>
+        <h4><p>Already a member?
+          <Link to="/login">   Sign-in</Link>
+        </p></h4>
         
       </form>
       <div className="illustration-container">
