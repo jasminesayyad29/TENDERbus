@@ -17,7 +17,7 @@
 //         setError('Failed to fetch bids for this tender');
 //       }
 //     };
-//     fetchBids();
+//     fetchBids();   
 //   }, [tenderId]);
 
 //   return (
@@ -57,6 +57,7 @@
 import React, { useEffect, useState } from 'react';
 import {fetchTenders} from '../../services/tenderService';
 import { useParams } from 'react-router-dom';
+import './ViewTenderPage.css';
 
 const ViewTenderPage = () => {
   const [tenders, setTenders] = useState([]);
@@ -86,27 +87,28 @@ const ViewTenderPage = () => {
   if (error) return <p>{error}</p>; // Display error message
 
   return (
-    <div>
-      <h1>View Tenders</h1>
-      {tenders.length === 0 ? ( // Check if there are no tenders
+    <div className="view-tender-container">
+      <h1>Tenders Open Now!</h1>
+      {tenders.length === 0 ? (
         <p>No tenders available.</p>
       ) : (
-        <ul>
+        <div className="tender-card-container">
           {tenders.map((tender) => (
-            <li key={tender._id}>
-              <h2>Tender ID: {tenderId}</h2> 
+            <div key={tender._id} className="tender-card">
+              <h2>Tender ID: {tenderId}</h2>
               <h2>{tender.title}</h2>
               <p>{tender.description}</p>
-              <p>Type: {tender.type}</p>
-              <p>Status: {tender.status}</p>
+              <p className="type">Type: {tender.type}</p>
+              <p className="status">Status: {tender.status}</p>
               <p>Start Date: {new Date(tender.startDate).toLocaleDateString()}</p>
               <p>End Date: {new Date(tender.endDate).toLocaleDateString()}</p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
+  
 };
 
 export default ViewTenderPage;

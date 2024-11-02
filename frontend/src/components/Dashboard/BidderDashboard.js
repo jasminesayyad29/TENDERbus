@@ -28,9 +28,10 @@ const BidderDashboard = () => {
 
   return (
     <div className="bidder-dashboard">
-      <h1>Bidder Dashboard</h1>
+      
 
       <form onSubmit={handleBidderIdSubmit} className="bidder-id-form">
+      <h1>Bidder Dashboard</h1>
         <label htmlFor="bidderId">Enter Your Bidder ID:</label>
         <input
           type="text"
