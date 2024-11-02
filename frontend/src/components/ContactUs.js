@@ -69,7 +69,7 @@ const ContactUs = () => {
           </div>
           <div className="info-item">
             <FaEnvelope className="icon" />
-            <p>Email: supportus.tenderbus@gmail.com</p>
+            <p>Email: support.tenderbus@gmail.com</p>
           </div>
           <div className="info-item">
             

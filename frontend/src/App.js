@@ -135,6 +135,7 @@ import HelpSupportPage from './components/HelpSupportPage';
 import TermsOfService from './components/TermsOfService'; 
 import PrivacyPolicy from './components/PrivacyPolicy'; 
 import ContactUs from './components/ContactUs'; 
+import AboutUs from './components/AboutUs'; 
 import AdminSendNotification from './components/Admin/AdminSendNotification';
 import Notifications from './components/Bidder/NotificationsPage';
 // Component to protect routes based on user roles
@@ -199,6 +200,7 @@ const App = () => {
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/tenders" element={<TenderListPage />} /> 
             <Route path="/admin/admin-send-notifications" component={<AdminSendNotification/>} />
             <Route path="/Bidder/notifications" component={<NotificationsPage/>} />

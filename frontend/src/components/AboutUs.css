@@ -1,0 +1,51 @@
+.about-us {
+    padding: 20px;
+    font-family: 'Poppins', sans-serif; /* Set font family */
+    color: black; /* Change text color to black for better visibility on white */
+    background-color: white; /* White background for the box */
+    border-radius: 8px; /* Rounded corners for the box */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: row; /* Align items in a row */
+    gap: 20px; /* Space between description and team section */
+  }
+  
+  .description {
+    flex: 2; /* Allow the description to take up more space */
+    padding: 20px; /* Inner padding for the description */
+  }
+  
+  .team-card {
+    flex: 1; /* Allow the team section to take up less space */
+    display: flex;
+    flex-direction: column; /* Stack team member cards vertically */
+    align-items: center; /* Center the images horizontally */
+    gap: 20px; /* Space between team member cards */
+  }
+  
+  h2 {
+    color: black; /* Change heading color to black */
+    text-align: center; /* Center the section headings */
+  }
+  
+  .member {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the name under the image */
+  }
+  
+  .member-image {
+    width: 100px; /* Set the width of the image */
+    height: 100px; /* Set the height of the image */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the circle without stretching */
+    border: 2px solid #202021; /* Optional: add a border to the image */
+  }
+  
+  .member-name {
+    margin-top: 10px;
+    font-weight: 600; /* Bold the name */
+    font-size: 1.1rem; /* Slightly larger font size for names */
+    text-align: center; /* Center the text below images */
+  }
+  
