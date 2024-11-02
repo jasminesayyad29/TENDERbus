@@ -16,6 +16,7 @@
   height: 100vh; /* Full viewport height to center vertically */
   background-color: transparent;
   padding: 20px;
+  opacity: 0.9;
 }
 
 /* Form Styling */

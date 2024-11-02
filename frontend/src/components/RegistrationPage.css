@@ -12,14 +12,15 @@ body {
   display: flex;
   max-width: 1000px; /* Increased width */
   margin: 50px auto;
-  background-color: white; /* White background for form */
+  background-color: #fff; /* White background for form */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+
 }
 
 .registration-form {
   flex: 1;
-  padding: 40px; /* Increased padding */
+  padding: 20px; /* Increased padding */
 }
 
 h3 {
@@ -97,12 +98,13 @@ label[for="agreeTerms"] {
 }
 
 .illustration-container {
-  width: 40%; /* Set width for the image container */
-  border-radius: 8px; /* Rounded corners for image container */
-  display: flex; /* Flexbox for centering */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  background-color: #f5f5f5; /* Light gray background for image section */
+  width: 40%; 
+  border-radius: 8px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background-color:rgb(139, 185, 222);
+  
 }
 
 .illustration-container img {
