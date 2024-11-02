@@ -72,6 +72,7 @@ const UserProfilePage = () => {
   };
 
   return (
+    <pre className='mainn'>
     <div className="user-profile-wrapper">
       <h2 className="user-profile-header">User Details</h2>
       {!isEditing ? (
@@ -132,6 +133,8 @@ const UserProfilePage = () => {
         </form>
       )}
     </div>
+   <br/>
+   <br/><br/><br/><br/><br/><br/></pre>
   );
 };
 

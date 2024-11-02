@@ -3,16 +3,13 @@
   margin-top: 0; /* Corrected margin to zero */
 }
 
-.footer {
+footer {
   background-color: #202021; /* Base background */
   color: #ffffff; /* Base text color */
   font-size: 0.9rem;
   display: flex;
-  margin-top: 80PX;
-  padding-top: 15px;
-  padding-left: 50px;
   justify-content: space-evenly;
-  height: 29vh;
+  padding: 15px 50px; /* Adjust padding */
   font-family: 'Poppins', sans-serif; /* Set font family */
 }
 
