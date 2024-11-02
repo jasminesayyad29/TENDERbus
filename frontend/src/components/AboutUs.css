@@ -3,7 +3,6 @@
     font-family: 'Poppins', sans-serif; /* Set font family */
     color: black; /* Change text color to black for better visibility on white */
     background-color: white; /* White background for the box */
-    border-radius: 8px; /* Rounded corners for the box */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     display: flex; /* Use flexbox for layout */
     flex-direction: row; /* Align items in a row */

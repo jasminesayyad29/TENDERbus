@@ -11,6 +11,8 @@ const AboutUsPage = () => {
   return (
     <div className="about-us">
       <div className="description">
+      <br/>
+      <br/>
         <h1>About Us</h1>
         <p>
           Welcome to our tender management system! We are committed to providing 
@@ -24,19 +26,24 @@ const AboutUsPage = () => {
           management who are passionate about improving the tendering experience 
           for everyone involved.
         </p>
+
+        <br/>
+        <br/>
+        <br/>
+
         <h2>Our Vision</h2>
         <p>
           To be the leading platform for tender management, recognized for 
           our commitment to excellence, innovation, and customer satisfaction.
         </p>
-        <h2>Our Values</h2>
+        {/* <h2>Our Values</h2>
         <ul>
           <li>Integrity</li>
           <li>Transparency</li>
           <li>Innovation</li>
           <li>Collaboration</li>
           <li>Customer Focus</li>
-        </ul>
+        </ul> */}
       </div>
 
       {/* Team Section */}
