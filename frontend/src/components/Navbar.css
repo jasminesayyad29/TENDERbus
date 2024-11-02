@@ -107,6 +107,7 @@
 
 /* Specific link styling for .tender class */
 .tender .link {
+  margin-left: 10px;
   color: #3a3b3c !important; /* Ensures it matches the navbar links */
   font-size: 29px; /* Increased font size for visibility */
   font-family: 'Poppins', sans-serif; /* Consistent font family */
