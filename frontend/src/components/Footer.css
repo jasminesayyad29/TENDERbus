@@ -8,7 +8,8 @@
   color: #ffffff; /* Base text color */
   font-size: 0.9rem;
   display: flex;
-  padding-top: 20px;
+  margin-top: 8PX;
+  padding-top: 5px;
   padding-left: 50px;
   justify-content: space-evenly;
   height: 25vh;

@@ -20,13 +20,13 @@ const Navbar = () => {
         </li>
 
         {/* Dropdown for Dashboards (if needed) */}
-        <li className="dropdown">
+        {/* <li className="dropdown">
           <button className="dropbtn">Dashboards</button>
           <div className="dropdown-content">
             <Link to="/admin/dashboard">Tender Admin</Link>
             <Link to="/bidder/dashboard">Bidder</Link>
           </div>
-        </li>
+        </li> */}
 
         <li className="navbut"><Link to="/profile">Profile</Link></li>
         <li className="navbut"><Link to="/tender/create">Tenders</Link></li>
