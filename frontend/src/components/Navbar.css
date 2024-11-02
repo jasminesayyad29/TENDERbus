@@ -50,7 +50,7 @@
 .dropbtn {
   text-decoration: none;
   font-size: 1rem;
-  color: #3a3b3c; /* Dark color for links */
+  color: #000000; /* Dark color for links */
   font-weight: 500; /* Medium font weight */
   padding: 10px 15px; /* Consistent padding */
   border: none;
@@ -107,7 +107,7 @@
 
 /* Specific link styling for .tender class */
 .tender .link {
-  margin-left: 10px;
+  margin-left: px;
   color: #3a3b3c !important; /* Ensures it matches the navbar links */
   font-size: 29px; /* Increased font size for visibility */
   font-family: 'Poppins', sans-serif; /* Consistent font family */
