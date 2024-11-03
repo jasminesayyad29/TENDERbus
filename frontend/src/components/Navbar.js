@@ -11,13 +11,13 @@ const Navbar = () => {
       </div>
       <ul className="nav-links">
         {/* Dropdown for Account (Register/Login) */}
-        <li className="dropdown">
+        {/* <li className="dropdown">
           <button className="dropbtn">Register / Sign-In</button>
           <div className="dropdown-content">
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>
           </div>
-        </li>
+        </li> */}
 
         {/* Dropdown for Dashboards (if needed) */}
         {/* <li className="dropdown">
@@ -27,8 +27,14 @@ const Navbar = () => {
             <Link to="/bidder/dashboard">Bidder</Link>
           </div>
         </li> */}
+ <li className="dropdown">
+          <button className="dropbtn">Profile</button>
+          <div className="dropdown-content">
+          <li className="navbut"><Link to="/profile">View Profile</Link></li>
+          <Link to="/login">Logout</Link>
+          </div>
+        </li>
 
-        <li className="navbut"><Link to="/profile">Profile</Link></li>
         <li className="navbut"><Link to="/tender/create">Tenders</Link></li>
         <li className="navbut"><Link to="/notifications">Notifications</Link></li>
         {/* <li className="navbut"><Link to="/settings">Settings</Link></li> */}

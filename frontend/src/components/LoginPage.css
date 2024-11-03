@@ -126,3 +126,88 @@ p a:hover {
     padding: 10px;
   }
 }
+
+
+.login-form, .logout-card, .logout-confirmation-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 200px;
+
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.login-form label, .login-form input, .login-form select {
+  display: block;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+h2, h3 {
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.login-button, .logout-button, .confirm-button, .cancel-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border-radius: 40px;
+
+}
+
+.logout-confirmation-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.confirm-button {
+  background-color: #f44336;
+  border-radius: 40px;
+
+  color: white;
+  flex: 1;
+}
+
+.cancel-button {
+  background-color: #4caf50;
+  border-radius: 40px;
+  color: white;
+  flex: 1;
+}
