@@ -132,7 +132,7 @@ const LoginPage = () => {
             {error && <p className="error">{error}</p>}
             <button type="submit" className="login-button">Login</button>
             <p>
-              Don't have an account? <a href="/Register">Sign up</a>
+              Don't have an account? <a href="/Register">Sign up / Register</a>
             </p>
           </form>
         </div>
