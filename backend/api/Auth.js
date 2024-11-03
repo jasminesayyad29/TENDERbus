@@ -45,12 +45,12 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     console.log(req.body.role)
     try {
-        const { email, password } = req.body;
+        const { email, password ,role} = req.body;
 
-        if (!email || !password) {
+        if (!email || !password || !role) {
             return res.status(400).json({
                 success: false,
-                message: "Please provide both email and password",
+                message: "Please provide email and password and role",
             });
         }
 
@@ -62,7 +62,14 @@ router.post('/login', async (req, res) => {
                 message: "User not found, Please register first",
             });
         }
-
+        if( user.role != role )
+        {
+            return res.status(401).json({
+                success: false,
+                message: "Incorrect Role",
+            });
+            
+        }
         // Compare password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
