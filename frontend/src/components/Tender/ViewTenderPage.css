@@ -44,17 +44,19 @@ p {
   transition: transform 0.2s;
   flex: 1 1 calc(33.333% - 20px); /* 3 cards per row, with margin adjustment */
   max-width: calc(33.333% - 20px); /* Max width for responsiveness */
+  height: 340px; /* Fixed height for cards */
+  overflow-y: auto; /* Enable vertical scroll */
 }
 
 .tender-card:hover {
   transform: scale(1.05); /* Slightly enlarge card on hover */
-  box-shadow: 6px 8px 4px rgb(9, 13, 13);
+  box-shadow: 6px 8px 4px rgb(102, 145, 145);
 }
 
 /* Title and description styles within the card */
 .tender-card h2 {
   color: #07020a;
-  font-size: 1.6em;
+  font-size: 1.2em;
   margin: 0 0 10px;
 }
 

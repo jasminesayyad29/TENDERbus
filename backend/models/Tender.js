@@ -1,4 +1,5 @@
 // src/models/Tender.js
+const { required } = require('joi');
 const mongoose = require('mongoose');
 
 // Define the schema for Tender
@@ -6,6 +7,10 @@ const tenderSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,  // Title is required
+  },
+  eligibility:{
+    type:String,
+    required:true
   },
   description: {
     type: String,

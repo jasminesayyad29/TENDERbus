@@ -5,6 +5,7 @@ import './CreateTenderPage.css'; // You can add your own styles here
 
 const CreateTenderPage = () => {
   const [title, setTitle] = useState('');
+  const [eligibility,setEligibility] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
   const [status, setStatus] = useState('Active');
@@ -18,6 +19,7 @@ const CreateTenderPage = () => {
 
     const formData = new FormData();
     formData.append('title', title);
+    formData.append('eligibility',eligibility);
     formData.append('description', description);
     formData.append('type', type);
     formData.append('status', status);
@@ -37,6 +39,7 @@ const CreateTenderPage = () => {
 
       // Reset the form
       setTitle('');
+      setEligibility('');
       setDescription('');
       setType('');
       setStatus('Active');
@@ -69,6 +72,15 @@ const CreateTenderPage = () => {
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="title">Eligibility Criteria</label>
+          <textarea
+            id="eligibility"
+            value={eligibility}
+            onChange={(e) => setEligibility(e.target.value)}
             required
           />
         </div>
@@ -136,6 +148,7 @@ const CreateTenderPage = () => {
         <div>
           <h2>Tender Created!</h2>
           <p>Your tender ID is: <strong>{tenderId}</strong></p>
+          <p>Save it for Later!!</p>
         </div>
       )}
       <Link to="/admin/tender-management">Manage Tenders</Link>

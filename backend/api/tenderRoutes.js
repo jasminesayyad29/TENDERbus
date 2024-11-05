@@ -19,11 +19,12 @@ const upload = multer({ storage });
 // Create a new tender
 router.post('/', upload.single('document'), async (req, res) => {
   try {
-    const { title, description, type, status, startDate, endDate } = req.body;
+    const { title, eligibility, description, type, status, startDate, endDate } = req.body;
     const document = req.file ? req.file.path : ''; // Get the file path
 
     const newTender = new Tender({
       title,
+      eligibility, 
       description,
       type,
       status,
