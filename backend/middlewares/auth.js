@@ -57,10 +57,10 @@ exports.isBidder = (req,res,next) => {
 
 exports.isAdmin = (req,res,next) => {
     try{
-        if( req.user.role !== "Admin" ) {
+        if( req.user.role !== "Tender Officer" ) {
             return res.status(401).json({
                 success:false ,
-                message:'This is a protected route for admin',
+                message:'This is a protected route for Tender Officer',
             }) ;
         }
         next() ;

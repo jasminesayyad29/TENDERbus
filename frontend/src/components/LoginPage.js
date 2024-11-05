@@ -9,7 +9,7 @@ const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    role: 'bidder',
+    //role: 'bidder',
   });
   const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -39,7 +39,7 @@ const LoginPage = () => {
       const response = await axios.post("http://localhost:5000/api/login", {
         email,
         password,
-        role,
+        //role,
       });
 
       const user = response.data.user;
@@ -118,7 +118,7 @@ const LoginPage = () => {
                 required
               />
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="role">Role</label>
               <select
                 name="role"
@@ -128,7 +128,7 @@ const LoginPage = () => {
                 <option value="bidder">Bidder</option>
                 <option value="admin">Tender Officer</option>
               </select>
-            </div>
+            </div> */}
             {error && <p className="error">{error}</p>}
             <button type="submit" className="login-button">Login</button>
             <p>

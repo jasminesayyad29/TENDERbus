@@ -33,7 +33,7 @@ exports.signup = async (req,res) => {
         // create entry for user
         const user = await User.create({
             name,email,password:hashedPassword,role
-        })
+        });
 
         return res.status(200).json({
             success:true,
@@ -56,7 +56,7 @@ exports.login = async (req,res) => {
     try{
         // data fetch
         const {email,password} = req.body ;
-        // validation on email ans password
+        // validation on email and password
         if( !email || !password ){
             return res.status(400).json({
                 success:false ,

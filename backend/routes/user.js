@@ -28,10 +28,10 @@ router.get("/bidder", auth, isBidder, (req,res) => {
 }) ;
 
 
-router.get("/admin", auth, isAdmin , (req,res) => {
+router.get("/tenderofficer", auth, isAdmin , (req,res) => {
     res.json({
         success:true,
-        message:'Welcome to the protected route of Admin',
+        message:'Welcome to the protected route of Tender Officer',
     }) ;
 }) ;
 
