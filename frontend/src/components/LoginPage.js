@@ -33,7 +33,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, role } = formData;
+    const { email, password } = formData;
 
     try {
       const response = await axios.post("http://localhost:5000/api/login", {
@@ -46,7 +46,7 @@ const LoginPage = () => {
       localStorage.setItem('user', JSON.stringify(user));
       setIsLoggedIn(true);
       alert('Login successful!');
-      navigate(role === 'Bidder' ? '/bidder/dashboard' : '/admin/dashboard');
+      navigate(user.role === 'Bidder' ? '/bidder/dashboard' : '/admin/dashboard');
     } catch (error) {
       console.error('Login failed', error);
       if (error.response) {
