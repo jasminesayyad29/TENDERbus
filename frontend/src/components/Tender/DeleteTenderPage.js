@@ -1,16 +1,26 @@
 // src/components/Tender/DeleteTenderPage.js
 import React, { useState } from 'react';
 import './DeleteTenderPage.css'; // Import the CSS file
+import axios from 'axios';
 
 const DeleteTenderPage = () => {
   const [tenderId, setTenderId] = useState('');
   const [reason, setReason] = useState('');
   const [confirmDelete, setConfirmDelete] = useState(false); // State for confirmation
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
-    // Logic for deleting the tender goes here
-    console.log(`Deleting Tender ID: ${tenderId} for reason: ${reason}`);
+    try {
+      await axios.delete(`http://localhost:5000/api/tenders/${tenderId}`);
+      console.log(`Tender ID: ${tenderId} deleted for reason: ${reason}`);
+      alert('Tender deleted successfully');
+      setTenderId(''); // Clear the form fields after deletion
+      setReason('');
+      setConfirmDelete(false);
+    } catch (error) {
+      console.error('Error deleting tender:', error);
+      alert('Failed to delete the tender');
+    }
   };
 
   const handleConfirmation = (e) => {
@@ -46,7 +56,7 @@ const DeleteTenderPage = () => {
         {confirmDelete ? (
           <div>
             <h3>Are you sure you want to delete this tender?</h3>
-            <button type="submit">Yes, Delete</button>
+            <button type="submit" >Yes, Delete</button>
             <button type="button" onClick={() => setConfirmDelete(false)}>No, Cancel</button>
           </div>
         ) : (

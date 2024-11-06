@@ -184,8 +184,8 @@ const App = () => {
             />
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/tender/create" element={<CreateTenderPage />} />
-            <Route path="/tender/modify" element={<ModifyTenderPage />} />
-            <Route path="/tender/delete" element={<DeleteTenderPage />} />
+            <Route path="/tender/modify/:tenderId" element={<ModifyTenderPage />} />
+            <Route path="/tender/delete/:tenderId" element={<DeleteTenderPage />} />
             <Route path="/tender/view" element={<ViewTenderPage />} />
             <Route path="/tender/submit" element={<SubmitBidPage />} />
             <Route path="/tender/bid-details" element={<BidDetailsPage />} />
