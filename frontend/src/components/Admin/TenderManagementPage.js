@@ -1,16 +1,3 @@
-// import React from 'react';
-// import './TenderManagementPage.css';
-
-// const TenderManagementPage = () => {
-//   return (
-//     <div className="tender-management-container">
-//       <h2>Tender Management</h2>
-//       <p>Manage all active and archived tenders here.</p>
-//     </div>
-//   );
-// };
-
-// export default TenderManagementPage;
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -43,26 +30,43 @@ const TenderManagementPage = () => {
   if (error) return <p>{error}</p>; // Display error message
 
   return (
-    <div>
-      <h1>Manage Tenders</h1>
-      {tenders.length === 0 ? ( // Check if there are no tenders
-        <p>No tenders available.</p>
-      ) : (
-        <ul>
-          {tenders.map((tender) => (
-            <li key={tender._id}>
-              <Link to={`/view-tender/${tender._id}`}>{tender.title}</Link>
-              <h2>{tender.title}</h2>
-              <p>Tender ID: {tender._id}</p>
-              <p>{tender.description}</p>
-              <p>Type: {tender.type}</p>
-              <p>Status: {tender.status}</p>
-              <p>Start Date: {new Date(tender.startDate).toLocaleDateString()}</p>
-              <p>End Date: {new Date(tender.endDate).toLocaleDateString()}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="tender-management-container">
+      <h2>Manage Tenders</h2>
+      <table className="tender-table">
+        <thead>
+          <tr>
+            <th>Tender ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tenders.length > 0 ? (
+            tenders.map((tender) => (
+              <tr key={tender._id}>
+                <td>{tender._id}</td>
+                <td>{tender.title}</td>
+                <td>{tender.description}</td>
+                <td>{new Date(tender.startDate).toLocaleDateString()}</td>
+                <td>{new Date(tender.endDate).toLocaleDateString()}</td>
+                <td>{tender.status}</td>
+                {/* <td>
+                  <button onClick={() => handleEdit(tender)}>Edit</button>
+                  <button onClick={() => handleDelete(tender._id)}>Delete</button>
+                </td> */}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="7">No tenders available</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };

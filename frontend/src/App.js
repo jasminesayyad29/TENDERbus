@@ -169,7 +169,7 @@ const App = () => {
             <Route 
               path="/admin/dashboard" 
               element={
-                <ProtectedRoute roleRequired="tender-officer">
+                <ProtectedRoute roleRequired="Tender Officer">
                   <AdminDashboard />
                 </ProtectedRoute>
               } 
@@ -177,7 +177,7 @@ const App = () => {
             <Route 
               path="/bidder/dashboard" 
               element={
-                <ProtectedRoute roleRequired="bidder">
+                <ProtectedRoute roleRequired="Bidder">
                   <BidderDashboard />
                 </ProtectedRoute>
               } 

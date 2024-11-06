@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema( {
     },
     role:{
         type:String,
-        enum:["Tender Officer", "bidder" , "visitor"]
+        enum:["Tender Officer", "Bidder" , "visitor"]
     }
 }) ;
 

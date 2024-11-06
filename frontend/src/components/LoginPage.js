@@ -46,7 +46,7 @@ const LoginPage = () => {
       localStorage.setItem('user', JSON.stringify(user));
       setIsLoggedIn(true);
       alert('Login successful!');
-      navigate(role === 'admin' ? '/admin/dashboard' : '/bidder/dashboard');
+      navigate(role === 'Bidder' ? '/bidder/dashboard' : '/admin/dashboard');
     } catch (error) {
       console.error('Login failed', error);
       if (error.response) {

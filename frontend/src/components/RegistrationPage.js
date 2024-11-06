@@ -67,7 +67,7 @@ const RegistrationPage = () => {
     } else {
       try {
         // Example API request
-        await axios.post("http://localhost:5000/api/register", {
+        await axios.post("http://localhost:5000/api/signup", {
           name, email, password, role,
         });
 
@@ -129,8 +129,8 @@ const RegistrationPage = () => {
             required
           >
             <option value="">Select Role</option>
-            <option value="bidder">Bidder</option>
-            <option value="tender-officer">Tender Officer</option>
+            <option value="Bidder">Bidder</option>
+            <option value="Tender Officer">Tender Officer</option>
           </select>
         </div>
 
