@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './UserProfilePage.css';
+import { useNavigate } from 'react-router-dom';
 
 const UserProfilePage = () => {
   const [user, setUser] = useState({
@@ -9,25 +10,38 @@ const UserProfilePage = () => {
     newPassword: '',
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch('/api/user'); // Adjust URL to your backend endpoint
-        const data = await response.json();
-        setUser({
-          name: data.name,
-          email: data.email,
-          oldPassword: '', // Do not fetch password for security reasons
-          newPassword: '',
-        });
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUserData();
+    // Check if user is logged in
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setIsLoggedIn(true);
+      fetchUserData(); // Fetch user data only if logged in
+    } else {
+      setIsLoggedIn(false);
+    }
   }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      if (storedUser) {
+        setUser((prevUser) => ({
+          ...prevUser,
+          name: storedUser.name,
+          email: storedUser.email,
+          oldPassword: '',
+          newPassword: '',
+        }));
+      } else {
+        console.warn("No user data found in local storage.");
+      }
+    } catch (error) {
+      console.error('Error fetching user data from local storage:', error);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,8 +85,34 @@ const UserProfilePage = () => {
     }
   };
 
+  if (!isLoggedIn) {
+    return (
+      <div className="profilelogin-prompt">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h2>Please Login First !!!</h2>
+        <button onClick={() => navigate('/login')} className="profilelogin-button">Go to Login</button>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+      </div>
+    );
+  }
+
   return (
-    <pre className='mainn'>
     <div className="user-profile-wrapper">
       <h2 className="user-profile-header">User Details</h2>
       {!isEditing ? (
@@ -133,8 +173,6 @@ const UserProfilePage = () => {
         </form>
       )}
     </div>
-   <br/>
-   <br/><br/><br/><br/><br/><br/></pre>
   );
 };
 

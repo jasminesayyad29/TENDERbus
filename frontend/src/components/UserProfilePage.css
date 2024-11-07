@@ -3,114 +3,128 @@
 .user-profile-wrapper {
   max-width: 600px;
   margin: 20px auto;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
+  align-items: center;
 }
 
 .user-profile-header {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 25px;
   text-align: center;
-  color: #333;
+  color: #333333;
 }
 
 .user-profile-details {
+  width: 100%;
   margin-bottom: 20px;
-  width: 100%; /* Full width for details */
 }
 
 .user-profile-info {
   font-size: 18px;
+  color: #333;
   margin: 10px 0;
-  color: #000000;
 }
 
 .edit-profile-button {
-  padding: 10px 15px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
-  background-color: #000000; /* Bootstrap primary color */
-  color: white;
+  border-radius: 25px;
   cursor: pointer;
-margin-left : 222px; 
- transition: background-color 0.3s;
-  width: 20%; /* Full width for button */
-  text-align: center; /* Center text */
-  border-radius: 40px;
-
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-top: 15px;
+  font-weight: 500;
 }
 
 .edit-profile-button:hover {
-  background-color: #0056b3; /* Darker shade for hover */
+  background-color: #555555;
 }
 
 .user-profile-form {
   display: flex;
   flex-direction: column;
-  width: 100%; /* Full width for form */
+  width: 100%;
 }
 
 .form-group {
-  margin-bottom: 15px;
-  width: 100%; /* Full width for each form group */
+  margin-bottom: 20px;
 }
 
 .form-label {
   font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
+  margin-bottom: 8px;
+  color: #444;
 }
 
 .form-input {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
   transition: border-color 0.3s;
-  width: 100%; /* Full width for inputs */
+  width: 100%;
 }
 
 .form-input:focus {
-  border-color: #007bff; /* Focus border color */
+  border-color: #007bff;
   outline: none;
 }
 
-.submit-button {
-  padding: 10px 15px;
+.submit-button, .cancel-button {
+  padding: 12px;
   border: none;
-  border-radius: 5px;
-  background-color: #000000; /* Bootstrap success color */
-  color: white;
+  border-radius: 25px;
+  color: #ffffff;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 100%; /* Full width for button */
-  margin-top: 10px; /* Spacing between buttons */
-  border-radius: 40px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submit-button {
+  background-color: #007bff;
 }
 
 .submit-button:hover {
-  background-color: #c83c15; /* Darker shade for hover */
+  background-color: #0056b3;
 }
 
 .cancel-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #218e0b; /* Bootstrap danger color */
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%; /* Full width for button */
-  border-radius: 40px;
-
-  margin-top: 10px; /* Spacing between buttons */
+  background-color: #d9534f;
 }
 
 .cancel-button:hover {
-  background-color: #c82333; /* Darker shade for hover */
+  background-color: #c9302c;
+}
+
+.profilelogin-prompt h2 {
+  text-align: center;
+  color: #ffffff;
+}
+
+.profilelogin-button {
+  margin-top: 20px;
+  margin-left: 680px;
+  padding: 12px;
+  width: 10%;
+  background-color: #043bba;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #1a7009;
 }
