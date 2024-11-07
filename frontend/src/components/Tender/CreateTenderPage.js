@@ -4,6 +4,7 @@ import axios from 'axios';
 import './CreateTenderPage.css'; // You can add your own styles here
 
 const CreateTenderPage = () => {
+  const[email, setEmail] = useState('');
   const [title, setTitle] = useState('');
   const [eligibility,setEligibility] = useState('');
   const [description, setDescription] = useState('');
@@ -18,6 +19,7 @@ const CreateTenderPage = () => {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append('email',email);
     formData.append('title', title);
     formData.append('eligibility',eligibility);
     formData.append('description', description);
@@ -38,6 +40,7 @@ const CreateTenderPage = () => {
       setTenderId(createdTenderId);
 
       // Reset the form
+      setEmail('');
       setTitle('');
       setEligibility('');
       setDescription('');
@@ -65,6 +68,16 @@ const CreateTenderPage = () => {
     <div className="create-tender">
       <h1>Create Tender</h1>
       <form onSubmit={handleSubmit}>
+      <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input

@@ -19,10 +19,11 @@ const upload = multer({ storage });
 // Create a new tender
 router.post('/', upload.single('document'), async (req, res) => {
   try {
-    const { title, eligibility, description, type, status, startDate, endDate } = req.body;
+    const { email, title, eligibility, description, type, status, startDate, endDate } = req.body;
     const document = req.file ? req.file.path : ''; // Get the file path
 
     const newTender = new Tender({
+      email,
       title,
       eligibility, 
       description,
@@ -53,15 +54,26 @@ router.get('/', async (req, res) => {
 });
 
 // Delete a tender by ID
-router.delete('/:id', async (req, res) => {
-  try {
-    const { id } = req.params; // Get the ID from the request parameters
-    const deletedTender = await Tender.findByIdAndDelete(id); // Delete the tender
+const {auth , isBidder, isAdmin} = require("../middlewares/auth") ;
 
-    if (!deletedTender) {
+router.delete('/:id',auth , isAdmin, async (req, res) => {
+  try {
+    let { id } = req.params; // Get the ID from the request parameters
+    id = id.trim();
+    // Find the tender by ID
+    const tender = await Tender.findById(id);
+
+    if (!tender) {
       return res.status(404).json({ message: 'Tender not found' }); // Handle case where tender does not exist
     }
 
+    // Check if the logged-in user's email matches the tender's  email
+    if (req.user.email !== tender.email) {
+      return res.status(403).json({ message: 'You do not have permission to delete this tender' });
+    }
+
+    // Delete the tender
+    await Tender.findByIdAndDelete(id);
     res.status(200).json({ message: 'Tender deleted successfully' }); // Respond with success message
   } catch (error) {
     console.error('Error deleting tender:', error);

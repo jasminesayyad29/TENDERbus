@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 
 // Define the schema for Tender
 const tenderSchema = new mongoose.Schema({
+  email:{
+    type:String,
+    required:true
+  },
   title: {
     type: String,
     required: true,  // Title is required
