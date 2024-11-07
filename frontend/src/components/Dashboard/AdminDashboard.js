@@ -13,12 +13,7 @@ const AdminDashboard = () => {
           <li>
             <Link to="/tender/create">Create Tender</Link>
           </li>
-          <li>
-            <Link to="/tender/modify">Modify Tender</Link>
-          </li>
-          <li>
-            <Link to="/tender/delete">Delete Tender</Link>
-          </li>
+          
           <li>
             <Link to="/admin/tender-management">Manage Tenders</Link>
           </li>
