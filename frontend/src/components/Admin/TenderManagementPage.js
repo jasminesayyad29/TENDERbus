@@ -1,9 +1,6 @@
-
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchTenders } from '../../services/tenderService';
+import { fetchTendersbymail } from '../../services/tenderService';
 import './TenderManagementPage.css';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const TenderManagementPage = () => {
@@ -13,44 +10,43 @@ const TenderManagementPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Retrieve email from user object in localStorage and log it
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const email = storedUser?.email;
+    console.log("Email from localStorage:", email);
+
+    if (!email) {
+      setError("User email not found in localStorage.");
+      setLoading(false);
+      return;
+    }
+
+    // Fetch tenders based on email
     const getTenders = async () => {
       try {
-        const data = await fetchTenders();
-        setTenders(data); // Update state with fetched tenders
+        const data = await fetchTendersbymail(email);
+        setTenders(data);
       } catch (err) {
-        // Set a more informative error message
         setError(`Failed to fetch tenders: ${err.message || err}`);
-        console.error(err); // Log the error for debugging
+        console.error("Error fetching tenders:", err);
       } finally {
-        setLoading(false); // Ensure loading is set to false in any case
+        setLoading(false);
       }
     };
 
-    getTenders(); // Fetch tenders on component load
+    getTenders();
   }, []);
-
 
   const handleDelete = async (tenderId) => {
     navigate(`/tender/delete/${tenderId}`);
-    console.log('Edit tender:', tenderId);
-    // try {
-    //   await axios.delete(`http://localhost:5000/api/tenders/${id}`);
-    //   setTenders(tenders.filter(tender => tender._id !== id));
-    //   alert('Tender deleted successfully');
-    // } catch (error) {
-    //   console.error('Error deleting tender:', error);
-    //   alert('Error deleting tender');
-    // }
   };
 
   const handleEdit = (tenderId) => {
-    // Redirect to an edit page or open a modal with form pre-filled with tender data
     navigate(`/tender/modify/${tenderId}`);
-    console.log('Edit tender:', tenderId);
   };
 
-  if (loading) return <p>Loading...</p>; // Display loading message
-  if (error) return <p>{error}</p>; // Display error message
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="tender-management-container">

@@ -3,6 +3,8 @@ const Tender = require('../models/Tender');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const {login , signup} = require("../controllers/Auth") ;
+const jwt= require("jsonwebtoken") ;
 
 // Set up Multer for file uploads
 const storage = multer.diskStorage({
@@ -80,5 +82,22 @@ router.delete('/:id',auth , isAdmin, async (req, res) => {
     res.status(500).json({ message: 'Error deleting tender', error });
   }
 });
+
+
+// Fetch tenders by email
+router.get('/:email', async (req, res) => {
+  try {
+      const { email } = req.params; // Extract email from request parameters
+      const tenders = await Tender.find({ email }); // Use find to search by email
+      if (!tenders || tenders.length === 0) {
+          return res.status(404).json({ message: 'No tenders found for this email' });
+      }
+      res.json(tenders); // Respond with the list of tenders
+  } catch (error) {
+      console.error('Error fetching tenders by email:', error);
+      res.status(500).json({ message: 'Error fetching tenders', error });
+  }
+});
+
 
 module.exports = router; // Export the router

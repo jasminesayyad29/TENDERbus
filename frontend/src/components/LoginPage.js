@@ -34,19 +34,29 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
-
+  
     try {
       const response = await axios.post("http://localhost:5000/api/login", {
         email,
         password,
         //role,
       });
-
+  
       const user = response.data.user;
       localStorage.setItem('user', JSON.stringify(user));
       setIsLoggedIn(true);
       alert('Login successful!');
-      navigate(user.role === 'Bidder' ? '/bidder/dashboard' : '/admin/dashboard');
+  
+      // Redirect based on user role
+      if (user.role === 'Bidder') {
+        navigate('/bidder/dashboard');
+      } else if (user.role === 'Tender Officer') {
+        navigate('/admin/dashboard');
+      }
+  
+      // Reload the page after navigation
+      window.location.reload();
+  
     } catch (error) {
       console.error('Login failed', error);
       if (error.response) {
@@ -58,6 +68,7 @@ const LoginPage = () => {
       }
     }
   };
+  
 
   const handleLogout = () => {
     setShowLogoutConfirmation(true); // Show confirmation before logging out
