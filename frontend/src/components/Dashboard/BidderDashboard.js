@@ -66,7 +66,7 @@ const BidderDashboard = () => {
             <Link to="/tender/submit/:tenderId">Submit a Bid</Link>
           </li>
           <li>
-            <Link to="/tender/bid-details/:bidderId">Bid Details</Link>
+            <Link to="/tender/bid-details">Bid Details</Link>
           </li>
           <li>
             <Link to="Bidder/notifications">Notifications</Link>

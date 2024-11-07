@@ -191,7 +191,7 @@ const App = () => {
             <Route path="/tender/submit/:tenderId" element={<SubmitBidPage />} />
             <Route path="/tender/submit" element={<SubmitBidPage />} />
             <Route path="/tender/tenders" element={<TenderPage />} />
-            <Route path="/tender/bid-details/bidderId" element={<BidDetailsPage />} />
+            <Route path="/tender/bid-details" element={<BidDetailsPage />} />
             <Route path="/admin/tender-management/:email" element={<TenderManagementPage />} />
             <Route path="/admin/tender-management" element={<TenderManagementPage />} />
             <Route path="/admin/bid-evaluation" element={<BidEvaluationPage />} />
