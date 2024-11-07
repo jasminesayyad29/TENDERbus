@@ -15,7 +15,7 @@
 .pro-user-profile-header {
   text-align: center;
   font-size: 24px;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 20px;
 }
 
@@ -29,7 +29,7 @@
 
 .pro-user-profile-info {
   font-size: 18px;
-  color: #ffffff;
+  color: #000000;
 }
 
 /* Login prompt section */
