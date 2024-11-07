@@ -51,6 +51,14 @@ const ViewTenderPage = () => {
               <p className="status">Status: {tender.status}</p>
               <p>Start Date: {tender.startDate ? new Date(tender.startDate).toLocaleDateString() : 'N/A'}</p>
               <p>End Date: {tender.endDate ? new Date(tender.endDate).toLocaleDateString() : 'N/A'}</p>
+              {/* Link to view or download the document */}
+              {tender.document && (
+                <p>
+                  <a href={`http://localhost:5000/${tender.document}`} target="_blank" rel="noopener noreferrer">
+                    View Document
+                  </a>
+                </p>
+              )}
               <Link to={`/tender/submit/${tender._id}`} className="submit-link">
                 Do you want to submit the bid?
               </Link>

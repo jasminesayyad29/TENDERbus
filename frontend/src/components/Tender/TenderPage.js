@@ -49,6 +49,13 @@ const TenderPage = () => {
               <p className="status">Status: {tender.status}</p>
               <p>Start Date: {tender.startDate ? new Date(tender.startDate).toLocaleDateString() : 'N/A'}</p>
               <p>End Date: {tender.endDate ? new Date(tender.endDate).toLocaleDateString() : 'N/A'}</p>
+              {tender.document && (
+                <p>
+                  <a href={`http://localhost:5000/${tender.document}`} target="_blank" rel="noopener noreferrer">
+                    View Document
+                  </a>
+                </p>
+              )}
               
             </div>
           ))}

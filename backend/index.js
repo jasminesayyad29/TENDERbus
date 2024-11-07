@@ -5,6 +5,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const http = require('http');
 const socketIO = require('socket.io');
+const path = require('path');
 
 const connectDatabase = require("./config/database");
 // const userRoutes = require("./api/Auth");
@@ -43,6 +44,8 @@ app.use(cors({
 
 // Connect to the database
 connectDatabase(); // Call the function to connect to MongoDB
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Set up routes
 app.use("/api", userRoutes); // Routes from routes/user.js
