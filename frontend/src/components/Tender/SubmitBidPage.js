@@ -115,11 +115,11 @@ const SubmitBidPage = () => {
             });
             const createdBidderId = response.data.bid._id;
             setSuccess('Bid submitted successfully!');
-            alert(`Bid submitted successfully!ID: ${createdBidderId}`);
+            alert(`Bid submitted successfully!ID: ${createdBidderId }by Emailid :${email}`);
             setBidderId(createdBidderId);
             setError('');
             console.log(response.data);
-            navigate(`/bid-details/${createdBidderId}`);
+            navigate(`/bid-details/${bidderId}`);
             
         } catch (err) {
             const message = err.response?.data?.message || err.message;
@@ -238,7 +238,7 @@ const SubmitBidPage = () => {
           <p>Save it for Later!!</p>
         </div>
       )}
-      <Link to="/tender/bid-details/:bidderId">see bid details</Link>
+      <Link to={`/tender/bid-details/${bidderId}`}>see bid details</Link>
         </div>
     );
 };

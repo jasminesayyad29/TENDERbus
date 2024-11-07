@@ -110,7 +110,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { TenderProvider } from './context/TenderContext';
-
+import TenderPage from './components/Tender/TenderPage';
 import LandingPage from './components/LandingPage';
 import RegistrationPage from './components/RegistrationPage';
 import LoginPage from './components/LoginPage';
@@ -188,8 +188,10 @@ const App = () => {
             <Route path="/tender/delete/:tenderId" element={<DeleteTenderPage />} />
             <Route path="/tender/delete" element={<DeleteTenderPage />} />
             <Route path="/tender/view" element={<ViewTenderPage />} />
+            <Route path="/tender/submit/:tenderId" element={<SubmitBidPage />} />
             <Route path="/tender/submit" element={<SubmitBidPage />} />
-            <Route path="/tender/bid-details" element={<BidDetailsPage />} />
+            <Route path="/tender/tenders" element={<TenderPage />} />
+            <Route path="/tender/bid-details/bidderId" element={<BidDetailsPage />} />
             <Route path="/admin/tender-management/:email" element={<TenderManagementPage />} />
             <Route path="/admin/tender-management" element={<TenderManagementPage />} />
             <Route path="/admin/bid-evaluation" element={<BidEvaluationPage />} />

@@ -59,7 +59,7 @@ const Navbar = () => {
           <li className="navbut"><Link to="/admin/dashboard">Dashboard</Link></li>
         )}
 
-        <li className="navbut"><Link to="/tender/view">Tenders</Link></li>
+        <li className="navbut"><Link to="/tender/tenders">Tenders</Link></li>
         <li className="navbut"><Link to="/notifications">Notifications</Link></li>
         {/* <li className="navbut"><Link to="/settings">Settings</Link></li> */}
         <li className="navbut"><Link to="/help">Help</Link></li>
