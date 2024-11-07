@@ -8,9 +8,9 @@ const BidderDashboard = () => {
   const [bids, setBids] = useState([]);
   const [error, setError] = useState('');
 
-  const fetchBids = async (id) => {
+  const fetchBids = async (bidderId) => {
     try {
-      const response = await axios.get(`/api/bids?bidder=${id}`);
+      const response = await axios.get(`/api/bids/${bidderId}`);
       setBids(response.data);
       setError(''); // Clear error if fetch is successful
     } catch (err) {
@@ -25,7 +25,18 @@ const BidderDashboard = () => {
       fetchBids(bidderId);
     }
   };
+  const handleDeleteBid = async (bidderId) => {
+    try {
+      await axios.delete(`/api/bids/${bidderId}`);
+      setBids(bids.filter((bid) => bid._id !== bidderId)); // Remove deleted bid from the list
+    } catch (err) {
+      setError('Failed to delete the bid.');
+    }
+  };
+  const handleEditBid = (bidderId) => {
 
+    window.location.href = `/tender/edit/${bidderId}`;
+  };
   return (
     <div className="bidder-dashboard">
       
@@ -52,10 +63,10 @@ const BidderDashboard = () => {
             <Link to="/tender/view">View Tenders</Link>
           </li>
           <li>
-            <Link to="/tender/submit">Submit a Bid</Link>
+            <Link to="/tender/submit/:tenderId">Submit a Bid</Link>
           </li>
           <li>
-            <Link to="/tender/bid-details">Bid Details</Link>
+            <Link to="/tender/bid-details/:bidderId">Bid Details</Link>
           </li>
           <li>
             <Link to="Bidder/notifications">Notifications</Link>
@@ -86,6 +97,10 @@ const BidderDashboard = () => {
                   <td>${bid.price}</td>
                   <td>{bid.points}</td>
                   <td>{new Date(bid.submissionDate).toLocaleDateString()}</td>
+                  <td>
+                    <button onClick={() => handleEditBid(bid._id)}>Edit</button>
+                    <button onClick={() => handleDeleteBid(bid._id)}>Delete</button>
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -3,6 +3,7 @@
 // export default ViewTenderPage;
 // src/components/Tender/ViewTenderPage.js
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {fetchTenders} from '../../services/tenderService';
 import { useParams } from 'react-router-dom';
 import './ViewTenderPage.css';
@@ -50,7 +51,9 @@ const ViewTenderPage = () => {
               <p className="status">Status: {tender.status}</p>
               <p>Start Date: {tender.startDate ? new Date(tender.startDate).toLocaleDateString() : 'N/A'}</p>
               <p>End Date: {tender.endDate ? new Date(tender.endDate).toLocaleDateString() : 'N/A'}</p>
-
+              <Link to={`/tender/submit/${tender._id}`} className="submit-link">
+                Do you want to submit the bid?
+              </Link>
             </div>
           ))}
         </div>

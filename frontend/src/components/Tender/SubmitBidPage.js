@@ -64,12 +64,13 @@
 // export default SubmitBidPage;
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBuilding, faIdCard, faEnvelope, faPhone, faDollarSign, faFile, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import './SubmitBidPage.css';
 
 const SubmitBidPage = () => {
+    const navigate = useNavigate();
     const { tenderId } = useParams();
     const [bidderName, setBidderName] = useState('');
     const [companyName, setCompanyName] = useState('');
@@ -84,7 +85,7 @@ const SubmitBidPage = () => {
     const [acceptTerms, setAcceptTerms] = useState(false);
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
-
+    const [bidderId, setBidderId] = useState(null);
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
@@ -112,10 +113,14 @@ const SubmitBidPage = () => {
             const response = await axios.post('http://localhost:5000/api/bids', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
-
+            const createdBidderId = response.data.bid._id;
             setSuccess('Bid submitted successfully!');
+            alert(`Bid submitted successfully!ID: ${createdBidderId}`);
+            setBidderId(createdBidderId);
             setError('');
             console.log(response.data);
+            navigate(`/bid-details/${createdBidderId}`);
+            
         } catch (err) {
             const message = err.response?.data?.message || err.message;
             setError('Failed to submit bid: ' + message);
@@ -220,12 +225,20 @@ const SubmitBidPage = () => {
                         checked={acceptTerms}
                         onChange={() => setAcceptTerms(!acceptTerms)}
                     />
-                    I agree to the <Link to="/terms-of-service">terms and conditions</Link>
+                    I agree to the  <Link to="/terms-of-service"> terms and conditions</Link>
                 </label>
-                <button type="submit">Submit Bid</button>
+                <button type="submit" onClick={() => navigate(`/tender/submit/${tenderId}`)}>Submit Bid</button>
             </form>
             {success && <p className="success-message">{success}</p>}
             {error && <p className="error-message">{error}</p>}
+            {bidderId && (
+        <div>
+          <h2>Bid submitted!</h2>
+          <p>Your Bidder ID is: <strong>{bidderId}</strong></p>
+          <p>Save it for Later!!</p>
+        </div>
+      )}
+      <Link to="/tender/bid-details/:bidderId">see bid details</Link>
         </div>
     );
 };
