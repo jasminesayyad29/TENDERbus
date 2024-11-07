@@ -1,130 +1,80 @@
 /* UserProfilePage.css */
 
-.user-profile-wrapper {
+/* Wrapper for the user profile page */
+.pro-user-profile-wrapper {
+  width: 100%;
   max-width: 600px;
-  margin: 20px auto;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.user-profile-header {
-  font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 25px;
-  text-align: center;
-  color: #333333;
-}
-
-.user-profile-details {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.user-profile-info {
-  font-size: 18px;
-  color: #333;
-  margin: 10px 0;
-}
-
-.edit-profile-button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: #ffffff;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-  margin-top: 15px;
-  font-weight: 500;
-}
-
-.edit-profile-button:hover {
-  background-color: #555555;
-}
-
-.user-profile-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #444;
-}
-
-.form-input {
-  padding: 12px;
-  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
   border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 0.3s;
-  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form-input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.submit-button, .cancel-button {
-  padding: 12px;
-  border: none;
-  border-radius: 25px;
-  color: #ffffff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-  margin-top: 10px;
-}
-
-.submit-button {
-  background-color: #007bff;
-}
-
-.submit-button:hover {
-  background-color: #0056b3;
-}
-
-.cancel-button {
-  background-color: #d9534f;
-}
-
-.cancel-button:hover {
-  background-color: #c9302c;
-}
-
-.profilelogin-prompt h2 {
+/* Header styling */
+.pro-user-profile-header {
   text-align: center;
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* User profile details section */
+.pro-user-profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+.pro-user-profile-info {
+  font-size: 18px;
   color: #ffffff;
 }
 
-.profilelogin-button {
-  margin-top: 20px;
-  margin-left: 680px;
-  padding: 12px;
-  width: 10%;
-  background-color: #043bba;
-  color: #ffffff;
+/* Login prompt section */
+.pro-profilelogin-prompt h2{
+  text-align: center;
+  padding: 5px;
+  color: #ffffff !important;
+}
+
+.pro-profilelogin-button {
+  background-color: #0c37c4;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
   border: none;
-  border-radius: 25px;
-  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
+  margin-left: 45%;
+  width: 10%;
+  border-radius: 40px;
 }
 
-.login-button:hover {
-  background-color: #1a7009;
+.pro-profilelogin-button:hover {
+  background-color: #45a049;
+}
+
+/* Logout button styling */
+.pro-logout-button {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 40px;
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  width: 20%;
+}
+
+.pro-logout-link {
+  color: white;
+  text-decoration: none;
+}
+
+.pro-logout-button:hover {
+  background-color: #c9302c;
 }
