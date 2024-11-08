@@ -37,12 +37,12 @@ const TenderManagementPage = () => {
     getTenders();
   }, []);
 
-  const handleDelete = async (tenderId) => {
-    navigate(`/tender/delete/${tenderId}`);
+  const handleDelete = async () => {
+    navigate(`/tender/delete`);
   };
 
   const handleEdit = (tenderId) => {
-    navigate(`/tender/modify/${tenderId}`);
+    navigate(`/tender/modify`);
   };
 
   if (loading) return <p>Loading...</p>;

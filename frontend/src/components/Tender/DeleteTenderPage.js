@@ -8,15 +8,19 @@ const DeleteTenderPage = () => {
   const [reason, setReason] = useState('');
   const [confirmDelete, setConfirmDelete] = useState(false); // State for confirmation
 
+  // Get token from local storage or context
+  const token = localStorage.getItem('token'); // Adjust as needed
+
   const handleDelete = async (e) => {
     e.preventDefault();
+
     try {
-      await axios.delete(`http://localhost:5000/api/tenders/${tenderId}`);
-      console.log(`Tender ID: ${tenderId} deleted for reason: ${reason}`);
+      await axios.delete('http://localhost:5000/api/tenders', {
+        data: { id: tenderId }
+      });
       alert('Tender deleted successfully');
-      setTenderId(''); // Clear the form fields after deletion
+      setTenderId(''); // Clear form fields after deletion
       setReason('');
-      setConfirmDelete(false);
     } catch (error) {
       console.error('Error deleting tender:', error);
       alert('Failed to delete the tender');
