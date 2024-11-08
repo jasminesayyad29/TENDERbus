@@ -28,7 +28,7 @@ const BidDetailsPage = () => {
         const data = await fetchbidsbymail(email);
         setBidDetails(data);
       } catch (err) {
-        setError(`Failed to fetch bids: ${err.message || err}`);
+        setError(`No Bids found for email: ${email}`);
         console.error("Error fetching bids:", err);
       } 
     };
