@@ -4,8 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const http = require('http');
-const socketIO = require('socket.io');
 const path = require('path');
+const { Server } = require("socket.io");
 
 const connectDatabase = require("./config/database");
 // const userRoutes = require("./api/Auth");
@@ -19,12 +19,15 @@ dotenv.config();
 // Create an instance of Express
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server, {
+const io = new Server(server, {
   cors: {
     origin: '*',    // Allow any IP address or domain to connect
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
   },
 });
+
+app.use(cors());
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -53,11 +56,20 @@ app.use("/api/tenders", tenderRoutes);
 app.use('/api', bidRoutes);
 app.use('/api/notifications', notificationRoutes);
 
-io.on('connection', (socket) => {
-  console.log('New client connected');
-  
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
   });
 });
 // Start the server

@@ -1,0 +1,105 @@
+/* General container styling */
+.notification-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Input field styling */
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-field, .select-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Send button and loading spinner */
+  .send-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .send-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Spinner styling */
+  .spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .notification {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .notification.read {
+    background-color: #f0f0f0; /* Lighter background for read notifications */
+  }
+  
+  .notification.unread {
+    background-color: #e0f7fa; /* Light blue for unread notifications */
+  }
+  
+  .notification-header {
+    font-weight: bold;
+  }
+  
+  .notification-header.info {
+    color: blue;
+  }
+  
+  .notification-header.warning {
+    color: orange;
+  }
+  
+  .notification-header.alert {
+    color: red;
+  }
+  
+  .notification p {
+    margin: 5px 0;
+  }
+  
+  .notification small {
+    color: gray;
+    font-size: 0.8em;
+  }
+  
