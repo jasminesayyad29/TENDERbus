@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './BidDetailsPage.css';
 
 const BidDetailsPage = () => {
-  const { tenderId,bidderID } = useParams();
-  console.log("BidderId:", bidderID);
+  const { tenderId, bidderID } = useParams();
+  const navigate = useNavigate();
   const [bidDetails, setBidDetails] = useState([]);
+  const [selectedBid, setSelectedBid] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchBidDetails = async () => {
       try {
-         
         const response = await axios.get(`http://localhost:5000/api/bids`);
-        console.log(response.data);
-        setBidDetails(response.data); // Set the bid data
-       
+        setBidDetails(response.data);
         setError('');
       } catch (err) {
         setError('Failed to fetch bid details.');
@@ -26,36 +24,62 @@ const BidDetailsPage = () => {
     fetchBidDetails();
   }, []);
 
-  if (error) return <p className="error-message">{error}</p>;
+  const openModal = (bid) => {
+    setSelectedBid(bid);
+  };
 
+  const closeModal = () => {
+    setSelectedBid(null);
+  };
+
+  if (error) return <p className="error-message">{error}</p>;
   if (!bidDetails) return <p>Loading bid details...</p>;
 
   return (
-    <div className="bid-details-container">
-      {bidDetails.map((bid) => (
-        <div key={bid._id} className="bid-details">
-          <h2>Bid Details for Tender: {bid.tenderId}</h2>
-          <h2>Bid ID: {bid._id}</h2> 
-          <h2>Tender: {bid.tenderId}</h2>
-          <p><strong>Bidder Name:</strong> {bid.bidderName}</p>
-          <p><strong>Company Name:</strong> {bid.companyName}</p>
-          <p><strong>Company Registration Number:</strong> {bid.companyRegNumber}</p>
-          <p><strong>Email:</strong> {bid.email}</p>
-          <p><strong>Phone Number:</strong> {bid.phoneNumber}</p>
-          <p><strong>Bid Amount:</strong> ${bid.bidAmount}</p>
-          <p><strong>Bid Description:</strong> {bid.description}</p>
-          <p><strong>Additional Notes:</strong> {bid.additionalNotes || "None"}</p>
-          <p><strong>Expiry Date:</strong> {new Date(bid.expiryDate).toLocaleDateString()}</p>
-  
-          {bid.fileUrl && (
-            <p>
-              <strong>Attached File:</strong>{" "}
-              <a href={bid.fileUrl} target="_blank" rel="noopener noreferrer">Download</a>
-            </p>
-          )}
-        </div>
-      ))}
-    </div>
+    <>
+      {/* Title Container */}
+      <div className="title-container">
+        <button className="back-button" onClick={() => navigate(-1)}>Back</button>
+        <h2 className="bidtitle">Your Bids</h2>
+      </div>
+
+      <div className="bid-details-container">
+        {bidDetails.map((bid) => (
+          <div key={bid._id} className="card" onClick={() => openModal(bid)}>
+            <h2>Bid Details for Tender: {bid.tenderId}</h2>
+            <h3>Bid ID: {bid._id}</h3>
+            <h3>Tender: {bid.tenderId}</h3>
+          </div>
+        ))}
+
+        {selectedBid && (
+          <div className="modal-overlay" onClick={closeModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="close-button" onClick={closeModal}>X</button>
+              <h2>Bid Details for Tender: {selectedBid.tenderId}</h2>
+              <h3>Bid ID: {selectedBid._id}</h3>
+              <h3>Tender: {selectedBid.tenderId}</h3>
+              <p><strong>Bidder Name:</strong> {selectedBid.bidderName}</p>
+              <p><strong>Company Name:</strong> {selectedBid.companyName}</p>
+              <p><strong>Company Registration Number:</strong> {selectedBid.companyRegNumber}</p>
+              <p><strong>Email:</strong> {selectedBid.email}</p>
+              <p><strong>Phone Number:</strong> {selectedBid.phoneNumber}</p>
+              <p><strong>Bid Amount:</strong> ${selectedBid.bidAmount}</p>
+              <p><strong>Bid Description:</strong> {selectedBid.description}</p>
+              <p><strong>Additional Notes:</strong> {selectedBid.additionalNotes || "None"}</p>
+              <p><strong>Expiry Date:</strong> {new Date(selectedBid.expiryDate).toLocaleDateString()}</p>
+              {selectedBid.fileUrl && (
+                <p>
+                  <strong>Attached File:</strong>{" "}
+                  <a href={selectedBid.fileUrl} target="_blank" rel="noopener noreferrer">Download</a>
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
-} 
+};
+
 export default BidDetailsPage;
