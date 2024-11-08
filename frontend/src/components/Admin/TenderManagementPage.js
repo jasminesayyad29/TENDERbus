@@ -10,10 +10,8 @@ const TenderManagementPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Retrieve email from user object in localStorage and log it
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const email = storedUser?.email;
-    console.log("Email from localStorage:", email);
 
     if (!email) {
       setError("User email not found in localStorage.");
@@ -21,14 +19,25 @@ const TenderManagementPage = () => {
       return;
     }
 
-    // Fetch tenders based on email
     const getTenders = async () => {
       try {
         const data = await fetchTendersbymail(email);
-        setTenders(data);
+
+        // Check endDate and set status to Inactive if it has passed
+        const updatedTenders = data.map(tender => {
+          const endDate = new Date(tender.endDate);
+          const currentDate = new Date();
+
+          if (endDate < currentDate && tender.status !== "Inactive") {
+            return { ...tender, status: "Inactive" }; // Temporarily set to Inactive if expired
+          }
+
+          return tender;
+        });
+
+        setTenders(updatedTenders);
       } catch (err) {
         setError(`Failed to fetch tenders: ${err.message || err}`);
-        console.error("Error fetching tenders:", err);
       } finally {
         setLoading(false);
       }
@@ -43,6 +52,11 @@ const TenderManagementPage = () => {
 
   const handleEdit = (tenderId) => {
     navigate(`/tender/modify`);
+  };
+
+  const formatDate = (date) => {
+    const parsedDate = new Date(date);
+    return isNaN(parsedDate.getTime()) ? "Invalid Date" : parsedDate.toLocaleDateString();
   };
 
   if (loading) return <p>Loading...</p>;
@@ -70,9 +84,11 @@ const TenderManagementPage = () => {
                 <td>{tender._id}</td>
                 <td>{tender.title}</td>
                 <td>{tender.description}</td>
-                <td>{new Date(tender.startDate).toLocaleDateString()}</td>
-                <td>{new Date(tender.endDate).toLocaleDateString()}</td>
-                <td>{tender.status}</td>
+                <td>{formatDate(tender.startDate)}</td>
+                <td>{formatDate(tender.endDate)}</td>
+                <td style={{ color: tender.status === "Inactive" ? "red" : "white" }}>
+                  {tender.status}
+                </td>
                 <td>
                   <button onClick={() => handleEdit(tender._id)}>Edit</button>
                   <button onClick={() => handleDelete(tender._id)}>Delete</button>

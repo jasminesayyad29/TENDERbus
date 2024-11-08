@@ -35,7 +35,7 @@ const BidDetailsPage = () => {
       {bidDetails.map((bid) => (
         <div key={bid._id} className="bid-details">
           <h2>Bid Details for Tender: {bid.tenderId}</h2>
-          <h2>Bidder ID: {bid._id}</h2> 
+          <h2>Bid ID: {bid._id}</h2> 
           <h2>Tender: {bid.tenderId}</h2>
           <p><strong>Bidder Name:</strong> {bid.bidderName}</p>
           <p><strong>Company Name:</strong> {bid.companyName}</p>

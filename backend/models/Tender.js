@@ -30,6 +30,14 @@ const tenderSchema = new mongoose.Schema({
   },
   document: {
     type: String,  // This will store the path to the uploaded document
+  },
+  startDate: {
+    type: Date,
+    required: true, // Start date is required
+  },
+  endDate: {
+    type: Date,
+    required: true, // End date is required
   }
 }, { timestamps: true }); // Adds createdAt and updatedAt timestamps
 
