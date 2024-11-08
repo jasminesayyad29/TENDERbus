@@ -113,3 +113,73 @@
   font-family: 'Poppins', sans-serif; /* Consistent font family */
   font-weight: 520;
 }
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Unique Dropdown Button */
+.custom-dropbtn {
+  background-color: #157cdd; /* Primary blue color for button */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-dropbtn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Unique Dropdown Content (Hidden by Default) */
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  border-radius: 40px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Show Dropdown on Hover */
+.custom-dropdown:hover .custom-dropdown-content {
+  display: block;
+}
+
+/* Unique Dropdown Links */
+.custom-dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-dropdown-content a:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  color: #007BFF; /* Match button color */
+}
+
+/* Optional: Add Transition and Hover Effects */
+.custom-dropdown-content a:active {
+  background-color: #e7e7e7; /* Darker gray on active */
+}
+
+.dashboard-button{
+  background-color: #157cdd; /* Primary blue color for button */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

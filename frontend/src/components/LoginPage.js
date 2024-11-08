@@ -79,6 +79,8 @@ const LoginPage = () => {
     setIsLoggedIn(false);
     setShowLogoutConfirmation(false);
     navigate('/'); 
+    window.location.reload(); // Reload the whole page
+
   };
 
   const cancelLogout = () => {

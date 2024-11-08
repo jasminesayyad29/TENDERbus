@@ -40,13 +40,32 @@ const Navbar = () => {
         <a href="/" className="link">TENDERbus</a>
       </div>
       <ul className="nav-links">
+      {!userRole && (
+   <li className="custom-dropdown">
+            <button className="custom-dropbtn">Register / Sign-In</button>
+            <div className="custom-dropdown-content">
+              <Link to="/register">Register</Link>
+              <Link to="/login">Login</Link>
+            </div>
+          </li>
+)}
+          {/* Conditionally Render Dashboard for Bidder */}
+          {userRole === 'Bidder' && (
+          <li className="navbut"><Link to="/">Home</Link></li>
+        )}
+
+        {/* Conditionally Render Dashboard for Tender Officer */}
+        {userRole === 'Tender Officer' && (
+          <li className="navbut"><Link to="/">Home</Link></li>
+        )}
+
         {/* Profile Dropdown */}
         <li className="dropdown">
-          <button className="dropbtn">Profile</button>
-          <div className="dropdown-content">
+          <button className="dropbtn"><Link to="/profile">Profile</Link></button>
+          {/* <div className="dropdown-content">
             <li className="navbut"><Link to="/profile">View Profile</Link></li>
             <Link to="/login">Logout</Link>
-          </div>
+          </div> */}
         </li>
 
         {/* Conditionally Render Dashboard for Bidder */}

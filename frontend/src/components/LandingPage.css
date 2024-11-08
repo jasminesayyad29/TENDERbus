@@ -152,3 +152,14 @@ body::before {
 .custom-dropdown-content a:active {
   background-color: #e7e7e7; /* Darker gray on active */
 }
+
+.dashboard-button{
+  background-color: #157cdd; /* Primary blue color for button */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
