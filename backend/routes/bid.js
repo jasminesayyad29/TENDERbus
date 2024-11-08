@@ -78,15 +78,7 @@ router.get('/bids/:bidderId', async (req, res) => {
 });
 
 
-router.get('/bids', async (req, res) => {
-    try {
-        const bid = await Bid.find();
-        res.status(200).json(bid);
-      } catch (error) {
-        console.error('Error fetching bid:', error);
-        res.status(500).json({ message: 'Failed to fetch bid', error: error.message });
-    }
-});
+// 2. GET route to fetch all bids (admin evaluation dashboard)
 // 3. PUT route to update bid ratings and comments (admin evaluation)
 router.put('/bids/:id/evaluate', async (req, res) => {
     const { id } = req.params;
@@ -133,16 +125,30 @@ router.get('/bids/evaluations', async (req, res) => {
     }
 });
 
-router.get('/:email', async (req, res) => {
+// 2. GET route to fetch a bid by ObjectId (for admin evaluation dashboard)
+router.get('/bids/id/:bidderId', async (req, res) => {
+    const bidderId = req.params.bidderId.trim();
     try {
-        const { email } = req.params; // Extract email from request parameters
-        const bids = await Bid.find({ email }); // Explicitly specify email field
-
-        if (!bids || bids.length === 0) {
-            return res.status(404).json({ message: 'No Bids found for this email' });
+        const bid = await Bid.findById(bidderId); // Find by _id
+        if (!bid) {
+            return res.status(404).json({ message: 'Bid not found' });
         }
+        res.status(200).json(bid);
+    } catch (error) {
+        console.error('Error fetching bid:', error);
+        res.status(500).json({ message: 'Failed to fetch bid', error: error.message });
+    }
+});
 
-        res.json(bids); // Respond with the list of bids
+// 2b. GET route to fetch bids by email (for specific user bids)
+router.get('/bids/email/:email', async (req, res) => {
+    try {
+        const email = req.params.email.trim();
+        const bids = await Bid.find({ email: email }); // Find by email field
+        if (!bids || bids.length === 0) {
+            return res.status(404).json({ message: 'No bids found for this email' });
+        }
+        res.status(200).json(bids);
     } catch (error) {
         console.error('Error fetching bids by email:', error);
         res.status(500).json({ message: 'Error fetching bids', error });

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './BidDetailsPage.css';
+import { fetchbidsbymail } from '../../services/bidService';
 
 const BidDetailsPage = () => {
   const { tenderId, bidderID } = useParams();
@@ -11,19 +12,29 @@ const BidDetailsPage = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const fetchBidDetails = async () => {
+    // Retrieve email from user object in localStorage and log it
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const email = storedUser?.email;
+    console.log("Email from localStorage:", email);
+
+    if (!email) {
+      setError("User email not found in localStorage.");
+      return;
+    }
+
+    // Fetch tenders based on email
+    const getBids = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/bids`);
-        setBidDetails(response.data);
-        setError('');
+        const data = await fetchbidsbymail(email);
+        setBidDetails(data);
       } catch (err) {
-        setError('Failed to fetch bid details.');
-      }
+        setError(`Failed to fetch bids: ${err.message || err}`);
+        console.error("Error fetching bids:", err);
+      } 
     };
 
-    fetchBidDetails();
+    getBids();
   }, []);
-
   const openModal = (bid) => {
     setSelectedBid(bid);
   };

@@ -94,7 +94,7 @@
 //             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 //             <Route path="/contact" element={<ContactUs />} />
 //             <Route path="/tenders" element={<TenderListPage />} /> 
-            
+
 //           </Routes>
 //           <Footer />
 //         </div>
@@ -118,12 +118,12 @@ import AdminDashboard from './components/Dashboard/AdminDashboard';
 import BidderDashboard from './components/Dashboard/BidderDashboard';
 import UserProfilePage from './components/UserProfilePage';
 import CreateTenderPage from './components/Tender/CreateTenderPage';
-import ModifyTenderPage from './components/Tender/ModifyTenderPage'; 
-import DeleteTenderPage from './components/Tender/DeleteTenderPage'; 
+import ModifyTenderPage from './components/Tender/ModifyTenderPage';
+import DeleteTenderPage from './components/Tender/DeleteTenderPage';
 import ViewTenderPage from './components/Tender/ViewTenderPage';
 import SubmitBidPage from './components/Tender/SubmitBidPage';
 import BidDetailsPage from './components/Tender/BidDetailsPage';
-import TenderListPage from './components/TenderListPage'; 
+import TenderListPage from './components/TenderListPage';
 import TenderManagementPage from './components/Admin/TenderManagementPage';
 import BidEvaluationPage from './components/Admin/BidEvaluationPage';
 import ReportsAnalyticsPage from './components/Admin/ReportsAnalyticsPage';
@@ -132,10 +132,10 @@ import BlockchainTransactionsPage from './components/Admin/BlockchainTransaction
 import NotificationsPage from './components/NotificationsPage';
 import SettingsPage from './components/SettingsPage';
 import HelpSupportPage from './components/HelpSupportPage';
-import TermsOfService from './components/TermsOfService'; 
-import PrivacyPolicy from './components/PrivacyPolicy'; 
-import ContactUs from './components/ContactUs'; 
-import AboutUs from './components/AboutUs'; 
+import TermsOfService from './components/TermsOfService';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import ContactUs from './components/ContactUs';
+import AboutUs from './components/AboutUs';
 import AdminSendNotification from './components/Admin/AdminSendNotification';
 import MyNotificationsPage from './components/Bidder/NotificationsPage';
 // Component to protect routes based on user roles
@@ -166,21 +166,21 @@ const App = () => {
             <Route path="/" element={<LandingPage />} />
             <Route path="/register" element={<RegistrationPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route 
-              path="/admin/dashboard" 
+            <Route
+              path="/admin/dashboard"
               element={
                 <ProtectedRoute roleRequired="Tender Officer">
                   <AdminDashboard />
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/bidder/dashboard" 
+            <Route
+              path="/bidder/dashboard"
               element={
                 <ProtectedRoute roleRequired="Bidder">
                   <BidderDashboard />
                 </ProtectedRoute>
-              } 
+              }
             />
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/tender/create" element={<CreateTenderPage />} />
@@ -190,6 +190,7 @@ const App = () => {
             <Route path="/tender/submit/:tenderId" element={<SubmitBidPage />} />
             <Route path="/tender/submit" element={<SubmitBidPage />} />
             <Route path="/tender/tenders" element={<TenderPage />} />
+            <Route path="/tender/bid-details/email/:email" element={<BidDetailsPage />} />
             <Route path="/tender/bid-details" element={<BidDetailsPage />} />
             <Route path="/admin/tender-management/:email" element={<TenderManagementPage />} />
             <Route path="/admin/tender-management" element={<TenderManagementPage />} />
@@ -204,9 +205,9 @@ const App = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/about" element={<AboutUs />} />
-            <Route path="/tenders" element={<TenderListPage />} /> 
-            <Route path="/admin/admin-send-notifications" component={<AdminSendNotification/>} />
-            <Route path="/Bidder/notifications" component={<MyNotificationsPage/>} />
+            <Route path="/tenders" element={<TenderListPage />} />
+            <Route path="/admin/admin-send-notifications" component={<AdminSendNotification />} />
+            <Route path="/Bidder/notifications" component={<MyNotificationsPage />} />
             {/* Fallback route for undefined paths */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
