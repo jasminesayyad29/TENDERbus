@@ -47,10 +47,10 @@ const BidDetailsPage = () => {
           <p><strong>Additional Notes:</strong> {bid.additionalNotes || "None"}</p>
           <p><strong>Expiry Date:</strong> {new Date(bid.expiryDate).toLocaleDateString()}</p>
   
-          {bid.fileUrl && (
+          {bid.filePath && (
             <p>
               <strong>Attached File:</strong>{" "}
-              <a href={bid.fileUrl} target="_blank" rel="noopener noreferrer">Download</a>
+              <a href={`http://localhost:5000/${bid.filePath}`} target="_blank" rel="noopener noreferrer">Download</a>
             </p>
           )}
         </div>

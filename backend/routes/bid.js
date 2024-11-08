@@ -133,4 +133,20 @@ router.get('/bids/evaluations', async (req, res) => {
     }
 });
 
+router.get('/:email', async (req, res) => {
+    try {
+        const { email } = req.params; // Extract email from request parameters
+        const bids = await Bid.find({ email }); // Explicitly specify email field
+
+        if (!bids || bids.length === 0) {
+            return res.status(404).json({ message: 'No Bids found for this email' });
+        }
+
+        res.json(bids); // Respond with the list of bids
+    } catch (error) {
+        console.error('Error fetching bids by email:', error);
+        res.status(500).json({ message: 'Error fetching bids', error });
+    }
+});
+
 module.exports = router;
