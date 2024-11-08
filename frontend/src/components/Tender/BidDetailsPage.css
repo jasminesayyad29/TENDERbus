@@ -1,4 +1,164 @@
 .bid-details-container {
-    padding: 20px;
-  }
-  
+  display: flex;
+  font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
+  font-size: small;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 10px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  width: 400px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card h3{
+ margin-top: 5px;
+  font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
+  font-size: large;
+
+}
+.card h2{
+  margin-bottom: 10px;
+   font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
+   font-size: large;
+ 
+ }
+
+.card:hover {
+    font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
+  font-size: small;
+  transform: scale(1.05);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
+  font-size: small;
+ padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 80vh;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal-content h2, .modal-content h3, .modal-content p {
+  margin: 10px 0;
+  font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
+  font-size: large;
+}
+
+.modal-content a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.bidtitle{
+  text-align: center;
+  /* margin-top: 15px; */
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: white !important;
+}
+/* Card Animation */
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Animation */
+.modal-overlay {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  transform: scale(0.9);
+  animation: scaleUp 0.3s ease-in-out forwards;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Close Button Animation */
+.close-button {
+  transition: transform 0.2s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+  gap: 550px; /* space between back button and title */
+  margin-bottom: 15px;
+  /* justify-content: center; */
+}
+
+.back-button {
+  background-color: #dddddd;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.bidtitle {
+  font-size: 40px;
+  color: white !important;
+  margin: 0; /* removes default margin */
+}
