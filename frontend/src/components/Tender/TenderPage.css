@@ -1,0 +1,168 @@
+/* Modal overlay styling */
+.tender-page-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8); /* Darker overlay for better focus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px); /* Added blur effect for a more dynamic look */
+}
+
+/* Modal content styling */
+.tender-page-modal-content {
+    background: #2c3e50;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px; /* Smaller radius */
+    max-width: 400px; /* Reduced max width */
+    width: 80%; /* Smaller width */
+    position: relative;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Softer shadow */
+    transition: transform 0.2s ease-out;
+}
+
+.tender-page-modal-content:hover {
+    transform: translateY(-2px); /* Reduced lift effect */
+}
+
+/* Close button styling */
+.tender-page-close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #e74c3c; /* Red close button for contrast */
+    border: none;
+    font-size: 1.4rem; /* Smaller font size */
+    color: white;
+    width: 30px; /* Reduced size */
+    height: 30px; /* Equal height and width */
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the close icon */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.tender-page-close-button:hover {
+    background: #c0392b; /* Darker red on hover */
+}
+
+/* Modal content headers and text */
+.tender-page-modal-content h2 {
+    margin-top: 0;
+    font-size: 1.4rem; /* Smaller font size */
+    color: #ecf0f1;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.6px; /* Reduced letter-spacing */
+}
+
+.tender-page-modal-content p {
+    color: #bdc3c7;
+    font-size: 0.85rem; /* Reduced text size */
+    line-height: 1.4; /* Reduced line-height */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Card container styling */
+.tender-page-card-container {
+    margin-left: 40px; /* Reduced margin */
+    margin-right: 40px; /* Reduced margin */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 1200px;
+    gap: 10px; /* Reduced gap */
+}
+
+/* Tender card styling */
+.tender-page-card {
+    background: linear-gradient(135deg, #000000, #1c242d);
+    border-radius: 10px; /* Smaller radius */
+    padding: 12px 15px; /* Reduced padding */
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Faster transition */
+    flex: 1 1 calc(25% - 15px); /* Smaller flex size */
+    max-width: calc(25% - 15px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+    height: 200px; /* Reduced height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Add shadow and zoom effect for hover */
+.tender-page-card:hover {
+    transform: scale(1.02); /* Smaller zoom effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Smaller hover shadow */
+}
+
+/* Card headings and text */
+.tender-page-card h2 {
+    font-size: 1em; /* Smaller heading font */
+    margin: 6px 0;
+    color: #ecf0f1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tender-page-card h3 {
+    font-size: 0.9em; /* Further reduced font size */
+    margin: 0;
+    color: #f39c12;
+}
+
+/* Responsive card styles */
+@media (max-width: 900px) {
+    .tender-page-card {
+        flex: 1 1 calc(50% - 15px);
+        max-width: calc(50% - 15px);
+        height: 160px; /* Further reduced height for smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .tender-page-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        height: 140px; /* Further reduced height */
+    }
+}
+
+/* Heading styles */
+.tender-page-container h1 {
+    background-image: linear-gradient(rgba(76, 70, 70, 0.45), rgba(42, 42, 38, 0.45), rgba(18, 43, 18, 0.496));
+    color: #ffffff;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px; /* Reduced margin */
+    margin-top: 20px; /* Reduced margin */
+    padding: 8px 15px; /* Reduced padding */
+    width: fit-content;
+    border-radius: 15px; /* Reduced border radius */
+    font-size: 1.8rem; /* Smaller font size */
+    letter-spacing: 1px; /* Reduced letter-spacing */
+    font-family: 'Roboto', sans-serif;
+}
+.tender-page-card-container{
+    display: flex;
+    margin-left: 150px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+@media (max-width: 600px) {
+    .tender-page-container h1 {
+        font-size: 1.4rem;
+        padding: 6px 12px;
+    }
+}
