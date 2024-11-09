@@ -15,7 +15,7 @@ const bidEvaluationSchema = new mongoose.Schema({
         quality: { type: Number, default: 0 },
         reliability: { type: Number, default: 0 },
     },
-    comments: { type: Map, of: String }, // Comments as a map of bidId to comment
+    comments: { type: String, default:''}, // Single comment field for simplicity
     createdAt: { type: Date, default: Date.now }
 });
 

@@ -88,10 +88,12 @@ router.get('/bids', async (req, res) => {
 });
 // 2. GET route to fetch all bids (admin evaluation dashboard)
 // 3. PUT route to update bid ratings and comments (admin evaluation)
-router.put('/bids/:id/evaluate', async (req, res) => {
+// 3. POST route to add a new evaluation for a bid
+router.post('/bids/:id/evaluate', async (req, res) => {
     const { id } = req.params;
-    const { ratings, comment } = req.body;
+    const { ratings, comments } = req.body;
 
+    // Validate that ratings are between 1 and 10, if present
     if (ratings) {
         for (let criterion in ratings) {
             if (ratings[criterion] < 1 || ratings[criterion] > 10) {
@@ -103,32 +105,27 @@ router.put('/bids/:id/evaluate', async (req, res) => {
     }
 
     try {
+        // Check if the bid exists
         const bid = await Bid.findById(id);
         if (!bid) {
             return res.status(404).json({ message: 'Bid not found' });
         }
 
-        // Create or update evaluation data
-        let evaluation = await BidEvaluation.findOne({ bidId: id });
-
-        if (!evaluation) {
-            evaluation = new BidEvaluation({
-                bidId: id,
-                ratings: ratings || {},
-                comment: comment || '',
-            });
-        } else {
-            evaluation.ratings = ratings || evaluation.ratings;
-            evaluation.comment = comment || evaluation.comment;
-        }
+        // Create a new evaluation for the bid
+        const evaluation = new BidEvaluation({
+            bidId: id,
+            ratings: ratings || {},
+            comments: comments,
+        });
 
         await evaluation.save();
-        res.status(200).json({ message: 'Bid evaluation saved successfully', evaluation });
+        res.status(201).json({ message: 'Bid evaluation created successfully', evaluation });
     } catch (error) {
-        console.error('Error saving evaluation:', error);
-        res.status(500).json({ message: 'Failed to save evaluation', error: error.message });
+        console.error('Error creating evaluation:', error);
+        res.status(500).json({ message: 'Failed to create evaluation', error: error.message });
     }
 });
+
 // 4. GET route to fetch evaluations for all bids (admin can view evaluations)
 router.get('/bids/evaluations', async (req, res) => {
     try {
