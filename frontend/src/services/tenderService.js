@@ -43,3 +43,17 @@ export const fetchTendersbymail = async (email) => {
     throw error;
   }
 };
+
+
+
+//evaluation
+
+export const fetchScoreByBidId = async (bidId) => {
+  try {
+    const response = await axios.get(`http://localhost:5000/api/bids/${bidId}/evaluation`);
+    return response.data; // Return the evaluation data
+  } catch (error) {
+    console.error('Error fetching evaluation:', error);
+    throw error;
+  }
+};

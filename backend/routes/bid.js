@@ -111,11 +111,21 @@ router.post('/bids/:id/evaluate', async (req, res) => {
             return res.status(404).json({ message: 'Bid not found' });
         }
 
+        // Calculate the evaluation score based on the provided ratings
+        const { bidAmount = 0, timeliness = 0, quality = 0, reliability = 0 } = ratings || {};
+
+        const evaluationScore =
+            (bidAmount * 0.40) +
+            (timeliness * 0.20) +
+            (quality * 0.20) +
+            (reliability * 0.20);
+
         // Create a new evaluation for the bid
         const evaluation = new BidEvaluation({
             bidId: id,
             ratings: ratings || {},
             comments: comments,
+            evaluationScore: evaluationScore, // Store the evaluation score
         });
 
         await evaluation.save();
@@ -125,7 +135,6 @@ router.post('/bids/:id/evaluate', async (req, res) => {
         res.status(500).json({ message: 'Failed to create evaluation', error: error.message });
     }
 });
-
 
 //get the evaluated bids 
 

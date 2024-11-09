@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchTendersbymail, fetchBidsByTenderId } from '../../services/tenderService';
+import { fetchTendersbymail, fetchBidsByTenderId , fetchScoreByBidId} from '../../services/tenderService';
 import { CSVLink } from "react-csv";
 import './BidEvaluationPage.css';
 
@@ -15,7 +15,7 @@ const BidEvaluationPage = () => {
   const [bidError, setBidError] = useState(null);
   const [fetchedBidsForTender, setFetchedBidsForTender] = useState(new Set());
   const [noBidsModalOpen, setNoBidsModalOpen] = useState(false);
-  const [noBidsMessage, setNoBidsMessage] = useState('');  // Track the no bids message
+  const [noBidsMessage, setNoBidsMessage] = useState('');
 
   const criteria = [
     { name: 'bidAmount', weight: 0.4 },
@@ -66,7 +66,7 @@ const BidEvaluationPage = () => {
 
       if (fetchedBids.length === 0) {
         setNoBidsMessage('No Bids for this Tender Yet');
-        setNoBidsModalOpen(true); // Open the modal to show no bids message
+        setNoBidsModalOpen(true);
       }
 
       setBids((prevBids) => [
@@ -79,55 +79,104 @@ const BidEvaluationPage = () => {
       setBidError("Failed to fetch bids for this tender.");
     }
   };
+  
+//function to get the evaluation score form bidId
 
-  const evaluateBid = (bid) => {
-    let totalScore = 0;
-    let totalWeight = 0;
+const getBidScore = async (bidId) => {
+  try {
+    // Fetch the evaluation data using the API
+    const evaluationData = await fetchScoreByBidId(bidId);
 
-    criteria.forEach((criterion) => {
-      const score = bid.ratings && bid.ratings[criterion.name] ? bid.ratings[criterion.name] : 0;
-      const weightedScore = score * criterion.weight;
-      totalScore += weightedScore;
-      totalWeight += criterion.weight;
-    });
-
-    return totalWeight > 0 ? (totalScore / totalWeight).toFixed(2) : '0.00';
-  };
+    // Check if evaluationData contains a valid score
+    if (evaluationData && evaluationData.evaluationScore) {
+      return evaluationData.evaluationScore;
+    } else {
+      // If no score is available, return a default score (e.g., 0)
+      return 0;
+    }
+  } catch (error) {
+    // Log the error and return a default score (e.g., 0)
+    console.error('Error fetching bid evaluation:', error);
+    return 0;
+  }
+};
 
   const handleRowClick = (bid) => {
     setSelectedBid(bid);
     setModalOpen(true);
   };
 
-  const handleRateBid = async (bidId, criterion, rating) => {
+  const handleRateBid = (criterion, rating) => {
     if (rating < 1 || rating > 10) {
       alert('Rating must be between 1 and 10');
       return;
     }
-
-    try {
-      await fetchBidsByTenderId(bidId, {
-        ratings: { [criterion]: rating },
-      });
-      setBids((prevBids) =>
-        prevBids.map((bid) =>
-          bid._id === bidId ? {
-            ...bid,
-            ratings: {
-              ...bid.ratings,
-              [criterion]: rating,
-            },
-          } : bid
-        )
-      );
-    } catch (error) {
-      setError('Failed to save rating. Please try again later.');
-      console.error('Failed to save rating:', error);
-    }
+    setSelectedBid((prevBid) => ({
+      ...prevBid,
+      ratings: { ...prevBid.ratings, [criterion]: rating }
+    }));
   };
 
-  const handleCommentChange = (bidId, comment) => {
-    setComments((prevComments) => ({ ...prevComments, [bidId]: comment }));
+  const handleCommentChange = (comment) => {
+    setComments((prevComments) => ({ ...prevComments, [selectedBid._id]: comment }));
+  };
+
+  const submitEvaluation = async () => {
+    if (!selectedBid || !selectedBid.ratings) {
+      alert('Please rate all criteria before submitting.');
+      return;
+    }
+  
+    const evaluationData = {
+      ratings: selectedBid.ratings, // Make sure ratings is passed correctly
+      id: selectedBid._id,
+      bidId: selectedBid.bidId,
+      comments: comments[selectedBid._id] || "", // Check if comments exist
+      evaluationScore: evaluateBid(selectedBid), // Calculate score based on ratings
+      createdAt: new Date().toISOString(),
+      _v: 0
+    };
+  
+    try {
+      const response = await fetch(`http://localhost:5000/api/bids/${selectedBid._id}/evaluate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(evaluationData),
+      });
+      
+      if (!response.ok) throw new Error('Failed to submit evaluation');
+      
+      setModalOpen(false);
+      alert('Evaluation submitted successfully!');
+    } catch (error) {
+      setError('Failed to submit evaluation. Please try again later.');
+      console.error('Error submitting evaluation:', error);
+    }
+  };
+  
+
+  const evaluateBid = (evaluationData) => {
+    console.log('Bid data:', evaluationData); 
+
+    const bidAmountScore = evaluationData.ratings?.bidAmount || 0;
+    console.log("BidAmount",bidAmountScore);
+    const timelinessScore = evaluationData.ratings?.timeliness || 0;
+    console.log("timeliness",timelinessScore);
+    const qualityScore = evaluationData.ratings?.quality || 0;
+    console.log("quality",qualityScore);
+    const reliabilityScore = evaluationData.ratings?.reliability || 0;
+    console.log("reliability",reliabilityScore);
+  
+    // Calculate the weighted evaluation score
+    const evaluationScore = (bidAmountScore * 0.40) +
+                            (timelinessScore * 0.20) +
+                            (qualityScore * 0.20) +
+                            (reliabilityScore * 0.20);
+  
+    // Return the score formatted to two decimal places
+    return evaluationScore.toFixed(2);
   };
 
   const sortedBids = [...bids].sort((a, b) => a[sortCriterion] - b[sortCriterion]);
@@ -138,8 +187,8 @@ const BidEvaluationPage = () => {
       "Company Name": bid.companyName,
       "Bid Amount": bid.bidAmount,
       "Description": bid.description,
-      "Evaluation Score": evaluateBid(bid),
-      "Comment": comments[bid._id] || "", 
+      "Evaluation Score": getBidScore(bid._id),
+      "Comment": comments[bid._id] || "",
     }));
     return csvData;
   };
@@ -223,7 +272,6 @@ const BidEvaluationPage = () => {
         <p>No bids available for evaluation.</p>
       )}
 
-      {/* Modal Pop-up for no bids */}
       {noBidsModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -233,40 +281,34 @@ const BidEvaluationPage = () => {
         </div>
       )}
 
-      {/* Modal Pop-up for bid details */}
       {modalOpen && selectedBid && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>Bid Details</h2>
-            <p><strong>Bidder Name:</strong> {selectedBid.bidderName}</p>
-            <p><strong>Company Name:</strong> {selectedBid.companyName}</p>
-            <p><strong>Bid Amount:</strong> {selectedBid.bidAmount}</p>
-            <p><strong>Description:</strong> {selectedBid.description}</p>
-            <div>
-              <h4>Rate Bid</h4>
-              {criteria.map((criterion) => (
-                <div key={criterion.name}>
-                  <label>{criterion.name} (Weight: {criterion.weight * 100}%)</label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="10"
-                    defaultValue={selectedBid.ratings?.[criterion.name] || ''}
-                    onChange={(e) =>
-                      handleRateBid(selectedBid._id, criterion.name, e.target.value)
-                    }
-                  />
-                </div>
-              ))}
+            <h2>Rate Bid for {selectedBid.bidderName}</h2>
+
+            {criteria.map((criterion) => (
+              <div key={criterion.name}>
+                <label>{criterion.name}: </label>
+                <input
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={selectedBid.ratings?.[criterion.name] || ''}
+                  onChange={(e) => handleRateBid(criterion.name, e.target.value)}
+                />
+              </div>
+            ))}
+
+            <textarea
+              placeholder="Add your comments here..."
+              value={comments[selectedBid._id] || ''}
+              onChange={(e) => handleCommentChange(e.target.value)}
+            ></textarea>
+
+            <div className="modal-actions">
+              <button onClick={submitEvaluation}>Submit</button>
+              <button onClick={() => setModalOpen(false)}>Cancel</button>
             </div>
-            <div>
-              <h4>Comments</h4>
-              <textarea
-                value={comments[selectedBid._id] || ''}
-                onChange={(e) => handleCommentChange(selectedBid._id, e.target.value)}
-              />
-            </div>
-            <button onClick={() => setModalOpen(false)}>Close</button>
           </div>
         </div>
       )}

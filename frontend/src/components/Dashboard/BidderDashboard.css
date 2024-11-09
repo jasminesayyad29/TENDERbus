@@ -4,7 +4,7 @@
   font-weight: normal; /* Set default font weight to normal */
 }
 
-.bidder-dashboard {
+.bidder-dashboard-container {
   max-width: 700px; /* Further reduced max-width */
   margin: 0 auto;
   padding: 12px; /* Further reduced padding */
@@ -24,7 +24,7 @@ h1 {
 }
 
 /* Bidder ID Form */
-.bidder-id-form {
+.bidder-dashboard-form {
   background: linear-gradient(135deg, #f39c12, #e74c3c); /* Gradient from orange to red */
   padding: 16px; /* Further reduced padding */
   border-radius: 25px; /* Further reduced border-radius */
@@ -38,13 +38,13 @@ h1 {
   margin: 0 auto 16px;
 }
 
-.bidder-id-form label {
+.bidder-dashboard-form label {
   margin-bottom: 4px; /* Reduced margin */
   color: #000000;
   font-size: 0.85em; /* Further reduced font size */
 }
 
-.bidder-id-form input {
+.bidder-dashboard-form input {
   width: 100%;
   padding: 6px; /* Reduced padding */
   margin-bottom: 10px; /* Reduced margin */
@@ -53,7 +53,7 @@ h1 {
   font-size: 0.8em; /* Reduced font size */
 }
 
-.bidder-id-form button {
+.bidder-dashboard-form button {
   width: 100%;
   padding: 6px; /* Reduced padding */
   font-size: 14px; /* Further reduced font size */
@@ -65,7 +65,7 @@ h1 {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-.bidder-id-form button:hover {
+.bidder-dashboard-form button:hover {
   background-color: #2c3e50; /* Darker shade on hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   transform: scale(1.02); /* More subtle scaling */
@@ -73,14 +73,14 @@ h1 {
 }
 
 /* Error Message */
-.error-message {
+.bidder-dashboard-error-message {
   color: #e74c3c;
   margin-top: 6px; /* Reduced margin */
   font-size: 0.9em; /* Reduced font size */
 }
 
 /* Bidder Options */
-.bidder-options {
+.bidder-dashboard-options {
   margin-top: 16px; /* Reduced margin-top */
   padding: 12px; /* Reduced padding */
   background: linear-gradient(135deg, #2980b9, #8e44ad); /* Gradient from blue to purple */
@@ -88,13 +88,13 @@ h1 {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.bidder-options h2 {
+.bidder-dashboard-options h2 {
   color: #fff;
   font-size: 1.2em; /* Further reduced font size */
   margin-bottom: 12px; /* Reduced margin */
 }
 
-.bidder-options ul {
+.bidder-dashboard-options ul {
   list-style-type: none;
   padding: 0;
   display: flex;
@@ -102,7 +102,7 @@ h1 {
   justify-content: center;
 }
 
-.bidder-options li a {
+.bidder-dashboard-options li a {
   display: inline-block;
   padding: 6px 12px; /* Reduced padding */
   text-decoration: none;
@@ -113,7 +113,7 @@ h1 {
   font-size: 0.9em; /* Reduced font size */
 }
 
-.bidder-options li a:hover {
+.bidder-dashboard-options li a:hover {
   background-color: #16a085; /* Darker teal on hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   transform: scale(1.03); /* More subtle scaling */
@@ -122,7 +122,7 @@ h1 {
 }
 
 /* Bidder Bids Section */
-.bidder-bids {
+.bidder-dashboard-bids {
   margin-top: 24px; /* Reduced margin-top */
   padding: 12px; /* Reduced padding */
   background: linear-gradient(135deg, #bdba1a, #6d6912); /* Gradient from teal to green */
@@ -130,60 +130,125 @@ h1 {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.bidder-bids h2 {
+.bidder-dashboard-bids h2 {
   color: #fff;
   font-size: 1.2em; /* Further reduced font size */
   margin-bottom: 12px; /* Reduced margin */
   text-align: center;
 }
 
-.bidder-bids table {
+.bidder-dashboard-bids table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 8px; /* Reduced margin */
 }
 
-.bidder-bids th, 
-.bidder-bids td {
+.bidder-dashboard-bids th, 
+.bidder-dashboard-bids td {
   padding: 8px; /* Reduced padding */
   text-align: left;
   border-bottom: 1px solid #ddd;
   font-size: 0.9em; /* Reduced font size */
 }
 
-.bidder-bids th {
+.bidder-dashboard-bids th {
   background-color: #2980b9;
   color: #ffffff;
   text-align: center;
 }
 
-.bidder-bids td {
+.bidder-dashboard-bids td {
   color: #333;
   text-align: center;
 }
 
-.bidder-bids tbody tr:hover {
+.bidder-dashboard-bids tbody tr:hover {
   background-color: #f9f9f9;
 }
 
-.bidder-bids tbody tr:last-child td {
+.bidder-dashboard-bids tbody tr:last-child td {
   border-bottom: none;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .bidder-options ul {
+  .bidder-dashboard-options ul {
     flex-direction: column;
     align-items: center;
   }
 
-  .bidder-options li a {
+  .bidder-dashboard-options li a {
     width: 100%;
   }
 
-  .bidder-id-form,
-  .bidder-bids {
+  .bidder-dashboard-form,
+  .bidder-dashboard-bids {
     width: 100%;
     margin: 0 auto;
   }
+}
+/* Improved Table Styling */
+.bidder-dashboard-bids table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px; /* Reduced margin */
+  background-color: #ffffff; /* Set background color */
+  border-radius: 8px; /* Rounded corners for the table */
+  overflow: hidden; /* To ensure rounded corners don't get broken by table content */
+}
+
+.bidder-dashboard-bids th,
+.bidder-dashboard-bids td {
+  padding: 12px 16px; /* Added padding for better spacing */
+  text-align: left;
+  font-size: 0.95em; /* Slightly increased font size for better readability */
+  color: #333333; /* Dark text for good contrast */
+}
+
+.bidder-dashboard-bids th {
+  background-color: #2980b9; /* Darker blue for header */
+  color: #ffffff; /* White text for header */
+  text-transform: uppercase; /* Uppercase header for emphasis */
+  font-weight: bold; /* Make the headers bold */
+  letter-spacing: 1px; /* Add slight letter spacing for header */
+  border-bottom: 3px solid #1f3a5b; /* Darker bottom border for header */
+}
+
+.bidder-dashboard-bids td {
+  background-color: #f9f9f9; /* Light grey background for rows */
+  border-bottom: 1px solid #ddd; /* Subtle border between rows */
+}
+
+.bidder-dashboard-bids tbody tr:nth-child(even) td {
+  background-color: #f2f2f2; /* Slightly darker for even rows for better distinction */
+}
+
+.bidder-dashboard-bids tbody tr:hover {
+  background-color: #f1f1f1; /* Subtle hover effect for rows */
+  cursor: pointer; /* Indicate clickable behavior */
+}
+
+.bidder-dashboard-bids tbody tr:last-child td {
+  border-bottom: none; /* Remove border for the last row */
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .bidder-dashboard-bids table {
+    font-size: 0.85em; /* Slightly smaller text on smaller screens */
+  }
+
+  .bidder-dashboard-bids th,
+  .bidder-dashboard-bids td {
+    padding: 8px 10px; /* Less padding on small screens */
+  }
+
+  .bidder-dashboard-bids th {
+    font-size: 1.1em; /* Slightly larger font size for headers on mobile */
+  }
+}
+
+.bidder-dashboard-toggle-button{
+ border-radius: 40px; 
+ background-color:#1ca548 ;
 }

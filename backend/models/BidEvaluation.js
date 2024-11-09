@@ -16,6 +16,9 @@ const bidEvaluationSchema = new mongoose.Schema({
         reliability: { type: Number, default: 0 },
     },
     comments: { type: String, default:''}, // Single comment field for simplicity
+    evaluationScore:{
+        type: Number
+    },
     createdAt: { type: Date, default: Date.now }
 });
 
