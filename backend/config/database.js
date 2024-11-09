@@ -25,9 +25,6 @@ const mongoose = require('mongoose');
 
 const connectDatabase = async () => {
     const dbUri = process.env.MONGODB_URL;
-    
-    // Debugging step
-    console.log('MongoDB URI:', dbUri);
 
     // Ensure the URI is present
     if (!dbUri) {
@@ -37,8 +34,6 @@ const connectDatabase = async () => {
 
     try {
         await mongoose.connect(dbUri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
         });
         console.log('Database connected successfully');
     } catch (error) {

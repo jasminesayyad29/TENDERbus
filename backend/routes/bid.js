@@ -3,7 +3,7 @@ const express = require('express');
 const multer = require('multer');
 const Bid = require('../models/Bid');
 const BidEvaluation = require('../models/BidEvaluation'); // Import the new BidEvaluation model
-
+const mongoose = require('mongoose');
 const router = express.Router();
 
 // Configure multer for file upload
@@ -189,6 +189,24 @@ router.put('/bids/:id', async (req, res) => {
     }
 });
 
-  
+// 2c. GET route to fetch bids by tenderId (for fetching bids based on a specific tender)
+router.get('/bids/tender/:tenderId', async (req, res) => {
+    try {
+        const tenderId = req.params.tenderId.trim();
+        console.log( typeof(req.params.tenderId) );
+        console.log("typeof" , typeof(tenderId));
+
+        const tenderObjectId = new mongoose.Types.ObjectId(tenderId);
+        const bids = await Bid.find({ tenderId: tenderObjectId });
+        console.log("backend running okk");
+        if (!bids || bids.length === 0) {
+            return res.status(404).json({ message: 'No bids found for this tender' });
+        }
+        res.status(200).json(bids);
+    } catch (error) {
+        console.error('Error fetching bids by tenderId:', error);
+        res.status(500).json({ message: 'Failed to fetch bids by tenderId', error: error.message });
+    }
+});
 
 module.exports = router;

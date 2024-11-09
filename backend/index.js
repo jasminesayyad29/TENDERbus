@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -21,29 +19,29 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*',    // Allow any IP address or domain to connect
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
+    origin: 'http://localhost:3000',    // Allow requests from your frontend
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,  // Allow credentials like cookies or auth headers
   },
 });
 
-app.use(cors());
-
-
-const PORT = process.env.PORT || 3000;
-
-app.set('io', io);
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
-// CORS configuration
+// CORS configuration (no need for app.use(cors()) at the top)
 app.use(cors({
   origin: 'http://localhost:3000', // Allow requests from your frontend
   credentials: true, // Allow credentials like cookies or auth headers
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow these methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
 }));
+
+
+const PORT = process.env.PORT || 4000;
+
+app.set('io', io);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // Connect to the database
 connectDatabase(); // Call the function to connect to MongoDB
