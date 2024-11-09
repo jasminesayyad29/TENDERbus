@@ -1,8 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './BidEvaluationPage.css';
 import { CSVLink } from "react-csv";
+
 
 const BidDetailModal = ({ bid, onClose, onRate, onCommentChange }) => {
   return (
@@ -27,14 +27,14 @@ const BidDetailModal = ({ bid, onClose, onRate, onCommentChange }) => {
             />
           </div>
         ))}
-        
+
         <h3>Comment:</h3>
         <textarea
           rows="4"
           placeholder="Add any feedback or notes here"
           onChange={(e) => onCommentChange(bid._id, e.target.value)}
         ></textarea>
-        
+
         <button onClick={onClose}>Close</button>
       </div>
     </div>
@@ -91,6 +91,11 @@ const BidEvaluationPage = () => {
   };
 
   const handleRateBid = async (bidId, criterion, rating) => {
+    if (rating < 1 || rating > 10) {
+      alert('Rating must be between 1 and 10');
+      return;
+    }
+
     try {
       await axios.put(`http://localhost:5000/api/bids/${bidId}`, {
         ratings: { [criterion]: rating },
@@ -107,6 +112,7 @@ const BidEvaluationPage = () => {
         )
       );
     } catch (error) {
+      setError('Failed to save rating. Please try again later.');
       console.error("Failed to save rating:", error);
     }
   };
@@ -124,7 +130,7 @@ const BidEvaluationPage = () => {
       "Bid Amount": bid.bidAmount,
       "Description": bid.description,
       "Evaluation Score": evaluateBid(bid),
-      "Comment": comments[bid._id] || "",
+      "Comment": comments[bid._id] || "",  // Ensure empty comment
     }));
     return csvData;
   };

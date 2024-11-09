@@ -1,22 +1,25 @@
 const mongoose = require('mongoose');
 
+// Ensure the 'Bid' model is not redefined if already compiled
+const Bid = mongoose.models.Bid || require('./Bid');  // Import the existing 'Bid' model if already compiled
+
 const bidEvaluationSchema = new mongoose.Schema({
-    bidId: { type: mongoose.Schema.Types.ObjectId, ref: 'Bid', required: true },  // Reference to the Bid document
-    ratings: {
-        bidAmount: { type: Number, min: 1, max: 10, required: true },  // Rating for bid amount
-        timeliness: { type: Number, min: 1, max: 10, required: true },  // Rating for timeliness
-        quality: { type: Number, min: 1, max: 10, required: true },     // Rating for quality
-        reliability: { type: Number, min: 1, max: 10, required: true }  // Rating for reliability
+    bidId: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Bid', // This links to the 'Bid' model
+        required: true 
     },
-    comment: { type: String, default: '' },  // Optional comment field
-    createdAt: { type: Date, default: Date.now },  // Date when evaluation is created
-    updatedAt: { type: Date, default: Date.now }  // Date when evaluation is last updated
+    ratings: {
+        bidAmount: { type: Number, default: 0 },
+        timeliness: { type: Number, default: 0 },
+        quality: { type: Number, default: 0 },
+        reliability: { type: Number, default: 0 },
+    },
+    comments: { type: Map, of: String }, // Comments as a map of bidId to comment
+    createdAt: { type: Date, default: Date.now }
 });
 
-// Automatically update `updatedAt` when the evaluation is modified
-bidEvaluationSchema.pre('save', function (next) {
-    this.updatedAt = Date.now();
-    next();
-});
+// Check if the 'BidEvaluation' model is already compiled
+const BidEvaluation = mongoose.models.BidEvaluation || mongoose.model('BidEvaluation', bidEvaluationSchema);
 
-module.exports = mongoose.model('BidEvaluation', bidEvaluationSchema);
+module.exports = BidEvaluation;
