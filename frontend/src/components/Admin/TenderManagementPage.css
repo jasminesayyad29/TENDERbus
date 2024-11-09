@@ -1,40 +1,204 @@
+/* Tender Management Container */
 .tender-management-container {
-  padding: 50px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
 }
-.tender-management-container h2{
-  color: #fff;
-  font-size: 40px;
+
+.tender-management-container h2 {
+  color: #f5f5f5;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
+
+/* Tender Table */
 .tender-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: black;
+  margin-bottom: 20px;
 }
 
 .tender-table th, .tender-table td {
   padding: 10px;
   border: 1px solid #ddd;
+  text-align: left;
 }
 
 .tender-table th {
   background-color: #f4f4f4;
+  color: #333;
 }
 
 .tender-table td {
-  text-align: center;
-  color: #fff;
-  background-color: #000;
+  background-color: #fff;
 }
 
-button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: rgb(11, 0, 0);
+.tender-table td button {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
   border: none;
+  border-radius: 4px;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.tender-table td button:hover {
+  opacity: 0.9;
+}
+
+.tender-table td button:first-child {
+  background-color: #007bff;
+}
+
+.tender-table td button:nth-child(2) {
+  background-color: #e3ad09;
+}
+
+.tender-table td button:nth-child(3) {
+  background-color: #dc3545;
+}
+
+.tender-table .inactive-status {
+  color: red;
+}
+
+/* Modal Overlay */
+.modal-overlay-tender-management {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+/* Modal Container */
+.modal-container-tender-management {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1001;
+  overflow-y: auto;
+  max-height: 80vh;
+  text-align: left; /* Add this line to align all text to the left */
+}
+
+/* Bid Details Text */
+.bid-details-tender-management p {
+  text-align: left; /* Ensures the paragraph text is aligned to the left */
+}
+
+.modal-container-tender-management h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.close-btn-tender-management {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-button:hover {
+.close-btn-tender-management:hover {
+  background-color: #c82333;
+}
+
+/* Bid Item List */
+.bid-item-tender-management {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.bidder-name-tender-management {
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.bid-item-tender-management button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.bid-item-tender-management button:hover {
   background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-container-tender-management {
+    width: 90%;
+  }
+
+  .tender-table th, .tender-table td {
+    padding: 8px;
+  }
+
+  .tender-table td button {
+    font-size: 12px;
+  }
+}
+/* Close Button */
+.close-btn-tender-management {
+  position: absolute;
+  top: 15px; /* Adjusted from 10px for better alignment */
+  right: 15px; /* Adjusted from 10px for better alignment */
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the "X" within the button */
+  padding: 0;
+}
+
+.close-btn-tender-management:hover {
+  background-color: #c82333;
+}
+/* Download Button */
+.download-btn-tender-management {
+  background-color: #28a745;  /* Green color */
+  color: white;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.download-btn-tender-management:hover {
+  background-color: #218838; /* Darker green on hover */
 }
