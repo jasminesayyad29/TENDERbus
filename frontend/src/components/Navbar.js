@@ -40,33 +40,37 @@ const Navbar = () => {
         <a href="/" className="link">TENDERbus</a>
       </div>
       <ul className="nav-links">
+     
+
+
       {!userRole && (
    <li className="custom-dropdown">
-            <button className="custom-dropbtn">Register / Sign-In</button>
-            <div className="custom-dropdown-content">
-              <Link to="/register">Register</Link>
-              <Link to="/login">Login</Link>
-            </div>
+            <button className="custom-dropbtn"><Link to="/login">Login</Link>
+            </button>
           </li>
 )}
-          {/* Conditionally Render Dashboard for Bidder */}
-          {userRole === 'Bidder' && (
-          <li className="navbut"><Link to="/">Home</Link></li>
+ <a href="/" className="link">Home</a>
+ <li className="navbut"><Link to="/tender/tenders">Open Tenders</Link></li>
+       
+  {/* Conditionally Render Dashboard for Bidder */}
+  {userRole === 'Bidder' && (
+          <button className="dropbtn"><Link to="/profile">Profile</Link></button>
         )}
 
         {/* Conditionally Render Dashboard for Tender Officer */}
         {userRole === 'Tender Officer' && (
-          <li className="navbut"><Link to="/">Home</Link></li>
+          <button className="dropbtn"><Link to="/profile">Profile</Link></button>
         )}
 
-        {/* Profile Dropdown */}
-        <li className="dropdown">
-          <button className="dropbtn"><Link to="/profile">Profile</Link></button>
-          {/* <div className="dropdown-content">
-            <li className="navbut"><Link to="/profile">View Profile</Link></li>
-            <Link to="/login">Logout</Link>
-          </div> */}
-        </li>
+  {/* Conditionally Render Dashboard for Bidder */}
+  {userRole === 'Bidder' && (
+        <li className="navbut"><Link to="/notifications">Live chat with T/O</Link></li>
+      )}
+
+        {/* Conditionally Render Dashboard for Tender Officer */}
+        {userRole === 'Tender Officer' && (
+        <li className="navbut"><Link to="/notifications">Live chat with Bidder</Link></li>
+      )}
 
         {/* Conditionally Render Dashboard for Bidder */}
         {userRole === 'Bidder' && (
@@ -78,10 +82,10 @@ const Navbar = () => {
           <li className="navbut"><Link to="/admin/dashboard">Dashboard</Link></li>
         )}
 
-        <li className="navbut"><Link to="/tender/tenders">Tenders</Link></li>
-        <li className="navbut"><Link to="/notifications">Live chat</Link></li>
         {/* <li className="navbut"><Link to="/settings">Settings</Link></li> */}
         <li className="navbut"><Link to="/help">Help</Link></li>
+        <a href="/about" className="link">About us</a>
+
       </ul>
     </nav>
   );

@@ -103,7 +103,10 @@ body::before {
 /* Unique Dropdown Button */
 .custom-dropbtn {
   background-color: #157cdd; /* Primary blue color for button */
-  color: white;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif; /* Use Poppins for buttons */
+
   padding: 10px 20px;
   font-size: 1rem;
   border: none;

@@ -14,28 +14,37 @@
   align-items: center;
   width: 100%;
   height: 100vh; /* Full viewport height to center vertically */
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.3); /* Darker background for contrast */
   padding: 20px;
   opacity: 0.9;
 }
 
+/* Glass Effect for Forms */
+.login-form, .logout-card, .logout-confirmation-card {
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+  backdrop-filter: blur(10px); /* Apply background blur */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 200px;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Border to give a glassy effect */
+}
+
 /* Form Styling */
 .login-form {
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  width: 100%;
-  max-width: 450px; /* Set maximum width for larger screens */
   display: flex;
   flex-direction: column;
-  gap: 9px; 
-  height: 650px;
-  
+  gap: 9px;
+  height: auto;
 }
+
 .login-form h2 {
-  text-align: center;
-  /* margin-bottom: 20px; */
   font-size: 25px;
   color: #090202;
 }
@@ -78,90 +87,6 @@ select {
 }
 
 /* Submit Button */
-.loginbutton button {
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  background-color: #031107 !important; 
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #218838;
-}
-
-/* Sign-up Link */
-p {
-  text-align: center;
-  font-size: 0.9rem;
-  margin-top: 10px;
-}
-
-p a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-p a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .login-form {
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-
-  }
-
-  input, select, button {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-}
-
-
-.login-form, .logout-card, .logout-confirmation-card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  width: 90%;
-  margin: auto;
-  margin-top: 100px;
-  margin-bottom: 200px;
-
-  max-width: 400px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.login-form label, .login-form input, .login-form select {
-  display: block;
-  width: 100%;
-  font-family: 'Poppins', sans-serif;
-}
-
-h2, h3 {
-  color: #333;
-  font-family: 'Poppins', sans-serif;
-}
-
-.error {
-  color: red;
-  font-size: 0.9rem;
-}
-
 .login-button, .logout-button, .confirm-button, .cancel-button {
   width: 100%;
   padding: 10px;
@@ -182,11 +107,10 @@ h2, h3 {
   background-color: #f44336;
   color: white;
   border-radius: 40px;
-
 }
 
 .logout-confirmation-card {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly more opaque for the confirmation box */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -201,7 +125,6 @@ h2, h3 {
 .confirm-button {
   background-color: #f44336;
   border-radius: 40px;
-
   color: white;
   flex: 1;
 }
@@ -211,4 +134,20 @@ h2, h3 {
   border-radius: 40px;
   color: white;
   flex: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-form {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  input, select, button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
 }

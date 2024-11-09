@@ -44,11 +44,9 @@ const LandingPage = () => {
         </button>
       ) : (
         <li className="custom-dropdown">
-          <button className="custom-dropbtn">Register / Sign-In</button>
-          <div className="custom-dropdown-content">
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
-          </div>
+          <button className="custom-dropbtn"><Link to="/login" className="custom-dropbtn">Login</Link>
+         </button>
+          
         </li>
       )}
 
