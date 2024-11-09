@@ -1,11 +1,11 @@
-// src/components/NotificationsPage.js
 import React, { useState } from 'react';
 import io from 'socket.io-client';
 import Chat from './ChatPage';
+import './NotificationsPage.css';
 
 const socket = io.connect("http://localhost:5000");
 
-function NotificationsPage(){
+function NotificationsPage() {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
   const [showChat, setShowChat] = useState(false);
@@ -17,34 +17,43 @@ function NotificationsPage(){
     }
   };
 
-
   return (
-    <div className="App">
+    <>
+    <br/>
+    <br/><div className="notificationsPageContainer">
       {!showChat ? (
-        <div className="joinChatContainer">
-          <h3>Join A Chat</h3>
+        <div className="notificationsJoinChatContainer">
+          <h3 className="notificationsJoinTitle">Join A Live Chat</h3>
           <input
             type="text"
-            placeholder="John..."
+            placeholder="Name..."
+            className="notificationsInput"
             onChange={(event) => {
               setUsername(event.target.value);
             }}
           />
           <input
             type="text"
-            placeholder="Room ID..."
+            placeholder="Tender ID..."
+            className="notificationsInput"
             onChange={(event) => {
               setRoom(event.target.value);
             }}
           />
-          <button onClick={joinRoom}>Join A Room</button>
+          <button onClick={joinRoom} className="notificationsJoinButton">Join A Room</button>
+        
+
         </div>
       ) : (
         <Chat socket={socket} username={username} room={room} />
       )}
     </div>
+     
+      <br/>
+      <br/>
+      <br/>
+      <br/></>
   );
 }
-
 
 export default NotificationsPage;
