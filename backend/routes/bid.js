@@ -126,6 +126,28 @@ router.post('/bids/:id/evaluate', async (req, res) => {
     }
 });
 
+
+//get the evaluated bids 
+
+// GET route to fetch the evaluation for a specific bid by bidId
+router.get('/bids/:id/evaluation', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const evaluation = await BidEvaluation.findOne({ bidId: id });
+
+        if (!evaluation) {
+            return res.status(404).json({ message: 'Evaluation not found for this bid' });
+        }
+
+        res.status(200).json(evaluation);
+    } catch (error) {
+        console.error('Error fetching evaluation:', error);
+        res.status(500).json({ message: 'Failed to fetch evaluation', error: error.message });
+    }
+});
+
+
 // 4. GET route to fetch evaluations for all bids (admin can view evaluations)
 router.get('/bids/evaluations', async (req, res) => {
     try {
