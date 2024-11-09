@@ -77,12 +77,30 @@ router.get('/bids/:bidderId', async (req, res) => {
     }
 });
 
-
+router.get('/bids', async (req, res) => {
+    try {
+        const bid = await Bid.find();
+        res.status(200).json(bid);
+      } catch (error) {
+        console.error('Error fetching bid:', error);
+        res.status(500).json({ message: 'Failed to fetch bid', error: error.message });
+    }
+});
 // 2. GET route to fetch all bids (admin evaluation dashboard)
 // 3. PUT route to update bid ratings and comments (admin evaluation)
 router.put('/bids/:id/evaluate', async (req, res) => {
     const { id } = req.params;
     const { ratings, comment } = req.body;
+
+    if (ratings) {
+        for (let criterion in ratings) {
+            if (ratings[criterion] < 1 || ratings[criterion] > 10) {
+                return res.status(400).json({
+                    message: `Invalid rating for ${criterion}. It should be between 1 and 10.`
+                });
+            }
+        }
+    }
 
     try {
         const bid = await Bid.findById(id);
@@ -94,14 +112,12 @@ router.put('/bids/:id/evaluate', async (req, res) => {
         let evaluation = await BidEvaluation.findOne({ bidId: id });
 
         if (!evaluation) {
-            // If evaluation doesn't exist, create a new one
             evaluation = new BidEvaluation({
                 bidId: id,
                 ratings: ratings || {},
                 comment: comment || '',
             });
         } else {
-            // Update the existing evaluation
             evaluation.ratings = ratings || evaluation.ratings;
             evaluation.comment = comment || evaluation.comment;
         }
@@ -113,7 +129,6 @@ router.put('/bids/:id/evaluate', async (req, res) => {
         res.status(500).json({ message: 'Failed to save evaluation', error: error.message });
     }
 });
-
 // 4. GET route to fetch evaluations for all bids (admin can view evaluations)
 router.get('/bids/evaluations', async (req, res) => {
     try {
@@ -154,5 +169,26 @@ router.get('/bids/email/:email', async (req, res) => {
         res.status(500).json({ message: 'Error fetching bids', error });
     }
 });
+router.put('/bids/:id', async (req, res) => {
+    try {
+        const { ratings, comments } = req.body;
+        const updatedBid = await Bid.findByIdAndUpdate(
+            req.params.id,
+            { $set: { ratings, comments } },
+            { new: true }
+        );
+
+        if (!updatedBid) {
+            return res.status(404).send('Bid not found');
+        }
+
+        res.status(200).json(updatedBid);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Failed to update bid');
+    }
+});
+
+  
 
 module.exports = router;
