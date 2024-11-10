@@ -12,8 +12,9 @@
 /* Individual Card Styling */
 /* Individual Card Styling */
 .bid-details-page-card {
-  background: linear-gradient(135deg, #bdba1a, #6d6912); /* Gradient from teal to green */
-  border: 1px solid #ddd;
+  background: linear-gradient(135deg, #ffb700, #8d916a); /* Gradient from teal to green */
+  border: 2px solid #8c08c9;
+  box-shadow: 0 4px 6px #8c08c9;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   padding: 15px;
@@ -29,15 +30,15 @@
   margin-top: 5px;
   font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
   font-size: 0.9rem; /* Smaller font size for labels inside the card */
-  color: #555; /* Lighter color for labels */
+  color: #000000; /* Lighter color for labels */
 }
 
 /* Highlight fetched data inside the card */
 .bid-details-page-card span {
   font-weight: bold;
-  background-color: #f0f8ff; /* Light blue background to highlight fetched data */
-  padding: 2px 5px;
-  border-radius: 4px;
+  background-color: #e0c2ee; /* Light blue background to highlight fetched data */
+  padding: 2px 6px;
+  border-radius: 40px;
 }
 
 /* Title for each card (Tender details) */
@@ -95,7 +96,7 @@
 
 /* Back Button Styling */
 .bid-details-page-back-button {
-  background-color: #086cf8;
+  background-color: #cc950a;
   color: rgb(255, 255, 255);
   border: none;
   font-weight: 600;
@@ -110,13 +111,13 @@
 }
 
 .bid-details-page-back-button:hover {
-  background-color: black;
+  background-color: #000000;
 }
 
 /* Title for Bid Details Page */
 .bid-details-page-bidtitle {
   font-size: 40px;
-  color: white !important;
+  color: #d39fec !important;
   margin: 0; /* removes default margin */
 }
 
