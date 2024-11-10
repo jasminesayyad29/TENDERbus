@@ -1,15 +1,13 @@
 /* General container for the page */
-
 .submit-bid-page-container {
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 50px;
-  color: #ffffff;
+  color: #000;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 40px;
-  /* box-shadow: 0 4px 8px rgb(201, 12, 12); */
 }
 
 /* Heading style */
@@ -17,69 +15,45 @@
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #000000;
 }
 
 /* Form styles */
 .submit-bid-page-container form {
-  justify-content: center;
-  border-radius: 40px;
-  box-shadow: 0 8px 8px 2px rgb(0, 0, 0)  !important;
-  margin-left: 80px !important;
-  background: #ffffff !important;
+  box-shadow: 0 4px 6px 4px rgb(78, 75, 75)  !important;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 /* Form group style */
-.submit-bid-page-container .bidder-name-group,
-.submit-bid-page-container .company-name-group,
-.submit-bid-page-container .company-reg-number-group,
-.submit-bid-page-container .email-group,
-.submit-bid-page-container .phone-number-group,
-.submit-bid-page-container .bid-amount-group,
-.submit-bid-page-container .expiry-date-group,
-.submit-bid-page-container .file-upload-group {
-  margin-bottom: 15px;
+.submit-bid-form-group {
   display: flex;
   align-items: center;
 }
 
 /* Icon style */
-.submit-bid-page-container .bidder-name-group .form-icon,
-.submit-bid-page-container .company-name-group .form-icon,
-.submit-bid-page-container .company-reg-number-group .form-icon,
-.submit-bid-page-container .email-group .form-icon,
-.submit-bid-page-container .phone-number-group .form-icon,
-.submit-bid-page-container .bid-amount-group .form-icon,
-.submit-bid-page-container .expiry-date-group .form-icon,
-.submit-bid-page-container .file-upload-group .form-icon {
+.form-icon {
   margin-right: 10px;
-  color: #000000;
+  color: #000;
+  font-size: 18px;
 }
 
-/* Input and textarea styling */
+/* Input styling */
 .submit-bid-page-container input[type="text"],
 .submit-bid-page-container input[type="email"],
 .submit-bid-page-container input[type="tel"],
 .submit-bid-page-container input[type="number"],
 .submit-bid-page-container input[type="date"],
 .submit-bid-page-container textarea {
-  width: 100%;
+  flex-grow: 1;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  margin-left: 10px;
-}
-
-.submit-bid-page-container textarea {
-  resize: vertical;
-  height: 100px;
 }
 
 /* Button style */
-.submit-bid-page-container .submit-button {
+.submit-bid-button {
   background-color: #4a90e2;
   color: white;
   padding: 12px;
@@ -90,71 +64,60 @@
   transition: background-color 0.3s ease;
 }
 
-.submit-bid-page-container .submit-button:hover {
+.submit-bid-button:hover {
   background-color: #357ab7;
 }
 
 /* Success and error messages */
-.submit-bid-page-container .success-message {
-  color: green;
-  font-size: 16px;
+.submit-bid-success-message,
+.submit-bid-error-message {
   text-align: center;
+  font-size: 16px;
 }
 
-.submit-bid-page-container .error-message {
+.submit-bid-success-message {
+  color: green;
+}
+
+.submit-bid-error-message {
   color: red;
-  font-size: 16px;
-  text-align: center;
 }
 
 /* Bid submission ID section */
-.submit-bid-page-container .bid-submission-id {
+.submit-bid-id-container {
   background-color: #f0f8ff;
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #ddd;
   margin-top: 20px;
-}
-
-.submit-bid-page-container .bid-submission-id h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.submit-bid-page-container .bid-submission-id p {
-  font-size: 16px;
-  color: #333;
+  text-align: center;
 }
 
 /* Terms checkbox and link */
-.submit-bid-page-container .terms-checkbox-group {
-  margin: 10px 0;
+.submit-bid-form-group-terms {
+  display: flex;
+  align-items: center;
   font-size: 14px;
 }
 
-.submit-bid-page-container .terms-checkbox-group input {
+.submit-bid-form-group-terms input {
   margin-right: 5px;
 }
 
-.submit-bid-page-container .view-bid-details-link {
+/* Link to bid details */
+.submit-bid-details-link {
   display: block;
   text-align: center;
   color: #4a90e2;
   margin-top: 20px;
   font-size: 16px;
-  text-decoration: none;
 }
 
-.submit-bid-page-container .view-bid-details-link:hover {
+.submit-bid-details-link:hover {
   text-decoration: underline;
 }
 
-/* File upload styling */
-.submit-bid-page-container .file-upload-group input[type="file"] {
-  margin-left: 10px;
-}
-
-/* Layout adjustments for form */
+/* Adjustments for responsive layout */
 @media (max-width: 768px) {
   .submit-bid-page-container {
     padding: 15px;
@@ -164,8 +127,8 @@
     font-size: 20px;
   }
 
-  .submit-bid-page-container .form-icon {
-    font-size: 18px;
+  .form-icon {
+    font-size: 16px;
   }
 
   .submit-bid-page-container input[type="text"],
@@ -177,11 +140,11 @@
     font-size: 14px;
   }
 
-  .submit-bid-page-container .submit-button {
+  .submit-bid-button {
     padding: 10px;
   }
 
-  .submit-bid-page-container .view-bid-details-link {
+  .submit-bid-details-link {
     font-size: 14px;
   }
 }
