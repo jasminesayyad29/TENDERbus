@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchTendersbymail, fetchBidsByTenderId, fetchScoreByBidId } from '../../services/tenderService';
 import { CSVLink } from "react-csv";
 import './BidEvaluationPage.css';
+import Swal from 'sweetalert2';
 
 const BidEvaluationPage = () => {
   const [tenders, setTenders] = useState([]);
@@ -122,7 +123,11 @@ const BidEvaluationPage = () => {
 
   const handleRateBid = (criterion, rating) => {
     if (rating < 1 || rating > 10) {
-      alert('Rating must be between 1 and 10');
+      Swal.fire({
+        title: "Rating must be between 1 and 10",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
       return;
     }
     setSelectedBid((prevBid) => ({
@@ -143,7 +148,11 @@ const BidEvaluationPage = () => {
 
   const submitEvaluation = async () => {
     if (!selectedBid || !selectedBid.ratings) {
-      alert('Please rate all criteria before submitting.');
+      Swal.fire({
+        title: "Please rate all criteria before submitting.",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
       return;
     }
   
@@ -171,13 +180,23 @@ const BidEvaluationPage = () => {
       // Close the modal
       setModalOpen(false);
   
-      // Reload the page to reflect changes
-      window.location.reload(); // This reloads the page
-  
       // Show success message
-      alert('Evaluation submitted successfully!');
+      Swal.fire({
+        title: "Evaluation submitted successfully!",
+        icon: "success",
+        confirmButtonText: "OK"
+      }).then(() => {
+        // This will execute after the alert is closed by the user
+        window.location.reload(); // Reload the page to reflect changes
+      });
     } catch (error) {
       setError('Failed to submit evaluation. Please try again later.');
+      Swal.fire({
+        title: "Failed to submit evaluation.",
+        text:"Please Try Again",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
       console.error('Error submitting evaluation:', error);
     }
   };
