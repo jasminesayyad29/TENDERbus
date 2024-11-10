@@ -10,8 +10,9 @@
 }
 
 /* Individual Card Styling */
+/* Individual Card Styling */
 .bid-details-page-card {
-  background-color: #f0f0f0;
+  background: linear-gradient(135deg, #bdba1a, #6d6912); /* Gradient from teal to green */
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
@@ -21,6 +22,7 @@
   cursor: pointer;
   transition: transform 0.2s;
 }
+
 
 /* Smaller text for labels inside the card (Bid ID, Tender, etc.) */
 .bid-details-page-card h3 {
@@ -188,3 +190,4 @@
     width: 95%;
   }
 }
+ 
