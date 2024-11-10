@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './CreateTenderPage.css'; // You can add your own styles here
+import Swal from 'sweetalert2';
 
 const CreateTenderPage = () => {
   const[email, setEmail] = useState('');
@@ -36,7 +37,13 @@ const CreateTenderPage = () => {
         },
       });
       const createdTenderId = response.data._id;
-      alert(`Tender created successfully! ID: ${createdTenderId}`);
+      Swal.fire({
+        title: "Tender Created Successfully!",
+        text: `Tender Created Successfully! with tenderId ${createdTenderId}`,
+        icon: "success",
+        confirmButtonText: "OK"
+      });
+      // alert(`Tender created successfully! ID: ${createdTenderId}`);
       setTenderId(createdTenderId);
 
       // Reset the form
@@ -51,10 +58,20 @@ const CreateTenderPage = () => {
       setDocument(null);
     } catch (error) {
       console.error('Error creating tender', error);
-      alert('Error creating tender');
+      Swal.fire({
+        title: "Tender Creation Failed!",
+        text: `Failed to create the tender`,
+        icon: "error",
+        confirmButtonText: "OK"
+      });
     }
     if (new Date(startDate) >= new Date(endDate)) {
-      alert('End Date must be after Start Date');
+      Swal.fire({
+        title: "End date must be greater than start date",
+        text: `Failed to create the tender`,
+        icon: "error",
+        confirmButtonText: "OK"
+      });
       return;
   }
   

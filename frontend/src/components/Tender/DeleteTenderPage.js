@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './DeleteTenderPage.css'; // Import the CSS file
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const DeleteTenderPage = () => {
   const [tenderId, setTenderId] = useState('');
@@ -18,12 +19,20 @@ const DeleteTenderPage = () => {
       await axios.delete('http://localhost:5000/api/tenders', {
         data: { id: tenderId }
       });
-      alert('Tender deleted successfully');
+      Swal.fire({
+        title: "Tender deleted Successfully!",
+        icon: "success",
+        confirmButtonText: "OK"
+      });
       setTenderId(''); // Clear form fields after deletion
       setReason('');
     } catch (error) {
       console.error('Error deleting tender:', error);
-      alert('Failed to delete the tender');
+      Swal.fire({
+        title: "Failed to delete Tender",
+        icon: "success",
+        confirmButtonText: "OK"
+      });
     }
   };
 
