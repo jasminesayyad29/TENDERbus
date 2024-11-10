@@ -55,9 +55,9 @@
 /* Card style with gradient background */
 /* Card style with gradient background */
 .view-tender-page-card {
-  background: linear-gradient(135deg, #f39c12, #e74c3c); /* Gradient from orange to red */
-  border: 2px solid #ddd; /* Add a border around the card */
-  border-radius: 8px;
+  background: linear-gradient(135deg, #bd77dd, #d99b94f1); /* Gradient from orange to red */
+  border: 3px solid black; /* Add a border around the card */
+  border-radius: 50px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   padding: 15px;
   cursor: pointer;

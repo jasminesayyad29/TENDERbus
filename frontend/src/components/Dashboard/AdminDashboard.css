@@ -12,7 +12,7 @@ body {
 }
 
 /* Wrapper for the Entire Dashboard */
-.unique-dashboard-wrapper {
+.admin-dashboard-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,180 +21,124 @@ body {
 }
 
 /* Parent Container Card */
-.unique-parent-card {
-  background: linear-gradient(135deg, #969494, #d9d3d3); /* Purple to Red Gradient */
+.admin-dashboard-card {
+  background: linear-gradient(135deg, #174170b8, #7ec2a6bb);
   border-radius: 12px;
-  padding: 20px; /* Reduced padding for proportional scaling */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   width: 80%;
-  max-width: 900px; /* Reduced max-width */
-  max-height: 600px;
+  max-width: 900px;
+  max-height: 750px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  transform: scale(0.9); /* Scale down the whole container */
-  transform-origin: top center; /* Ensure the scaling is from the top */
+  transform: scale(0.9);
+  transform-origin: top center;
 }
 
-.unique-parent-card h1 {
-  font-size: 2.4rem; /* Reduced font size */
+.admin-dashboard-card h1 {
+  font-size: 2.4rem;
   font-weight: bold;
-  color: #000000;
-  text-align: center;
+  color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Floating Card */
-.unique-floating-card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Floating effect */
-  padding: 20px; /* Reduced padding */
-  width: 280px; /* Slightly smaller width */
-  margin-bottom: 20px; /* Reduced bottom margin */
-  position: relative;
-  top: -30px; /* Slightly reduced lift */
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.unique-floating-card:hover {
-  transform: translateY(-8px); /* Smaller lift effect */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.unique-floating-card h3 {
-  font-size: 1.4rem; /* Smaller font size */
-  color: #6a0dad; /* Purple color */
-  margin-bottom: 20px;
-}
-
-.unique-floating-card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.unique-floating-card li {
-  margin: 8px 0;
-}
-
-.unique-floating-link {
-  display: block;
-  padding: 10px;
-  background: linear-gradient(135deg, #6a0dad, #ff6f61); /* Purple to Red Gradient */
-  border-radius: 40px; /* Updated border-radius for buttons */
-  color: white;
-  text-decoration: none;
-  font-size: 1rem; /* Smaller font size */
-  font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.unique-floating-link:hover {
-  transform: translateY(-2px); /* Smaller hover effect */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
 /* Admin Options Section */
-.unique-admin-options {
+.admin-dashboard-options {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.unique-card {
+/* Individual Admin Card */
+.admin-dashboard-card-inner {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  padding: 25px; /* Reduced padding */
-  width: 320px; /* Smaller card width */
-  margin: 15px; /* Reduced margin */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  width: 280px;
+  margin: 15px;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.unique-card:hover {
-  transform: translateY(-8px); /* Slightly smaller lift */
+.admin-dashboard-card-inner:hover {
+  transform: translateY(-8px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Card Titles */
-.unique-card h2 {
-  font-size: 1.6rem; /* Reduced font size */
-  margin-bottom: 15px; /* Reduced margin */
-}
-
-/* Card 1 - Green to Yellow Gradient */
-.unique-card:nth-child(1) {
-  background: linear-gradient(135deg, #36b554, #d2b613); /* Green to Yellow Gradient */
-}
-
-.unique-card:nth-child(1) h2 {
-  color: #030303; /* Green color */
+.admin-dashboard-card-inner h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #333;
   font-weight: 600;
 }
 
-/* Card 2 - Blue to Purple Gradient */
-.unique-card:nth-child(2) {
-  background: linear-gradient(135deg, #00b4d8, #0077b6); /* Blue to Purple Gradient */
+/* Specific Colors for Each Card */
+.admin-dashboard-card-inner:nth-child(1) {
+  background: linear-gradient(135deg, #36b554, #d2b613);
 }
 
-.unique-card:nth-child(2) h2 {
-  color: #00b4d8; /* Blue color */
+.admin-dashboard-card-inner:nth-child(2) {
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
 }
 
-/* Card 3 - Red to Pink Gradient */
-.unique-card:nth-child(3) {
-  background: linear-gradient(135deg, #ff6f61, #f7a2a1); /* Red to Pink Gradient */
-}
-
-.unique-card:nth-child(3) h2 {
-  color: #ff6f61; /* Red color */
+.admin-dashboard-card-inner:nth-child(3) {
+  background: linear-gradient(135deg, #ff6f61, #f7a2a1);
 }
 
 /* List Styling */
-.unique-card ul {
+.admin-dashboard-card-inner ul {
   list-style: none;
-  padding: 0;
 }
 
-/* List Items */
-.unique-card li {
-  margin: 12px 0; /* Reduced margin */
+.admin-dashboard-card-inner li {
+  margin: 12px 0;
 }
 
 /* Links */
-.unique-dashboard-link {
+.admin-dashboard-link {
   display: block;
   padding: 12px;
-  background: linear-gradient(135deg, #f61b07, #845050c3); /* Red to Pink Gradient */
-  border-radius: 40px; /* Updated border-radius for buttons */
+  background: linear-gradient(135deg, #f61b07, #845050c3);
+  border-radius: 40px;
   color: white;
   text-decoration: none;
-  font-size: 1rem; /* Reduced font size */
+  font-size: 1rem;
   font-weight: 600;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.unique-dashboard-link:hover {
-  transform: translateY(-2px); /* Smaller hover effect */
+.admin-dashboard-link:hover {
+  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.admin-dashboard-logo {
+  height: 250px;
+  margin-left: 5px;
+  margin-top: 15px;
 }
 
 /* Responsive Styling */
 @media (max-width: 768px) {
-  .unique-admin-options {
+  .admin-dashboard-options {
     flex-direction: column;
   }
 
-  .unique-card, .unique-floating-card {
+  .admin-dashboard-card-inner {
     width: 90%;
   }
 
-  .unique-parent-card {
-    transform: scale(0.85); /* Slightly smaller scale on smaller screens */
+  .admin-dashboard-card {
+    transform: scale(0.85);
   }
+}
+.admin-dashboard-content{
+justify-content: center;
+align-items: center;
 }

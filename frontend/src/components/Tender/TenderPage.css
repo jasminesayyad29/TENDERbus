@@ -82,8 +82,8 @@
 
 /* Tender card styling */
 .tender-page-card {
-    background: #ab7d0b;
-    border-radius: 8px; /* Slightly reduced radius */
+    background: linear-gradient(135deg, #a76e06, #ab8847f1); /* Gradient from orange to red */
+   border-radius: 35px; /* Slightly reduced radius */
     padding: 12px 15px;
     color: #000000 !important;
     text-align: center;

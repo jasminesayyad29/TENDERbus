@@ -12,10 +12,10 @@
 /* Individual Card Styling */
 /* Individual Card Styling */
 .bid-details-page-card {
-  background: linear-gradient(135deg, #ffb700, #8d916a); /* Gradient from teal to green */
+  background: linear-gradient(135deg, #7cdee6, #a6a897); /* Gradient from teal to green */
   border: 2px solid #8c08c9;
   box-shadow: 0 4px 6px #8c08c9;
-  border-radius: 8px;
+  border-radius: 60px !important;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   padding: 15px;
   width: 400px;

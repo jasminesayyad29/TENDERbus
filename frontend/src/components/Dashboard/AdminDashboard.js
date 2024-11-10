@@ -4,31 +4,33 @@ import './AdminDashboard.css'; // Import CSS
 
 const AdminDashboard = () => {
   return (
-    <div className="unique-dashboard-wrapper">
+    <div className="admin-dashboard-wrapper">
       {/* Parent Container Card */}
-      <div className="unique-parent-card">
+      <div className="admin-dashboard-card">
         <h1>Tender Officer's Dashboard</h1>
 
-        <div className="unique-admin-options">
-          <div className="unique-card">
-            <h2>Manage</h2>
-            <ul>
-              <li>
-                <Link to="/tender/create" className="unique-dashboard-link">Create Tender</Link>
-              </li>
-              <li>
-                <Link to="/admin/tender-management" className="unique-dashboard-link">Manage Tenders</Link>
-              </li>
-              <li>
-                <Link to="/admin/bid-evaluation" className="unique-dashboard-link">Bid Evaluation</Link>
-              </li>
-              <li>
-                <Link to="/admin/reports" className="unique-dashboard-link">Reports & Analytics</Link>
-              </li>
-              <li>
-                <Link to="/admin/admin-send-notifications" className="unique-dashboard-link">Notify Bidder</Link>
-              </li>
-            </ul>
+        <div className="admin-dashboard-options">
+          {/* Flex container for card and logo */}
+          <div className="admin-dashboard-content">
+          <img src="/tendero.png" alt="TENDERbus Logo" className="admin-dashboard-logo" />
+            <div className="admin-dashboard-card-inner">
+              <h2>Manage</h2>
+              <ul className="admin-dashboard-link-list">
+                <li>
+                  <Link to="/tender/create" className="admin-dashboard-link">Create Tender</Link>
+                </li>
+                <li>
+                  <Link to="/admin/tender-management" className="admin-dashboard-link">Manage Tenders</Link>
+                </li>
+                <li>
+                  <Link to="/admin/bid-evaluation" className="admin-dashboard-link">Bid Evaluation</Link>
+                </li>
+                <li>
+                  <Link to="/admin/reports" className="admin-dashboard-link">Reports & Analytics</Link>
+                </li>
+              </ul>
+            </div>
+            <br/>
           </div>
         </div>
       </div>
