@@ -86,11 +86,13 @@ const BidderDashboard = () => {
 
   return (
     <div className="bidder-dashboard-container">
-      <pre style={{ fontSize: '25px' }}>Welcome </pre>
-      <pre style={{ fontSize: '20px' }}>{userName}!!</pre> {/* Display the user name */}
+      <pre style={{ fontSize: '25px' }}>Welcome To<h2>Bidder Dashboard</h2></pre>
+      <img src="/bidder.png" alt="TENDERbus Logo" class="bidder-logo" />
+      <h2 style={{ fontSize: '20px' }}>{userName}</h2> 
+      
 
       <form onSubmit={handleBidderIdSubmit} className="bidder-dashboard-form">
-        <h1>Bidder Dashboard</h1>
+        
         <label htmlFor="bidderId" className="bidder-dashboard-label">Enter Your Bidder ID:</label>
         <input
           type="text"
