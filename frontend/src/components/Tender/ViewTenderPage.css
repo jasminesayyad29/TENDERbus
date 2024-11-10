@@ -153,3 +153,20 @@ p {
 .view-tender-page-card .view-tender-page-status.active {
   color: green;
 }
+
+
+.view-tender-page-back-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.view-tender-page-back-button:hover {
+  background-color: #000000;
+}

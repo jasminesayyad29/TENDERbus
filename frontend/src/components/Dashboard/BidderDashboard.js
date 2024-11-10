@@ -108,17 +108,14 @@ const BidderDashboard = () => {
       <div className="bidder-dashboard-options">
         <h2>Manage Your Bids</h2>
         <ul>
+        <li>
+            <Link to="/tender/tenders" className="bidder-dashboard-link">All Tenders</Link>
+          </li>
           <li>
-            <Link to="/tender/view" className="bidder-dashboard-link">View Tenders</Link>
+            <Link to="/tender/view" className="bidder-dashboard-link">Submit Bid</Link>
           </li>
           <li>
             <Link to="/tender/bid-details" className="bidder-dashboard-link">Your Bids</Link>
-          </li>
-          <li>
-            <Link to="Bidder/notifications" className="bidder-dashboard-link">Notifications</Link>
-          </li>
-          <li>
-            <Link to="/settings" className="bidder-dashboard-link">Account Settings</Link>
           </li>
         </ul>
       </div>

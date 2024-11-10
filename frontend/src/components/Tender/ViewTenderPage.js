@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { fetchTenders } from '../../services/tenderService';
 import { useParams } from 'react-router-dom';
 import './ViewTenderPage.css';
@@ -9,6 +9,7 @@ const ViewTenderPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { tenderId } = useParams();
+  const navigate = useNavigate(); // Initialize navigate function
 
   useEffect(() => {
     const getTenders = async () => {
@@ -40,7 +41,13 @@ const ViewTenderPage = () => {
 
   return (
     <div className="view-tender-page-container">
-      <h1 className="view-tender-page-header">Tenders Open Now!</h1>
+      <div className="view-tender-page-header-container">
+        {/* Back button */}
+        <button onClick={() => navigate(-1)} className="view-tender-page-back-button">
+          ← Back
+        </button>
+        <h1 className="view-tender-page-header">Select Tender To Bid</h1>
+      </div>
       {tenders.length === 0 ? (
         <p className="view-tender-page-no-tender-message">No tenders available.</p>
       ) : (
@@ -75,7 +82,7 @@ const ViewTenderPage = () => {
                   </p>
                 )}
                 <Link to={`/tender/submit/${tender._id}`} className="view-tender-page-submit-bid-link">
-                Submit Bid 
+                  Submit Bid 
                 </Link>
               </div>
             );
