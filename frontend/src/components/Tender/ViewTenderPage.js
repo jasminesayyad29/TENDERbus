@@ -40,7 +40,7 @@ const ViewTenderPage = () => {
 
   return (
     <div className="view-tender-page-container">
-      <h1 className="view-tender-page-header">Tenders Open Now!</h1>
+      <h1 className="view-tender-page-header">Select Tender To Bid</h1>
       {tenders.length === 0 ? (
         <p className="view-tender-page-no-tender-message">No tenders available.</p>
       ) : (
