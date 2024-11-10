@@ -86,8 +86,8 @@ const BidderDashboard = () => {
 
   return (
     <div className="bidder-dashboard-container">
- <pre style={{ fontSize: '20px' }}>Welcome </pre>
-<pre style={{ fontSize: '20px' }}>{userName}</pre> {/* Display the user name */}
+      <pre style={{ fontSize: '25px' }}>Welcome </pre>
+      <pre style={{ fontSize: '20px' }}>{userName}!!</pre> {/* Display the user name */}
 
       <form onSubmit={handleBidderIdSubmit} className="bidder-dashboard-form">
         <h1>Bidder Dashboard</h1>
