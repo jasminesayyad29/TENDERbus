@@ -1,7 +1,6 @@
-// export default SubmitBidPage;
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams, Link, useNavigate} from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBuilding, faIdCard, faEnvelope, faPhone, faDollarSign, faFile, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import './SubmitBidPage.css';
@@ -24,6 +23,7 @@ const SubmitBidPage = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const [bidderId, setBidderId] = useState(null);
+
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
@@ -51,11 +51,12 @@ const SubmitBidPage = () => {
             const response = await axios.post('http://localhost:5000/api/bids', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
-            const createdBidderId = response.data._id;
+            const createdBidderId = response.data.bid._id;
+            console.log(createdBidderId);
             setSuccess('Bid submitted successfully!');
             Swal.fire({
                 title: "Bid Submitted Successfully!",
-                text:`Bid submitted successfully! by Emailid :${email}`,
+                text:`Bid submitted successfully! Bid-id :${createdBidderId}  by Email-id :${email}`,
                 icon: "success",
                 confirmButtonText: "OK"
               });
@@ -72,8 +73,8 @@ const SubmitBidPage = () => {
             setDescription('');
             setAdditionalNotes('');
             setExpiryDate('');
-            setFile('');
-            setAcceptTerms('');
+            setFile(null);
+            setAcceptTerms(false);
         } catch (err) {
             const message = err.response?.data?.message || err.message;
             setError('Failed to submit bid: ' + message);
@@ -81,12 +82,12 @@ const SubmitBidPage = () => {
         }
     };
 
-    return (
-        <div className="submit-bid-container">
-            <h2>Submit Bid for Tender: {tenderId}</h2>
+    return ( <div className='submit-bid-page-mega'>
+        <div className="submit-bid-page-container">
+            <h2>Submit Bid for Tender-id: {tenderId}</h2>
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <FontAwesomeIcon icon={faUser} className="icon" />
+                <div className="submit-bid-form-group submit-bid-form-group-name">
+                    <FontAwesomeIcon icon={faUser} className="form-icon" />
                     <input
                         type="text"
                         placeholder="Bidder's Full Name"
@@ -95,8 +96,8 @@ const SubmitBidPage = () => {
                         required
                     />
                 </div>
-                <div className="form-group">
-                    <FontAwesomeIcon icon={faBuilding} className="icon" />
+                <div className="submit-bid-form-group submit-bid-form-group-company">
+                    <FontAwesomeIcon icon={faBuilding} className="form-icon" />
                     <input
                         type="text"
                         placeholder="Company Name"
@@ -105,8 +106,8 @@ const SubmitBidPage = () => {
                         required
                     />
                 </div>
-                <div className="form-group">
-                    <FontAwesomeIcon icon={faIdCard} className="icon" />
+                <div className="submit-bid-form-group submit-bid-form-group-regnumber">
+                    <FontAwesomeIcon icon={faIdCard} className="form-icon" />
                     <input
                         type="text"
                         placeholder="Company Registration Number"
@@ -114,8 +115,8 @@ const SubmitBidPage = () => {
                         onChange={(e) => setCompanyRegNumber(e.target.value)}
                     />
                 </div>
-                <div className="form-group">
-                    <FontAwesomeIcon icon={faEnvelope} className="icon" />
+                <div className="submit-bid-form-group submit-bid-form-group-email">
+                    <FontAwesomeIcon icon={faEnvelope} className="form-icon" />
                     <input
                         type="email"
                         placeholder="Email Address"
@@ -124,8 +125,8 @@ const SubmitBidPage = () => {
                         required
                     />
                 </div>
-                <div className="form-group">
-                    <FontAwesomeIcon icon={faPhone} className="icon" />
+                <div className="submit-bid-form-group submit-bid-form-group-phone">
+                    <FontAwesomeIcon icon={faPhone} className="form-icon" />
                     <input
                         type="tel"
                         placeholder="Phone Number"
@@ -134,8 +135,8 @@ const SubmitBidPage = () => {
                         required
                     />
                 </div>
-                <div className="form-group">
-                    <FontAwesomeIcon icon={faDollarSign} className="icon" />
+                <div className="submit-bid-form-group submit-bid-form-group-amount">
+                    <FontAwesomeIcon icon={faDollarSign} className="form-icon" />
                     <input
                         type="number"
                         placeholder="Bid Amount"
@@ -145,18 +146,20 @@ const SubmitBidPage = () => {
                     />
                 </div>
                 <textarea
+                    className="submit-bid-textarea submit-bid-textarea-description"
                     placeholder="Bid Description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
                 ></textarea>
                 <textarea
+                    className="submit-bid-textarea submit-bid-textarea-notes"
                     placeholder="Additional Notes (Optional)"
                     value={additionalNotes}
                     onChange={(e) => setAdditionalNotes(e.target.value)}
                 ></textarea>
-                <label className="form-group">
-                    <FontAwesomeIcon icon={faCalendarAlt} className="icon" />
+                <label className="submit-bid-form-group submit-bid-form-group-expirydate">
+                    <FontAwesomeIcon icon={faCalendarAlt} className="form-icon" />
                     Expiry Date:
                     <input
                         type="date"
@@ -164,36 +167,42 @@ const SubmitBidPage = () => {
                         onChange={(e) => setExpiryDate(e.target.value)}
                     />
                 </label>
-                <div className="form-group">
-                    <FontAwesomeIcon icon={faFile} className="icon" />
+                <div className="submit-bid-form-group submit-bid-form-group-fileupload">
+                    <FontAwesomeIcon icon={faFile} className="form-icon" />
                     <input
                         type="file"
                         onChange={handleFileChange}
                         accept=".pdf,.doc,.docx,.txt"
                     />
                 </div>
-                <label className="terms">
+                <label className="submit-bid-form-group submit-bid-form-group-terms">
                     <input
                         type="checkbox"
                         checked={acceptTerms}
                         onChange={() => setAcceptTerms(!acceptTerms)}
                     />
-                    I agree to the  <Link to="/terms-of-service"> terms and conditions</Link>
+                    I agree to the <Link to="/terms-of-service">terms and conditions</Link>
                 </label>
-                <button type="submit" onClick={() => navigate(`/tender/submit/${tenderId}`)}>Submit Bid</button>
+                <button type="submit" className="submit-bid-button" onClick={() => navigate(`/tender/submit/${tenderId}`)}>
+                    Submit Bid
+                </button>
             </form>
-            {success && <p className="success-message">{success}</p>}
-            {error && <p className="error-message">{error}</p>}
+            {success && <p className="submit-bid-success-message">{success}</p>}
+            {error && <p className="submit-bid-error-message">{error}</p>}
             {bidderId && (
-        <div>
-          <h2>Bid submitted!</h2>
-          <p>Your Bidder ID is: <strong>{bidderId}</strong></p>
-          <p>Save it for Later!!</p>
+                <div className="submit-bid-id-container">
+                    <h2>Bid submitted!</h2>
+                    <p>Your Bidder ID is: <strong>{bidderId}</strong></p>
+                    <p>Save it for later!</p>
+                </div>
+            )}
+            <Link to={`/tender/bid-details`} className="submit-bid-details-link">
+                See bid details
+            </Link>
         </div>
-      )}
-      <Link to={`/tender/bid-details`}>see bid details</Link>
-        </div>
-    );
+       
+        </div> );
+   
 };
 
 export default SubmitBidPage;
