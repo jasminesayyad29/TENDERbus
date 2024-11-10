@@ -86,7 +86,7 @@ const BidderDashboard = () => {
             <Link to="/tender/view" className="bidder-dashboard-link">View Tenders</Link>
           </li>
           <li>
-            <Link to="/tender/submit/:tenderId" className="bidder-dashboard-link">Submit a Bid</Link>
+            {/* <Link to="/tender/submit/:tenderId" className="bidder-dashboard-link">Submit a Bid</Link> */}
           </li>
           <li>
             <Link to="/tender/bid-details" className="bidder-dashboard-link">Your Bids</Link>

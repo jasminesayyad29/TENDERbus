@@ -327,7 +327,7 @@ const BidEvaluationPage = () => {
             <td>{bid.bidderName}</td>
             <td>{bid.companyName}</td>
             <td>{bid.bidAmount}</td>
-            <td>{bidScores[bid._id] || 'Not Scored'}</td>
+            <td>{bidScores[bid._id] ? bidScores[bid._id].toFixed(2) : 'Not Scored'}</td>
             <td>
               {/* Conditional rendering for Status */}
               {bidScores[bid._id] && bidScores[bid._id] > 6 ? (
