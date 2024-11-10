@@ -67,7 +67,7 @@ const CreateTenderPage = () => {
     }
     if (new Date(startDate) >= new Date(endDate)) {
       Swal.fire({
-        title: "End date must be greater than start date",
+        title: "End date must be greater than start",
         text: `Failed to create the tender`,
         icon: "error",
         confirmButtonText: "OK"
