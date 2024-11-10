@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './UserProfilePage.css';
 import { Link } from 'react-router-dom';
-
 import { useNavigate } from 'react-router-dom';
 
 const UserProfilePage = () => {
@@ -41,48 +40,30 @@ const UserProfilePage = () => {
   if (!isLoggedIn) {
     return (
       <div className="pro-profilelogin-prompt">
-        <br/>        <br/>
-        <br/>
-        <br/>        <br/>
-        <br/>
-
-        <br/>
-
-        <h2>Please Login First !!!</h2>
-        <button onClick={() => navigate('/login')} className="pro-profilelogin-button">Go to Login</button>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-
+        <h2>Please Login First</h2>
+        <button onClick={() => navigate('/login')} className="pro-profilelogin-button">
+          Go to Login
+        </button>
       </div>
     );
   }
 
-  return (      
-  <><br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
-    <div className="pro-user-profile-wrapper">
-      
-      <h2 className="pro-user-profile-header">User Details</h2>
-      <div className="pro-user-profile-details">
-        <p className="pro-user-profile-info"><strong>Name:</strong> {user.name}</p>
-        <p className="pro-user-profile-info"><strong>Email:</strong> {user.email}</p>
-        <button className="pro-logout-button"><Link to="/login" className="pro-logout-link">Logout</Link></button>
+  return (
+    <>
+      <div className="pro-user-profile-wrapper">
+        <h2 className="pro-user-profile-header">User Details</h2>
+        <div className="pro-user-profile-details">
+          <p className="pro-user-profile-info">
+            <strong>Name:</strong> {user.name}
+          </p>
+          <p className="pro-user-profile-info">
+            <strong>Email:</strong> {user.email}
+          </p>
+          <button className="pro-logout-button">
+            <Link to="/login" className="pro-logout-link">Logout</Link>
+          </button>
+        </div>
       </div>
-    </div>    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
     </>
   );
 };

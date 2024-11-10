@@ -56,9 +56,13 @@ const LoginPage = () => {
       }).then(() => {
         // Redirect based on user role after SweetAlert confirmation
         if (user.role === 'Bidder') {
+      
           navigate('/bidder/dashboard');
+          window.location.reload();
         } else if (user.role === 'Tender Officer') {
+   
           navigate('/admin/dashboard');
+          window.location.reload();
         }
       });
   
@@ -110,7 +114,7 @@ const LoginPage = () => {
             </div>
           ) : (
             <div className="logout-card">
-              <h2>Welcome Back!</h2>
+              <h2>Sure ? </h2>
               <button onClick={handleLogout} className="logout-button">Logout</button>
             </div>
           )}
