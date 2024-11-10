@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchTenders } from '../../services/tenderService';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './TenderPage.css';
 
 const TenderPage = () => {
@@ -9,6 +9,7 @@ const TenderPage = () => {
   const [error, setError] = useState(null);
   const [selectedTender, setSelectedTender] = useState(null);
   const { tenderId } = useParams();
+  const navigate = useNavigate(); // For back button navigation
 
   useEffect(() => {
     const getTenders = async () => {
@@ -33,11 +34,16 @@ const TenderPage = () => {
     setSelectedTender(null);
   };
 
+  const handleBackClick = () => {
+    navigate(-1); // Go back to the previous page
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="tender-page-container">
+      <button className="tender-page-container-back-button" onClick={handleBackClick}>← Back</button> {/* Back Button */}
       <h1>Tenders Open Now!</h1>
       {tenders.length === 0 ? (
         <p>No tenders available.</p>
@@ -45,8 +51,8 @@ const TenderPage = () => {
         <div className="tender-page-card-container">
           {tenders.map((tender) => (
             <div key={tender._id} className="tender-page-card" onClick={() => handleCardClick(tender)}>
-              <h2>{tender._id}</h2>
-              <h3>{tender.title}</h3>
+              <h2><h3>Tender-id</h3>{tender._id}</h2>
+              <h3><h3>Title</h3>{tender.title}</h3>
             </div>
           ))}
         </div>
