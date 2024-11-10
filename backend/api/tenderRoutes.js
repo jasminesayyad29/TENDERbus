@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const {login , signup} = require("../controllers/Auth") ;
 const jwt= require("jsonwebtoken") ;
+const mongoose = require("mongoose");
 
 // Set up Multer for file uploads
 const storage = multer.diskStorage({
@@ -127,6 +128,34 @@ router.put('/:id', upload.single('document'), async (req, res) => {
     res.status(500).json({ message: 'Error updating tender', error });
   }
 });
+
+
+// Fetch tender by tenderId (since tenderId is unique)
+router.get('/id/:id', async (req, res) => {
+  try {
+    const tenderId = req.params.id; // Extract tenderId from request parameters
+    console.log("tenderId:", tenderId);
+    console.log("type of id:", typeof(tenderId));
+
+    // Convert the tenderId string to an ObjectId
+    const tenderObjectId = new mongoose.Types.ObjectId(tenderId);
+
+    // Use findOne to search for a single tender by tenderId
+    const tender = await Tender.findOne({ _id: tenderObjectId }); // _id is the default field for ObjectId in MongoDB
+
+    console.log(tender); // Log the found tender
+
+    if (!tender) {
+      return res.status(404).json({ message: 'No tender found for this tenderId' });
+    }
+
+    res.json(tender); // Respond with the tender
+  } catch (error) {
+    console.error('Error fetching tender by tenderId:', error);
+    res.status(500).json({ message: 'Error fetching tender', error });
+  }
+});
+
 
 
 
