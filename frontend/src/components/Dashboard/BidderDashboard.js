@@ -11,18 +11,24 @@ const BidderDashboard = () => {
   const [error, setError] = useState('');
   const [showTable, setShowTable] = useState(false); // State to control table visibility
   const [bidScores, setBidScores] = useState({}); // New state for scores
+  const [userName, setUserName] = useState(''); // New state for user name
   const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
-    // Retrieve email from user object in localStorage and log it
+    // Retrieve user data from localStorage and log it
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const email = storedUser?.email;
+    const name = storedUser?.name; // Retrieve the name from localStorage
     console.log("Email from localStorage:", email);
+    console.log("Name from localStorage:", name);
 
-    if (!email) {
-      setError("User email not found in localStorage.");
+    if (!email || !name) {
+      setError("User information not found in localStorage.");
       return;
     }
+
+    // Set the user name
+    setUserName(name);
 
     // Fetch bids based on email
     const getBids = async () => {
@@ -80,6 +86,9 @@ const BidderDashboard = () => {
 
   return (
     <div className="bidder-dashboard-container">
+ <pre style={{ fontSize: '20px' }}>Welcome </pre>
+<pre style={{ fontSize: '20px' }}>{userName}</pre> {/* Display the user name */}
+
       <form onSubmit={handleBidderIdSubmit} className="bidder-dashboard-form">
         <h1>Bidder Dashboard</h1>
         <label htmlFor="bidderId" className="bidder-dashboard-label">Enter Your Bidder ID:</label>
