@@ -1,97 +1,155 @@
 /* Main container for the view tender page */
-.view-tender-container {
-  max-width: 1200px; /* Increased max-width for better layout */
+.view-tender-page-container {
+  max-width: 1000px; /* Adjusted for smaller overall width */
   margin: 0 auto;
-  padding: 20px;
-  background-color:transparent;
+  padding: 20px; /* Reduced padding */
+  background-color: transparent;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: 'Poppins', sans-serif !important;
-  margin-top: 70px;
+  margin-top: 50px;
+  text-align: center; /* Center the content */
 }
 
 /* Heading styles */
-.view-tender-container h1 {
-  background-color: #ffffff;
-  width: 400px;
-  margin-left: 400px;
-  color: #000;
+.view-tender-page-container .view-tender-page-header {
+  background-color: #f8f9fa;
+  width: auto;
+  margin: 0 auto 20px;
+  color: #333;
+  padding: 15px 30px;
+  font-size: 1.8em; /* Reduced font size */
   text-align: center;
-  margin-bottom: 30px;
   border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  text-transform: uppercase;
 }
 
 /* Loading and error messages */
 p {
   font-size: 1em;
   color: #555;
+  text-align: center; /* Center the loading/error text */
 }
 
 /* Flex container for the tender cards */
-.tender-card-container {
+.view-tender-page-list-container {
   display: flex;
   flex-wrap: wrap; /* Allow wrapping to next line */
-  justify-content: space-between; /* Space between cards */
+  justify-content: space-around; /* Center cards */
+  gap: 20px; /* Reduced gap */
 }
 
 /* Styles for the tender cards */
-.tender-card {
-  background-color: #fff;
+.view-tender-page-card {
+  background-color: #ffffff;
   border-radius: 8px;
-  padding: 20px;
-  margin: 15px 0; /* Margin for spacing between rows */
+  padding: 15px; /* Reduced padding */
+  margin: 10px 0; /* Reduced margin */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
   flex: 1 1 calc(33.333% - 20px); /* 3 cards per row, with margin adjustment */
   max-width: calc(33.333% - 20px); /* Max width for responsiveness */
-  height: 340px; /* Fixed height for cards */
-  overflow-y: auto; /* Enable vertical scroll */
+  height: auto;
+  min-height: 340px; /* Ensure the cards have a minimum height */
+  overflow-y: auto;
+  text-align: left; /* Align text to the left for readability */
 }
 
-.tender-card:hover {
+/* Hover effect for cards */
+.view-tender-page-card:hover {
   transform: scale(1.05); /* Slightly enlarge card on hover */
-  box-shadow: 6px 8px 4px rgb(102, 145, 145);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 /* Title and description styles within the card */
-.tender-card h2 {
-  color: #07020a;
+.view-tender-page-card .view-tender-page-id {
+  color: #333;
   font-size: 1.2em;
   margin: 0 0 10px;
 }
 
-.tender-card p {
+.view-tender-page-card .view-tender-page-title {
+  color: #333;
+  font-size: 1.4em; /* Slightly smaller font */
+  margin: 0 0 10px;
+}
+
+.view-tender-page-card .view-tender-page-desc {
   margin: 5px 0;
-  line-height: 1.5;
-  color: #050202;
+  line-height: 1.6;
+  color: #555;
+  font-size: 0.9em; /* Slightly smaller font */
 }
 
 /* Type and status styles */
-.tender-card .type,
-.tender-card .status {
+.view-tender-page-card .view-tender-page-type,
+.view-tender-page-card .view-tender-page-status {
   font-weight: bold;
   color: #2d0dad;
+  margin-bottom: 10px;
+  font-size: 1.1em; /* Slightly smaller font */
 }
 
 /* Responsive styles */
 @media (max-width: 900px) {
-  .tender-card {
+  .view-tender-page-card {
     flex: 1 1 calc(50% - 20px); /* 2 cards per row for medium screens */
     max-width: calc(50% - 20px);
   }
 }
 
 @media (max-width: 600px) {
-  .view-tender-container {
-    padding: 10px;
+  .view-tender-page-container {
+    padding: 15px; /* Reduced padding for smaller screens */
   }
 
-  h1 {
-    font-size: 1.8em;
+  .view-tender-page-header {
+    font-size: 1.6em;
   }
 
-  .tender-card {
+  .view-tender-page-card {
     flex: 1 1 100%; /* 1 card per row for small screens */
     max-width: 100%;
   }
+}
+
+/* Styles for the "Do you want to submit the bid?" button */
+.view-tender-page-submit-bid-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-align: center; /* Ensure button text is centered */
+}
+
+/* Center the submit button */
+.view-tender-page-container .view-tender-page-submit-bid-link {
+  display: block;
+  margin: 15px auto; /* Automatically centers the button */
+}
+
+.view-tender-page-submit-bid-link:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Status color changes */
+.view-tender-page-card .view-tender-page-status {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.1em; /* Slightly larger font for better readability */
+}
+
+.view-tender-page-card .view-tender-page-status.inactive {
+  color: red;
+}
+
+.view-tender-page-card .view-tender-page-status.active {
+  color: green;
 }
