@@ -1,3 +1,11 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
   font-family: 'Poppins', sans-serif !important;
   background-color: #f5f5f5;
@@ -5,132 +13,159 @@ body {
   padding: 0;
 }
 
-.registration-container {
-  font-family: 'Poppins', sans-serif !important;
+/* Registration Page Container */
+.registrationPage-container {
   display: flex;
-  max-width: 1000px;
-  margin: 50px auto;
+  max-width: 800px; /* Reduced from 1000px */
+  margin: 30px auto; /* Reduced margin */
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow */
 }
 
-.registration-form {
+/* Form Styling */
+.registrationPage-form {
   flex: 1;
-  padding: 20px;
+  padding: 15px; /* Reduced padding */
 }
 
-h3 {
+/* Header in Form */
+.registrationPage-form h3 {
   text-align: center;
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 24px;
+  font-size: 20px; /* Reduced font size */
   color: #000000;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduced margin */
 }
 
-.form-group {
-  margin-bottom: 20px;
+/* Form Group and Label */
+.registrationPage-form .registrationPage-form-group {
+  margin-bottom: 15px; /* Reduced margin */
 }
 
-label {
-  font-family: 'Poppins', sans-serif !important;
+.registrationPage-form .registrationPage-label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px; /* Reduced margin */
   color: #555;
 }
 
-.input-group {
-  position: relative; /* Enables absolute positioning for the icon */
-  margin-bottom: 20px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
+/* Input Fields */
+.registrationPage-form input[type="text"],
+.registrationPage-form input[type="email"],
+.registrationPage-form input[type="password"],
+.registrationPage-form select {
   width: 100%;
-  padding: 12px;
-  padding-right: 40px; /* Adds space on the right for the eye icon */
+  padding: 10px; /* Reduced padding */
+  padding-right: 30px; /* Adjusted space for icon */
   border: 1px solid #e0e0e0;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px; /* Reduced font size */
   transition: border-color 0.3s;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-select:focus {
+/* Focus State for Input Fields */
+.registrationPage-form input[type="text"]:focus,
+.registrationPage-form input[type="email"]:focus,
+.registrationPage-form input[type="password"]:focus,
+.registrationPage-form select:focus {
   border-color: #2874f0;
   outline: none;
 }
 
-.input-group i {
-  position: absolute;
-  top: 50%;
-  margin-top: 15px;
-  right: 10px; /* Positions icon on the right side */
-  transform: translateY(-50%); /* Centers icon vertically */
-  cursor: pointer;
-  color: #555;
-  font-size: 18px;
-}
-
-input[type="checkbox"] {
-  margin-left: 150px;
-  margin-right: 10px;
-}
-
-label[for="agreeTerms"] {
+/* Checkbox Styling */
+.registrationPage-form .registrationPage-checkbox {
   display: inline-flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 10px; /* Adjust the top margin */
+  margin-left: 0px;
+}
+
+/* Adjust the label to sit next to the checkbox */
+.registrationPage-form .registrationPage-checkbox label {
+  margin-left: 8px; /* Adjust left margin */
   color: #555;
 }
 
-.register-button {
-  font-family: 'Poppins', sans-serif !important;
+/* Agree to Terms Label */
+.registrationPage-form .registrationPage-label[for="agreeTerms"] {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0px; /* Removed extra margin-top */
+  color: #555;
+}
+
+
+/* Register Button */
+.registrationPage-form .registrationPage-register-button {
   background-color: #0b0b0b;
   color: white;
-  padding: 12px;
+  padding: 10px; /* Reduced padding */
+  margin-left: 40px !important; /* Adjusted margin */
   border: none;
-  border-radius: 40px;
+  border-radius: 35px; /* Slightly smaller border-radius */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px; /* Reduced font size */
   transition: background-color 0.3s;
-  width: 80%;
+  width: 70%; /* Reduced width */
   margin: auto;
 }
 
-.register-button:hover {
+/* Register Button Hover State */
+.registrationPage-form .registrationPage-register-button:hover {
   background-color: #000000;
 }
 
-.error-message {
-  font-family: 'Poppins', sans-serif !important;
+/* Error Message */
+.registrationPage-form .registrationPage-error-message {
   color: red;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 8px; /* Reduced margin */
 }
 
-.illustration-container {
-  width: 40%;
+/* Illustration Container */
+.registrationPage-illustration-container {
+  width: 35%; /* Reduced width */
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(139, 185, 222);
+  background-color: rgb(27, 101, 158);
 }
 
-.illustration-container img {
-  max-width: 90%;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+/* First Illustration Styling */
+.registrationPage-illustration-container .register {
+  margin-left: 15px; /* Adjusted margin */
+  margin-top: 95px; /* Reduced margin */
+  height: 80px; /* Reduced height */
 }
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 
+/* Second Illustration Styling */
+.registrationPage-illustration-container .register1 {
+  height: 400px; /* Reduced height */
+  margin-top: 100px; /* Reduced margin */
+  margin-bottom: 0px;
+}
+
+/* Logo Styling */
+.registrationpage-logotender {
+  height: 40px; /* Reduced logo size */
+  width: 120px; /* Reduced logo width */
+  margin-left: 160px; /* Adjusted margin */
+  margin-bottom: 1px;
+  margin-top: 5px; /* Reduced top margin */
+}
+/* Adjust checkbox container to align checkbox and label in a row */
+.registrationPage-form .registrationPage-checkbox {
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Vertically center-align the checkbox and label */
+  margin-top: 10px; /* Adjust top margin as needed */
+}
+
+/* Adjust label styling for checkbox */
+.registrationPage-form .registrationPage-checkbox label {
+  margin-left: 8px; /* Provide space between checkbox and label */
+  color: #555;
+  font-size: 14px; /* Adjust font size for consistency */
+}
+
+/* Adjust terms label to appear properly aligned */
+.registrationPage-form .agreeTerms {
+  font-size: 14px;
+  line-height: 1.5;
 }

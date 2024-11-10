@@ -93,14 +93,16 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div className="registration-container">
-      <form onSubmit={validatePasswords} className="registration-form">
+    <div className="registrationPage-container">
+      <form onSubmit={validatePasswords} className="registrationPage-form">
         <br/>
-        <h3>Create Your  Account </h3>
-<br/>
+        <h3>Create Your Account</h3>
+        {/* <img src="/logoblack.png" alt="TENDERbus Logo" class="registrationpage-logotender" /> */}
+        <br/>
+
         {/* Name Field */}
-        <div className="input-group">
-        <label>Name :</label>
+        <div className="registrationPage-input-group">
+          <label>Name :</label>
           <label htmlFor="name"><i className="fas fa-user"></i></label>
           <input
             type="text"
@@ -113,8 +115,8 @@ const RegistrationPage = () => {
         </div>
 
         {/* Email Field */}
-        <div className="input-group">
-        <label>Email :</label>
+        <div className="registrationPage-input-group">
+          <label>Email :</label>
           <label htmlFor="email"><i className="fas fa-envelope"></i></label>
           <input
             type="email"
@@ -127,7 +129,7 @@ const RegistrationPage = () => {
         </div>
 
         {/* Role Dropdown */}
-        <div className="input-group">
+        <div className="registrationPage-input-group">
           <label>Role :</label>
           <select
             name="role"
@@ -142,8 +144,8 @@ const RegistrationPage = () => {
         </div>
 
         {/* Password Field */}
-        <div className="input-group">
-        <label>Enter Password :</label>
+        <div className="registrationPage-input-group">
+          <label>Enter Password :</label>
           <label htmlFor="password"></label>
           <input
             type={showPassword ? 'text' : 'password'}
@@ -160,8 +162,8 @@ const RegistrationPage = () => {
         </div>
 
         {/* Confirm Password Field */}
-        <div className="input-group">
-        <label>Confirm Password :</label>
+        <div className="registrationPage-input-group">
+          <label>Confirm Password :</label>
           <label htmlFor="confirmPassword"></label>
           <input
             type={showConfirmPassword ? 'text' : 'password'}
@@ -178,26 +180,26 @@ const RegistrationPage = () => {
         </div>
 
         {/* Agree to Terms Checkbox */}
-        <div className="input-group">
+        <div className="registrationPage-input-group">
           <input
             type="checkbox"
             id="agreeTerms"
             name="agreeTerms"
-            className='checkbox'
+            className='registrationPage-checkbox'
             checked={formData.agreeTerms}
             onChange={handleChange}
             required
           />
           <label htmlFor="agreeTerms">
-          <pre>I agree to the <Link to="/terms-of-service">Terms of service</Link></pre>
+            <pre>I agree to the <Link to="/terms-of-service">Terms of service</Link></pre>
           </label>
         </div>
 
         {/* Register Button */}
-        <button type="submit" className="register-button">Register</button>
+        <button type="submit" className="registrationPage-register-button">Register</button>
 
         {/* Error Message */}
-        {error && <p className="error-message">{error}</p>}
+        {error && <p className="registrationPage-error-message">{error}</p>}
 
         {/* Already a member */}
         <h4><p>Already a member?
@@ -205,8 +207,11 @@ const RegistrationPage = () => {
         </p></h4>
         
       </form>
-      <div className="illustration-container">
-        <img src="/signup-image.jpg" alt="Sign up illustration" />
+      <div className="registrationPage-illustration-container">
+        <img  className='register' src="/logowhite.png" alt="Sign up illustration" />
+      
+        <img className="register1" src="/register1.png" alt="Sign up illustration" />
+
       </div>
     </div>
   );

@@ -34,45 +34,44 @@ const ContactUs = () => {
   };
 
   return (
-    <section className='contact'>
-      <form onSubmit={onSubmit}>
+    <section className='contactus-section'>
+      <form onSubmit={onSubmit} className="contactus-form">
 
         <h2>Contact Us</h2>
-        <div className='.input-box'>
-          <label style={{ fontSize: '20px',color:'black' }}>Full Name</label>
-          <input type='text' className='field' placeholder='Enter your name' name='name' required></input>
+        <div className='contactus-input-box'>
+          <label style={{ fontSize: '20px', color: 'white' }}>Full Name</label>
+          <input type='text' className='contactus-field' placeholder='Enter your name' name='name' required></input>
         </div>
 
-        <div className='.input-box'>
-          <label style={{ fontSize: '20px',color:'black' }}>Email Address</label>
-          <input type='email' className='field' placeholder='Enter your email' name='email'required></input>
+        <div className='contactus-input-box'>
+          <label style={{ fontSize: '20px', color: 'white' }}>Email Address</label>
+          <input type='email' className='contactus-field' placeholder='Enter your email' name='email' required></input>
         </div>
 
-        <div className='.input-box'>
-          <label style={{ fontSize: '20px',color:'black' }}>Your Message</label>
-          <textarea name='message' id='' className='fieldmess' placeholder='enter your message' required></textarea>
+        <div className='contactus-input-box'>
+          <label style={{ fontSize: '20px', color: 'white' }}>Your Message</label>
+          <textarea name='message' id='' className='contactus-fieldmess' placeholder='Enter your message' required></textarea>
         </div>
 
-        <button type='submit'>Send Message</button>
+        <button type='submit' className='contactus-submit-button'>Send Message</button>
       </form>
       {/* Additional Info Section */}
 
-      <div className="additional-info">
+      <div className="contactus-additional-info">
           <h3>Other Details</h3>
-          <div className="info-item">
-            <FaMapMarkerAlt className="icon" />
+          <div className="contactus-info-item">
+            <FaMapMarkerAlt className="contactus-icon" />
             <p>Address: Walchand College of Engineering, Sangli-416 416</p>
           </div>
-          <div className="info-item">
-            <FaPhoneAlt className="icon" />
+          <div className="contactus-info-item">
+            <FaPhoneAlt className="contactus-icon" />
             <p>Phone: +91 12389-45670</p>
           </div>
-          <div className="info-item">
-            <FaEnvelope className="icon" />
+          <div className="contactus-info-item">
+            <FaEnvelope className="contactus-icon" />
             <p>Email: support.tenderbus@gmail.com</p>
           </div>
-          <div className="info-item">
-            
+          <div className="contactus-info-item">
             <p>Business Hours: Mon - Fri: 9 AM - 6 PM</p>
           </div>
         </div>

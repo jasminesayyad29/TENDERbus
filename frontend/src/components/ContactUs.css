@@ -1,4 +1,4 @@
-.contact {
+.contactus-section {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -8,69 +8,70 @@
   flex-wrap: wrap;
 }
 
-
-form {
-  max-width: 600px;
+.contactus-form {
+  max-width: 500px;
+  max-height: 700px;
   width: 100%;
-  background-color: #fff;
+  background-color: #000000;
+  color: #000000 !important;
   font-size: 16px;
   padding: 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px 0.5px #cc950a;
   color: #333;
   border-radius: 15px;
   margin: 20px;
 }
 
-form h2 {
+.contactus-form h2 {
   font-size: 36px;
   text-align: center;
-  color: #333;
+  color: #8c08c9;
   margin-bottom: 30px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.form-header {
+.contactus-form-header {
   text-align: center;
 }
 
-.input-box {
+.contactus-input-box {
   margin-top: 25px;
 }
 
-.input-box label {
+.contactus-input-box label {
   font-size: 18px;
   font-weight: 500;
-  color: #444;
+  color: #000000;
 }
 
-.input-box .field, .fieldmess {
+.contactus-input-box .contactus-field, .contactus-fieldmess {
   width: 100%;
   padding: 12px 18px;
   border: 2px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
   font-size: 16px;
-  color: #333;
+  color: #000000;
   outline: none;
   transition: border-color 0.3s ease-in-out;
 }
 
-.input-box .field:focus, .fieldmess:focus {
+.contactus-input-box .contactus-field:focus, .contactus-fieldmess:focus {
   border-color: #5c6bc0;
 }
 
-.fieldmess {
+.contactus-fieldmess {
   height: 160px;
   resize: vertical;
 }
 
-form button {
+.contactus-form button {
   width: 100%;
   height: 50px;
-  background-color: #5c6bc0;
+  background-color: #8c08c9;
   border: none;
   border-radius: 40px;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 18px;
   font-weight: bold;
   margin-top: 30px;
@@ -79,29 +80,29 @@ form button {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-form button:hover {
-  background-color: #3e4a9d;
+.contactus-form button:hover {
+  background-color: #cc950a;
   border-radius: 40px;
 }
 
-form button:active {
+.contactus-form button:active {
   background-color: #2e3c7d;
 }
 
-.additional-info {
+.contactus-additional-info {
   margin-top: 165px;
   max-width: 700px;
   width: 100%;
   padding: 25px;
-  background-color: #2c3e50;
+  background-color: #000000;
+  box-shadow: 0 2px 6px 0.5px #cc950a !important;
   margin-left: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   color: #fff;
 }
 
-.additional-info h3 {
-
+.contactus-additional-info h3 {
   font-size: 32px;
   margin-bottom: 20px;
   text-align: center;
@@ -109,19 +110,19 @@ form button:active {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.info-item {
+.contactus-info-item {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.info-item .icon {
+.contactus-info-item .contactus-icon {
   font-size: 28px;
   color: #fff;
   margin-right: 15px;
 }
 
-.info-item p {
+.contactus-info-item p {
   font-size: 18px;
   margin: 0;
   color: #fff;
@@ -129,16 +130,16 @@ form button:active {
 }
 
 @media (max-width: 768px) {
-  .contact {
+  .contactus-section {
     flex-direction: column;
     align-items: center;
   }
 
-  .additional-info {
+  .contactus-additional-info {
     margin-left: 0;
   }
 
-  .fieldmess {
+  .contactus-fieldmess {
     width: 100%;
   }
 }
