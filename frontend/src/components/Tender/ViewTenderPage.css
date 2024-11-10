@@ -159,6 +159,7 @@ p {
   background-color: #007bff;
   color: white;
   border: none;
+  font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 40px;
   cursor: pointer;

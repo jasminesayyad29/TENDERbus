@@ -1,4 +1,5 @@
-.bid-details-container {
+/* Card Container */
+.bid-details-page-bid-details-container {
   display: flex;
   font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
   font-size: small;
@@ -8,7 +9,8 @@
   justify-content: center;
 }
 
-.card {
+/* Individual Card Styling */
+.bid-details-page-card {
   background-color: #f0f0f0;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -20,26 +22,37 @@
   transition: transform 0.2s;
 }
 
-.card h3{
- margin-top: 5px;
+/* Smaller text for labels inside the card (Bid ID, Tender, etc.) */
+.bid-details-page-card h3 {
+  margin-top: 5px;
   font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
-  font-size: large;
-
+  font-size: 0.9rem; /* Smaller font size for labels inside the card */
+  color: #555; /* Lighter color for labels */
 }
-.card h2{
+
+/* Highlight fetched data inside the card */
+.bid-details-page-card span {
+  font-weight: bold;
+  background-color: #f0f8ff; /* Light blue background to highlight fetched data */
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* Title for each card (Tender details) */
+.bid-details-page-card h2 {
   margin-bottom: 10px;
-   font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
-   font-size: large;
- 
- }
-
-.card:hover {
-    font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
-  font-size: small;
-  transform: scale(1.05);
+  font-family: 'Poppins', sans-serif;
+  font-size: large;
 }
 
-.modal-overlay {
+/* Hover effect for the card */
+.bid-details-page-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slight shadow on hover */
+}
+
+/* Modal Overlay Styling */
+.bid-details-page-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -52,12 +65,13 @@
   z-index: 1000;
 }
 
-.modal-content {
+/* Modal Content Styling */
+.bid-details-page-modal-content {
   background-color: white;
   border-radius: 8px;
   font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
   font-size: small;
- padding: 20px;
+  padding: 20px;
   width: 90%;
   max-width: 500px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -66,7 +80,8 @@
   position: relative;
 }
 
-.close-button {
+/* Close Button for the Modal */
+.bid-details-page-close-button {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -76,83 +91,100 @@
   cursor: pointer;
 }
 
-.modal-content h2, .modal-content h3, .modal-content p {
-  margin: 10px 0;
-  font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
-  font-size: large;
-}
-
-.modal-content a {
-  color: #007bff;
-  text-decoration: underline;
-}
-
-
-/* Card Animation */
-.card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Modal Animation */
-.modal-overlay {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.modal-content {
-  transform: scale(0.9);
-  animation: scaleUp 0.3s ease-in-out forwards;
-}
-
-@keyframes scaleUp {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-/* Close Button Animation */
-.close-button {
-  transition: transform 0.2s ease;
-}
-
-.close-button:hover {
-  transform: scale(1.2);
-}
-
-.title-container {
-  display: flex;
-  align-items: center;
-  margin-left: 50px;
-  gap: 620px; /* space between back button and title */
-  margin-bottom: 15px;
-  /* justify-content: center; */
-}
-
-.back-button {
-  background-color: #dddddd;
-  color: rgb(0, 0, 0);
+/* Back Button Styling */
+.bid-details-page-back-button {
+  background-color: #086cf8;
+  color: rgb(255, 255, 255);
   border: none;
+  font-weight: 600;
   padding: 8px 16px;
   border-radius: 40px;
+  margin-left: 710px;
+  margin-top: 35px;
+  margin-bottom: 20px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-.back-button:hover {
-  background-color: #0056b3;
+.bid-details-page-back-button:hover {
+  background-color: black;
 }
 
-.bidtitle {
+/* Title for Bid Details Page */
+.bid-details-page-bidtitle {
   font-size: 40px;
   color: white !important;
   margin: 0; /* removes default margin */
+}
+
+/* Modal Content Text Styling */
+.bid-details-page-modal-content p {
+  margin: 15px 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #333; /* Darker text for better contrast */
+  text-align: left; /* Ensures the text is aligned to the left */
+}
+
+/* Bold fetched data in the modal */
+.bid-details-page-modal-content p span {
+  font-weight: bold;
+  background-color: #f0f8ff; /* Light blue background for highlighting */
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* Labels inside the modal will be smaller */
+.bid-details-page-modal-content p strong {
+  font-size: 0.9rem; /* Smaller font size for labels */
+  color: #555; /* Lighter color for labels */
+}
+
+/* Modal Content Styling */
+.bid-details-page-modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  padding: 30px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Deep shadow for depth */
+  overflow-y: auto;
+  max-height: 80vh;
+  transform: scale(0.95);
+  animation: scaleUp 0.4s ease-in-out forwards;
+  text-align: left; /* Align text to the left */
+}
+
+/* Close Button Styling for the Modal */
+.bid-details-page-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bid-details-page-close-button:hover {
+  background-color: #ff0000;
+}
+
+/* Responsive Behavior for Mobile */
+@media (max-width: 768px) {
+  .bid-details-page-modal-content {
+    width: 95%;
+  }
 }
