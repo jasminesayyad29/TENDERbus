@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate
 import axios from 'axios';
 import './BidderDashboard.css';
 import { fetchbidsbymail } from '../../services/bidService'; // Import fetchbidsbymail
+import { fetchScoreByBidId } from '../../services/tenderService'; // Import fetchScoreByBidId
 
 const BidderDashboard = () => {
   const [bidderId, setBidderId] = useState('');
   const [bids, setBids] = useState([]);
   const [error, setError] = useState('');
   const [showTable, setShowTable] = useState(false); // State to control table visibility
+  const [bidScores, setBidScores] = useState({}); // New state for scores
   const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
@@ -27,6 +29,9 @@ const BidderDashboard = () => {
       try {
         const data = await fetchbidsbymail(email);
         setBids(data);
+        data.forEach(bid => {
+          fetchAndSetBidScore(bid._id); // Fetch and set the bid scores after fetching the bids
+        });
       } catch (err) {
         setError(`No Bids found for email: ${email}`);
         console.error("Error fetching bids:", err);
@@ -35,6 +40,18 @@ const BidderDashboard = () => {
 
     getBids();
   }, []); // Empty dependency array to run this effect only once on component mount
+
+  const fetchAndSetBidScore = async (bidId) => {
+    try {
+      const evaluationData = await fetchScoreByBidId(bidId);
+      if (evaluationData) {
+        const score = evaluationData.evaluationScore || 0;
+        setBidScores(prevScores => ({ ...prevScores, [bidId]: score }));
+      }
+    } catch (error) {
+      console.error('Error fetching bid score:', error);
+    }
+  };
 
   const handleBidderIdSubmit = (e) => {
     e.preventDefault();
@@ -86,9 +103,6 @@ const BidderDashboard = () => {
             <Link to="/tender/view" className="bidder-dashboard-link">View Tenders</Link>
           </li>
           <li>
-            {/* <Link to="/tender/submit/:tenderId" className="bidder-dashboard-link">Submit a Bid</Link> */}
-          </li>
-          <li>
             <Link to="/tender/bid-details" className="bidder-dashboard-link">Your Bids</Link>
           </li>
           <li>
@@ -119,7 +133,8 @@ const BidderDashboard = () => {
               {bids.map(bid => (
                 <tr key={bid._id}>
                   <td>{bid._id}</td>
-                  <td>{bid.evaluationScore || 'Not available'}</td> {/* Display Evaluation Score or 'Not available' */}
+                  <td>{bidScores[bid._id] ? bidScores[bid._id].toFixed(1) : 'Not Scored'}</td>
+                  {/* Display Evaluation Score or 'Not available' */}
                 </tr>
               ))}
             </tbody>
