@@ -92,5 +92,42 @@ router.get('/:email', async (req, res) => {
   }
 });
 
+//To modify tender based on tenderId
+
+router.put('/:id', upload.single('document'), async (req, res) => {
+  try {
+    const tenderId = req.params.id;  // Extract tender ID from the URL
+    const { email, title, eligibility, description, type, status, startDate, endDate } = req.body;
+    const document = req.file ? req.file.path : '';  // Get the new document path, if provided
+
+    // Find the existing tender by ID
+    const updatedTender = await Tender.findByIdAndUpdate(
+      tenderId, // ID of the tender to update
+      {
+        email,
+        title,
+        eligibility,
+        description,
+        type,
+        status,
+        startDate,
+        endDate,
+        document, // Update document if a new file is uploaded
+      },
+      { new: true } // Option to return the updated tender document
+    );
+
+    if (!updatedTender) {
+      return res.status(404).json({ message: 'Tender not found' });
+    }
+
+    res.status(200).json(updatedTender); // Respond with the updated tender
+  } catch (error) {
+    console.error('Error updating tender:', error);
+    res.status(500).json({ message: 'Error updating tender', error });
+  }
+});
+
+
 
 module.exports = router; // Export the router
