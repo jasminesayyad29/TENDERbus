@@ -1,10 +1,6 @@
-
-
-// export default ViewTenderPage;
-// src/components/Tender/ViewTenderPage.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {fetchTenders} from '../../services/tenderService';
+import { fetchTenders } from '../../services/tenderService';
 import { useParams } from 'react-router-dom';
 import './ViewTenderPage.css';
 
@@ -14,14 +10,12 @@ const ViewTenderPage = () => {
   const [error, setError] = useState(null);
   const { tenderId } = useParams();
 
-
   useEffect(() => {
     const getTenders = async () => {
       try {
         const data = await fetchTenders();
         setTenders(data); // Update state with fetched tenders
       } catch (err) {
-        // Set a more informative error message
         setError(`Failed to fetch tenders: ${err.message || err}`);
         console.error(err); // Log the error for debugging
       } finally {
@@ -32,44 +26,64 @@ const ViewTenderPage = () => {
     getTenders(); // Fetch tenders on component load
   }, [tenderId]);
 
-  if (loading) return <p>Loading...</p>; // Display loading message
-  if (error) return <p>{error}</p>; // Display error message
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+
+  const currentDate = new Date(); // Get current date
+
+  // Function to check if tender is inactive based on endDate
+  const isInactive = (endDate) => {
+    if (!endDate) return false; // If no end date, don't mark as inactive
+    const tenderEndDate = new Date(endDate); // Convert ISO string to Date object
+    return tenderEndDate < currentDate; // If the tender end date is before today
+  };
 
   return (
-    <div className="view-tender-container">
-      <h1>Tenders Open Now!</h1>
+    <div className="view-tender-page-container">
+      <h1 className="view-tender-page-header">Tenders Open Now!</h1>
       {tenders.length === 0 ? (
-        <p>No tenders available.</p>
+        <p className="view-tender-page-no-tender-message">No tenders available.</p>
       ) : (
-        <div className="tender-card-container">
-          {tenders.map((tender) => (
-            <div key={tender._id} className="tender-card">
-              <h2>Tender ID: {tender._id}</h2>
-              <h2>{tender.title}</h2>
-              <p>{tender.description}</p>
-              <p className="type">Type: {tender.type}</p>
-              <p className="status">Status: {tender.status}</p>
-              <p>Start Date: {tender.startDate ? new Date(tender.startDate).toLocaleDateString() : 'N/A'}</p>
-              <p>End Date: {tender.endDate ? new Date(tender.endDate).toLocaleDateString() : 'N/A'}</p>
-              {/* Link to view or download the document */}
-              {tender.document && (
-                <p>
-                  <a href={`http://localhost:5000/${tender.document}`} target="_blank" rel="noopener noreferrer">
-                    View Document
-                  </a>
+        <div className="view-tender-page-list-container">
+          {tenders.map((tender) => {
+            const endDate = tender.endDate;
+            const inactiveStatus = isInactive(endDate);
+
+            return (
+              <div key={tender._id} className="view-tender-page-card">
+                <h2 className="view-tender-page-id">Tender ID: {tender._id}</h2>
+                <h3 className="view-tender-page-title">{tender.title}</h3>
+                <p className="view-tender-page-desc">{tender.description}</p>
+                <p className="view-tender-page-type">Type: {tender.type}</p>
+                <p
+                  className="view-tender-page-status"
+                  style={{ color: inactiveStatus ? 'red' : 'green' }}
+                >
+                  Status: {inactiveStatus ? 'Inactive' : tender.status}
                 </p>
-              )}
-              <Link to={`/tender/submit/${tender._id}`} className="submit-link">
-                Do you want to submit the bid?
-              </Link>
-            </div>
-          ))}
+                <p className="view-tender-page-dates">
+                  Start Date: {tender.startDate ? new Date(tender.startDate).toLocaleDateString() : 'N/A'}
+                </p>
+                <p className="view-tender-page-dates">
+                  End Date: {endDate ? new Date(endDate).toLocaleDateString() : 'N/A'}
+                </p>
+                {tender.document && (
+                  <p className="view-tender-page-document">
+                    <a href={`http://localhost:5000/${tender.document}`} target="_blank" rel="noopener noreferrer">
+                      View Document
+                    </a>
+                  </p>
+                )}
+                <Link to={`/tender/submit/${tender._id}`} className="view-tender-page-submit-bid-link">
+                Submit Bid 
+                </Link>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
   );
-  
 };
 
 export default ViewTenderPage;
-
