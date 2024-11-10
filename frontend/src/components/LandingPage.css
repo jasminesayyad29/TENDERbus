@@ -8,7 +8,7 @@ body {
   overflow-x: hidden;
   position: relative;
   background-color: #000000;
-}
+} 
 
 /* Adding a semi-transparent background image */
 body::before {
@@ -18,10 +18,10 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/back.jpg"); /* Check the path is correct */
+  background-image: url("/TENDERbus.jpg"); /* Check the path is correct */
   background-size: cover;
   background-position: center;
-  opacity: 0.9; /* Adjust this value to control transparency */
+  opacity: 1; /* Adjust this value to control transparency */
   z-index: -1; /* Ensures it stays behind content */
 }
 
@@ -40,14 +40,14 @@ body::before {
   font-weight: lighter;
   font-family: 'Poppins', sans-serif;
   font-size: 2.0rem;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .landing-container p {
   font-size: 1.2rem;
   font-family: 'Poppins', sans-serif;
   color: #ffffff;
-  line-height: 1.6;
+  line-height: 1;
   margin-bottom: 20px;
 }
 
@@ -102,7 +102,7 @@ body::before {
 
 /* Unique Dropdown Button */
 .custom-dropbtn {
-  background-color: #157cdd; /* Primary blue color for button */
+  background-color: #cc950a; /* Primary blue color for button */
   color: rgb(0, 0, 0);
   text-decoration: none;
   font-family: 'Poppins', sans-serif; /* Use Poppins for buttons */
@@ -157,10 +157,10 @@ body::before {
 }
 
 .dashboard-button{
-  background-color: #157cdd; /* Primary blue color for button */
+  background-color: #cc950a; /* Primary blue color for button */
   color: white;
   padding: 10px 20px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   border: none;
   border-radius: 40px;
   cursor: pointer;

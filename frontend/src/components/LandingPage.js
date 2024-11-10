@@ -32,8 +32,10 @@ const LandingPage = () => {
       <br />
       <br />
       <br />
+      <br /><br />
+      <br />   
       <br />
-      <h1>Welcome to the <br />
+      <h1> The
         <pre>Smart Tender Management System</pre>
       </h1>
       <p>Manage and submit your tenders with ease.</p>

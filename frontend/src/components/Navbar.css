@@ -1,16 +1,4 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background-color: #ffffff; /* Change to a white background for contrast */
-  /* border-radius: 30px; */
-  /* margin: 20px; */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transform: translateY(-20px); /* Initial position for slide-in effect */
-  opacity: 0; /* Start invisible for fade-in */
-  animation: slideIn 1s ease forwards; /* Slide-in animation */
-}
+
 
 /* Slide-in animation */
 @keyframes slideIn {
@@ -24,15 +12,7 @@
   }
 }
 
-.logo {
-  font-size: larger ; /* Increased logo size */
-  font-family: 'Poppins', sans-serif; /* Use Poppins for modern look */
-  font-weight:bolder; /* Make logo bold */
-  color: #3a3b3c; /* Dark color for contrast */
-  margin-right: auto;
-  list-style-type: none;
 
-}
 
 .nav-links {
   display: flex;
@@ -50,7 +30,7 @@
 .dropbtn {
   text-decoration: none;
   font-size: 1rem;
-  color: #000000; /* Dark color for links */
+  color: #eeeeee; /* Dark color for links */
   font-weight: 500; /* Medium font weight */
   padding: 10px 15px; /* Consistent padding */
   border: none;
@@ -182,4 +162,22 @@
   border-radius: 40px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #060606;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 70px; /* Set a maximum height for the navbar */
+}
+
+.logotender {
+  height: 70px; /* Set desired logo size */
+  margin-left: 1px; /* Ensure logo starts from the leftmost part */
+  margin-bottom: 1px;
+  margin-top: 6px;
 }
