@@ -181,7 +181,7 @@ const SubmitBidPage = () => {
                         checked={acceptTerms}
                         onChange={() => setAcceptTerms(!acceptTerms)}
                     />
-                    I agree to the <Link to="/terms-of-service">terms and conditions</Link>
+                    <pre>I agree to the </pre><Link to="/terms-of-service">terms and conditions</Link>
                 </label>
                 <button type="submit" className="submit-bid-button" onClick={() => navigate(`/tender/submit/${tenderId}`)}>
                     Submit Bid
