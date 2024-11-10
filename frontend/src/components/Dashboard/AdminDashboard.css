@@ -1,51 +1,200 @@
-/* src/components/Dashboard/AdminDashboard.css */
-
-.admin-dashboard {
-  padding: 20px;
-  background-color: #f9f9f9; /* Light background for the dashboard */
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.admin-dashboard h1 {
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f5f7fb;
+  color: #333;
+}
+
+/* Wrapper for the Entire Dashboard */
+.unique-dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Parent Container Card */
+.unique-parent-card {
+  background: linear-gradient(135deg, #8e8d8d, #d9d3d3); /* Purple to Red Gradient */
+  border-radius: 12px;
+  padding: 20px; /* Reduced padding for proportional scaling */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  width: 80%;
+  max-width: 900px; /* Reduced max-width */
+  max-height: 600px;
   text-align: center;
-  color: #6a0dad; /* Vibrant purple for the title */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transform: scale(0.9); /* Scale down the whole container */
+  transform-origin: top center; /* Ensure the scaling is from the top */
+}
+
+.unique-parent-card h1 {
+  font-size: 2.4rem; /* Reduced font size */
+  font-weight: bold;
+  color: #c7b9b9;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating Card */
+.unique-floating-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Floating effect */
+  padding: 20px; /* Reduced padding */
+  width: 280px; /* Slightly smaller width */
+  margin-bottom: 20px; /* Reduced bottom margin */
+  position: relative;
+  top: -30px; /* Slightly reduced lift */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.unique-floating-card:hover {
+  transform: translateY(-8px); /* Smaller lift effect */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.unique-floating-card h3 {
+  font-size: 1.4rem; /* Smaller font size */
+  color: #6a0dad; /* Purple color */
   margin-bottom: 20px;
 }
 
-.admin-options {
-  max-width: 600px; /* Limit the width for better readability */
-  margin: 0 auto; /* Center the options */
+.unique-floating-card ul {
+  list-style: none;
+  padding: 0;
 }
 
-.admin-options h2 {
+.unique-floating-card li {
+  margin: 8px 0;
+}
+
+.unique-floating-link {
+  display: block;
+  padding: 10px;
+  background: linear-gradient(135deg, #6a0dad, #ff6f61); /* Purple to Red Gradient */
+  border-radius: 40px; /* Updated border-radius for buttons */
+  color: white;
+  text-decoration: none;
+  font-size: 1rem; /* Smaller font size */
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unique-floating-link:hover {
+  transform: translateY(-2px); /* Smaller hover effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Admin Options Section */
+.unique-admin-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.unique-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px; /* Reduced padding */
+  width: 320px; /* Smaller card width */
+  margin: 15px; /* Reduced margin */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  color: #333; /* Dark color for the subtitle */
-  margin-bottom: 15px;
 }
 
-.admin-options ul {
-  list-style: none; /* Remove default list style */
-  padding: 0; /* Remove default padding */
+.unique-card:hover {
+  transform: translateY(-8px); /* Slightly smaller lift */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.admin-options li {
-  margin: 10px 0; /* Add margin between options */
+/* Card Titles */
+.unique-card h2 {
+  font-size: 1.6rem; /* Reduced font size */
+  margin-bottom: 15px; /* Reduced margin */
 }
 
-.admin-options a {
-  display: block; /* Make the link a block for the whole area */
-  padding: 15px; /* Add padding for clickable area */
-  background-color: #fff; /* White background for each option */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  text-decoration: none; /* Remove underline */
-  color: #6a0dad; /* Link color */
-  text-align: center; /* Center text */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transition effects */
+/* Card 1 - Green to Yellow Gradient */
+.unique-card:nth-child(1) {
+  background: linear-gradient(135deg, #36b554, #d2b613); /* Green to Yellow Gradient */
 }
 
-.admin-options a:hover {
-  transform: translateY(-2px); /* Slight lift on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+.unique-card:nth-child(1) h2 {
+  color: #030303; /* Green color */
+  font-weight: 600;
+}
+
+/* Card 2 - Blue to Purple Gradient */
+.unique-card:nth-child(2) {
+  background: linear-gradient(135deg, #00b4d8, #0077b6); /* Blue to Purple Gradient */
+}
+
+.unique-card:nth-child(2) h2 {
+  color: #00b4d8; /* Blue color */
+}
+
+/* Card 3 - Red to Pink Gradient */
+.unique-card:nth-child(3) {
+  background: linear-gradient(135deg, #ff6f61, #f7a2a1); /* Red to Pink Gradient */
+}
+
+.unique-card:nth-child(3) h2 {
+  color: #ff6f61; /* Red color */
+}
+
+/* List Styling */
+.unique-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* List Items */
+.unique-card li {
+  margin: 12px 0; /* Reduced margin */
+}
+
+/* Links */
+.unique-dashboard-link {
+  display: block;
+  padding: 12px;
+  background: linear-gradient(135deg, #f61b07, #845050c3); /* Red to Pink Gradient */
+  border-radius: 40px; /* Updated border-radius for buttons */
+  color: white;
+  text-decoration: none;
+  font-size: 1rem; /* Reduced font size */
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unique-dashboard-link:hover {
+  transform: translateY(-2px); /* Smaller hover effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .unique-admin-options {
+    flex-direction: column;
+  }
+
+  .unique-card, .unique-floating-card {
+    width: 90%;
+  }
+
+  .unique-parent-card {
+    transform: scale(0.85); /* Slightly smaller scale on smaller screens */
+  }
 }
