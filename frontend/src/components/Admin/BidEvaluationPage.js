@@ -93,26 +93,28 @@ const BidEvaluationPage = () => {
       setVisibleBids((prevState) => ({ ...prevState, [tenderId]: true }));
     }
   };
-
   const getBidScore = async (bidId) => {
     try {
       const evaluationData = await fetchScoreByBidId(bidId);
-      if (evaluationData && evaluationData.evaluationScore) {
-        return evaluationData.evaluationScore;
+      if (evaluationData) {
+        const score = evaluationData.evaluationScore || 0;
+        const comment = evaluationData.comments || ''; // Fetch comment
+        return { score, comment };
       } else {
-        return 0;
+        return { score: 0, comment: '' };
       }
     } catch (error) {
       console.error('Error fetching bid evaluation:', error);
-      return 0;
+      return { score: 0, comment: '' };
     }
   };
-
+  
   const fetchAndSetBidScore = async (bidId) => {
-    const score = await getBidScore(bidId);
-    setBidScores(prevScores => ({ ...prevScores, [bidId]: score }));
+    const { score, comment } = await getBidScore(bidId);
+    setBidScores((prevScores) => ({ ...prevScores, [bidId]: score }));
+    setComments((prevComments) => ({ ...prevComments, [bidId]: comment })); // Store comment in state
   };
-
+  
   const handleRowClick = (bid) => {
     setSelectedBid(bid);
     setModalOpen(true);
@@ -195,35 +197,33 @@ const BidEvaluationPage = () => {
   };
 
   const sortedBids = [...bids].sort((a, b) => a[sortCriterion] - b[sortCriterion]);
-
   const exportToCSV = () => {
     const csvData = sortedBids.map((bid) => {
-      // Find the tender corresponding to the bid using tenderId
       const tender = tenders.find(tender => tender._id === bid.tenderId);
   
       return {
-        "Bid_id": bid._id, // Include _id
-        "Tender ID": bid.tenderId, // Include Tender ID
-        "Tender Title": tender ? tender.title : 'N/A', // Include Tender Title from the corresponding tender
-        "Bidder Name": bid.bidderName, // Include Bidder Name
-        "Company Name": bid.companyName, // Include Company Name
-        "Company Reg Number": bid.companyRegNumber, // Include Company Reg Number
-        "Email": bid.email, // Include Email
-        "Bidder Contact": bid.phoneNumber, // Include Phone Number
-        "Bid Amount": bid.bidAmount, // Include Bid Amount
-        "Description": bid.description, // Include Description
-        "Additional Notes": bid.additionalNotes, // Include Additional Notes
-        "Expiry Date": new Date(bid.expiryDate).toLocaleDateString(), // Format Expiry Date
-        "Created At": new Date(bid.createdAt).toLocaleDateString(), // Format Created At
-        "Evaluation Score": bidScores[bid._id] || 'Not Scored', // Include Evaluation Score
-        "Status": bidScores[bid._id] && bidScores[bid._id] > 6 ? '✔' : bidScores[bid._id] ? '❌' : 'N/A', // Add Status based on Evaluation Score
+        "Bid_id": bid._id,
+        "Tender ID": bid.tenderId,
+        "Tender Title": tender ? tender.title : 'N/A',
+        "Bidder Name": bid.bidderName,
+        "Company Name": bid.companyName,
+        "Company Reg Number": bid.companyRegNumber,
+        "Email": bid.email,
+        "Bidder Contact": bid.phoneNumber,
+        "Bid Amount": bid.bidAmount,
+        "Description": bid.description,
+        "Additional Notes": bid.additionalNotes,
+        "Expiry Date": new Date(bid.expiryDate).toLocaleDateString(),
+        "Created At": new Date(bid.createdAt).toLocaleDateString(),
+        "Evaluation Score": bidScores[bid._id] || 'Not Scored',
+        "Status": bidScores[bid._id] && bidScores[bid._id] > 6 ? '✔' : bidScores[bid._id] ? '❌' : 'N/A',
+        "Comments": comments[bid._id] || '', // Include Comments fetched from the database
       };
     });
   
     return csvData;
   };
   
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 

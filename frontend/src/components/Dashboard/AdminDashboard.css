@@ -22,7 +22,7 @@ body {
 
 /* Parent Container Card */
 .unique-parent-card {
-  background: linear-gradient(135deg, #8e8d8d, #d9d3d3); /* Purple to Red Gradient */
+  background: linear-gradient(135deg, #969494, #d9d3d3); /* Purple to Red Gradient */
   border-radius: 12px;
   padding: 20px; /* Reduced padding for proportional scaling */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Soft shadow */
@@ -41,7 +41,7 @@ body {
 .unique-parent-card h1 {
   font-size: 2.4rem; /* Reduced font size */
   font-weight: bold;
-  color: #c7b9b9;
+  color: #000000;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
