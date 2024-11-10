@@ -1,5 +1,10 @@
 .about-us {
     padding: 20px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+    border-radius: 40px;
     font-family: 'Poppins', sans-serif; /* Set font family */
     color: black; /* Change text color to black for better visibility on white */
     background-color: white; /* White background for the box */
@@ -13,7 +18,7 @@
     flex: 2; /* Allow the description to take up more space */
     padding: 20px; /* Inner padding for the description */
   }
-  
+
   .team-card {
     flex: 1; /* Allow the team section to take up less space */
     display: flex;
@@ -25,6 +30,7 @@
   h2 {
     color: black; /* Change heading color to black */
     text-align: center; /* Center the section headings */
+    font-weight: 600;
   }
   
   .member {

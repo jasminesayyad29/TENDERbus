@@ -10,10 +10,10 @@ const AboutUsPage = () => {
 
   return (
     <div className="about-us">
-      <div className="description">
+      <div className="description"> 
       <br/>
       <br/>
-        <h1>About Us</h1>
+        <h2>About Us</h2>
         <p>
           Welcome to our tender management system! We are committed to providing 
           an innovative platform that simplifies the tendering process for 
