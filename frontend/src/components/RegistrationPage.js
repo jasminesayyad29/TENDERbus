@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './RegistrationPage.css';  // Assuming you have CSS for styling
 import { Link, useNavigate } from 'react-router-dom';  // Import Link and useNavigate from react-router-dom
 import axios from 'axios'; // Import axios for API requests
+import Swal from 'sweetalert2';
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -71,7 +72,13 @@ const RegistrationPage = () => {
           name, email, password, role,
         });
 
-        alert('Registration successful!');
+        Swal.fire({
+          title: "Registration Successful!",
+          text: "User registered successfully.",
+          icon: "success",
+          confirmButtonText: "OK"
+        });
+
         navigate('/login');
       } catch (error) {
         console.error('Registration failed', error);

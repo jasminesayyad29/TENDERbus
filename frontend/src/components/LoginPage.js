@@ -3,6 +3,7 @@ import './LoginPage.css';
 import { useTender } from '../context/TenderContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const LoginPage = () => {
   const { login } = useTender();
@@ -36,38 +37,45 @@ const LoginPage = () => {
     const { email, password } = formData;
   
     try {
+      console.log("Attempting login..."); // Debug log
       const response = await axios.post("http://localhost:5000/api/login", {
         email,
         password,
-        //role,
       });
   
       const user = response.data.user;
       localStorage.setItem('user', JSON.stringify(user));
       setIsLoggedIn(true);
-      alert('Login successful!');
-  
-      // Redirect based on user role
-      if (user.role === 'Bidder') {
-        navigate('/bidder/dashboard');
-      } else if (user.role === 'Tender Officer') {
-        navigate('/admin/dashboard');
-      }
-  
-      // Reload the page after navigation
-      window.location.reload();
+      
+      // SweetAlert success message
+      Swal.fire({
+        title: "Login Successful!",
+        text: "You are successfully logged in.",
+        icon: "success",
+        confirmButtonText: "OK"
+      }).then(() => {
+        // Redirect based on user role after SweetAlert confirmation
+        if (user.role === 'Bidder') {
+          navigate('/bidder/dashboard');
+        } else if (user.role === 'Tender Officer') {
+          navigate('/admin/dashboard');
+        }
+      });
   
     } catch (error) {
       console.error('Login failed', error);
-      if (error.response) {
-        setError(error.response.data.message || 'Login failed. Please try again.');
-      } else if (error.request) {
-        setError('Network error. Please check your connection.');
-      } else {
-        setError('Error occurred: ' + error.message);
-      }
+      setError(error.response?.data?.message || 'Login failed. Please try again.');
+  
+      // SweetAlert error message
+      Swal.fire({
+        title: "Login Failed",
+        text: error.response?.data?.message || "An error occurred. Please check your credentials and try again.",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
     }
   };
+  
   
 
   const handleLogout = () => {
