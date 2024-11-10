@@ -21,6 +21,7 @@
 .submit-bid-page-container form {
   box-shadow: 0 4px 6px 4px rgb(78, 75, 75)  !important;
   display: flex;
+  margin-left: 30px;
   flex-direction: column;
   gap: 20px;
 }
