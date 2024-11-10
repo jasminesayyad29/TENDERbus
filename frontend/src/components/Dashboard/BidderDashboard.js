@@ -3,30 +3,41 @@ import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate
 import axios from 'axios';
 import './BidderDashboard.css';
 import { fetchbidsbymail } from '../../services/bidService'; // Import fetchbidsbymail
+import { fetchScoreByBidId } from '../../services/tenderService'; // Import fetchScoreByBidId
 
 const BidderDashboard = () => {
   const [bidderId, setBidderId] = useState('');
   const [bids, setBids] = useState([]);
   const [error, setError] = useState('');
   const [showTable, setShowTable] = useState(false); // State to control table visibility
+  const [bidScores, setBidScores] = useState({}); // New state for scores
+  const [userName, setUserName] = useState(''); // New state for user name
   const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
-    // Retrieve email from user object in localStorage and log it
+    // Retrieve user data from localStorage and log it
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const email = storedUser?.email;
+    const name = storedUser?.name; // Retrieve the name from localStorage
     console.log("Email from localStorage:", email);
+    console.log("Name from localStorage:", name);
 
-    if (!email) {
-      setError("User email not found in localStorage.");
+    if (!email || !name) {
+      setError("User information not found in localStorage.");
       return;
     }
+
+    // Set the user name
+    setUserName(name);
 
     // Fetch bids based on email
     const getBids = async () => {
       try {
         const data = await fetchbidsbymail(email);
         setBids(data);
+        data.forEach(bid => {
+          fetchAndSetBidScore(bid._id); // Fetch and set the bid scores after fetching the bids
+        });
       } catch (err) {
         setError(`No Bids found for email: ${email}`);
         console.error("Error fetching bids:", err);
@@ -35,6 +46,18 @@ const BidderDashboard = () => {
 
     getBids();
   }, []); // Empty dependency array to run this effect only once on component mount
+
+  const fetchAndSetBidScore = async (bidId) => {
+    try {
+      const evaluationData = await fetchScoreByBidId(bidId);
+      if (evaluationData) {
+        const score = evaluationData.evaluationScore || 0;
+        setBidScores(prevScores => ({ ...prevScores, [bidId]: score }));
+      }
+    } catch (error) {
+      console.error('Error fetching bid score:', error);
+    }
+  };
 
   const handleBidderIdSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +86,9 @@ const BidderDashboard = () => {
 
   return (
     <div className="bidder-dashboard-container">
+ <pre style={{ fontSize: '20px' }}>Welcome </pre>
+<pre style={{ fontSize: '20px' }}>{userName}</pre> {/* Display the user name */}
+
       <form onSubmit={handleBidderIdSubmit} className="bidder-dashboard-form">
         <h1>Bidder Dashboard</h1>
         <label htmlFor="bidderId" className="bidder-dashboard-label">Enter Your Bidder ID:</label>
@@ -84,9 +110,6 @@ const BidderDashboard = () => {
         <ul>
           <li>
             <Link to="/tender/view" className="bidder-dashboard-link">View Tenders</Link>
-          </li>
-          <li>
-            {/* <Link to="/tender/submit/:tenderId" className="bidder-dashboard-link">Submit a Bid</Link> */}
           </li>
           <li>
             <Link to="/tender/bid-details" className="bidder-dashboard-link">Your Bids</Link>
@@ -119,7 +142,8 @@ const BidderDashboard = () => {
               {bids.map(bid => (
                 <tr key={bid._id}>
                   <td>{bid._id}</td>
-                  <td>{bid.evaluationScore || 'Not available'}</td> {/* Display Evaluation Score or 'Not available' */}
+                  <td>{bidScores[bid._id] ? bidScores[bid._id].toFixed(1) : 'Not Scored'}</td>
+                  {/* Display Evaluation Score or 'Not available' */}
                 </tr>
               ))}
             </tbody>
