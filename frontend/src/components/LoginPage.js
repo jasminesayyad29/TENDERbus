@@ -64,7 +64,7 @@ const LoginPage = () => {
           navigate('/admin/dashboard');
           window.location.reload();
         }
-      });
+      }); 
   
     } catch (error) {
       console.error('Login failed', error);
@@ -122,7 +122,8 @@ const LoginPage = () => {
       ) : (
         <div className="login-container">
           <form onSubmit={handleSubmit} className="login-form">
-            <h2>Login Here</h2>
+            <h2>Login To</h2>
+    <img src="/logoblack.png" alt="TENDERbus Logo" class="loginpage-logotender" />
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
@@ -157,7 +158,7 @@ const LoginPage = () => {
             {error && <p className="error">{error}</p>}
             <button type="submit" className="login-button">Login</button>
             <p>
-              Don't have an account? <a href="/Register">Sign up / Register</a>
+              Don't have an account?  <a href="/Register">Sign up / Register</a>
             </p>
           </form>
         </div>

@@ -82,11 +82,12 @@
 
 /* Tender card styling */
 .tender-page-card {
-    background: #3c5f83;
+    background: #ab7d0b;
     border-radius: 8px; /* Slightly reduced radius */
     padding: 12px 15px;
-    color: #ffffff;
+    color: #000000 !important;
     text-align: center;
+    border: 3px solid #000000;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     flex: 1 1 calc(25% - 15px); /* Reduced flex size */
@@ -95,8 +96,8 @@
     height: 180px; /* Slightly reduced height */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     overflow: hidden;
 }
 
@@ -108,18 +109,20 @@
 
 /* Card headings and text */
 .tender-page-card h2 {
-    font-size: 1.1em; /* Slightly smaller heading */
+    font-size: 1em; /* Slightly smaller heading */
+    text-align: left;
     margin: 6px 0;
-    color: #ecf0f1;
+    color: #dadada;
     font-family: 'Poppins', sans-serif;
     font-weight: 600; /* Slightly bolder text */
 }
 
 .tender-page-card h3 {
-    font-size: 0.85em; /* Slightly smaller size */
+    font-size: 0.8em; /* Slightly smaller size */
     margin: 0;
-    color: #bdc3c7;
-    font-weight: 400; /* Lighter weight */
+    text-align: left;
+    color: #000000;
+    font-weight: 800 !important; /* Lighter weight */
 }
 
 /* Responsive card styles */
@@ -141,13 +144,14 @@
 
 /* Heading styles */
 .tender-page-container h1 {
-    background: #129d47;
+    background: #000000b3;
     color: #ffffff;
     text-align: center;
     margin: 0 auto;
     margin-bottom: 20px;
     margin-top: 20px;
     padding: 8px 40px;
+    border: 3px solid #cc950a;
     width: fit-content;
     border-radius: 40px;
     font-size: 1.5rem; /* Smaller font size */
@@ -156,9 +160,9 @@
 }
 
 .tender-page-container-back-button {
-    background-color: #f0f0f0;
+    background-color: #000000b6;
     border: 1px solid #ddd;
-    color: #333;
+    color: #ffffff;
     border-radius: 30px;
     padding: 8px 15px;
     margin-left: 710px;
@@ -170,7 +174,7 @@
 }
 
 .tender-page-container-back-button:hover {
-    background-color: #000000;
+    background-color: #cc950a;
     color: #ffffff;
 }
 
