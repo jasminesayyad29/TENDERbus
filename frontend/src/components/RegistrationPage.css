@@ -55,11 +55,12 @@ body {
 .registrationPage-form select {
   width: 100%;
   padding: 10px; /* Reduced padding */
-  padding-right: 30px; /* Adjusted space for icon */
+  padding-right: 35px; /* Ensure space for icon */
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   font-size: 14px; /* Reduced font size */
   transition: border-color 0.3s;
+  position: relative; /* Allows positioning of the icon */
 }
 
 /* Focus State for Input Fields */
@@ -71,18 +72,37 @@ body {
   outline: none;
 }
 
+/* Icon inside the Input Fields */
+.registrationPage-form .input-icon {
+  position: absolute;
+  right: 10px; /* Align the icon to the right */
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center the icon */
+  color: #888; /* Icon color */
+  cursor: pointer;
+}
+
+
+/* Adjusting placeholder so it won't overlap with icon */
+.registrationPage-form input::placeholder {
+  color: #000000; /* Light grey for placeholder text */
+  font-size: 14px; /* Same as input text for consistency */
+  padding-right: 40px; /* Ensure placeholder text isn't hidden by the icon */
+}
+
 /* Checkbox Styling */
 .registrationPage-form .registrationPage-checkbox {
   display: inline-flex;
   align-items: center;
-  margin-top: 10px; /* Adjust the top margin */
-  margin-left: 0px;
+  margin-top: 30px !important; /* Adjust the top margin */
+  margin-left: 205px !important; /* Adjust the left margin */
+  margin-bottom: 8px;
 }
 
 /* Adjust the label to sit next to the checkbox */
 .registrationPage-form .registrationPage-checkbox label {
   margin-left: 8px; /* Adjust left margin */
-  color: #555;
+  color: #000000;
 }
 
 /* Agree to Terms Label */
@@ -90,9 +110,8 @@ body {
   display: inline-flex;
   align-items: center;
   margin-top: 0px; /* Removed extra margin-top */
-  color: #555;
+  color: #000000;
 }
-
 
 /* Register Button */
 .registrationPage-form .registrationPage-register-button {
@@ -150,6 +169,7 @@ body {
   margin-bottom: 1px;
   margin-top: 5px; /* Reduced top margin */
 }
+
 /* Adjust checkbox container to align checkbox and label in a row */
 .registrationPage-form .registrationPage-checkbox {
   display: flex; /* Use flexbox to align items horizontally */

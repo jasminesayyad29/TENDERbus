@@ -3,6 +3,8 @@ import './RegistrationPage.css';  // Assuming you have CSS for styling
 import { Link, useNavigate } from 'react-router-dom';  // Import Link and useNavigate from react-router-dom
 import axios from 'axios'; // Import axios for API requests
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faEnvelope, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';  // Import the icons you need
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -95,15 +97,13 @@ const RegistrationPage = () => {
   return (
     <div className="registrationPage-container">
       <form onSubmit={validatePasswords} className="registrationPage-form">
-        <br/>
+        <br />
         <h3>Create Your Account</h3>
-        {/* <img src="/logoblack.png" alt="TENDERbus Logo" class="registrationpage-logotender" /> */}
-        <br/>
+        <br />
 
         {/* Name Field */}
         <div className="registrationPage-input-group">
           <label>Name :</label>
-          <label htmlFor="name"><i className="fas fa-user"></i></label>
           <input
             type="text"
             id="name"
@@ -111,13 +111,14 @@ const RegistrationPage = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            placeholder="Enter your name"
           />
+          <FontAwesomeIcon icon={faUser} className="input-icon" />
         </div>
 
         {/* Email Field */}
         <div className="registrationPage-input-group">
           <label>Email :</label>
-          <label htmlFor="email"><i className="fas fa-envelope"></i></label>
           <input
             type="email"
             id="email"
@@ -125,7 +126,9 @@ const RegistrationPage = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            placeholder="Enter your email"
           />
+          <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
         </div>
 
         {/* Role Dropdown */}
@@ -146,7 +149,6 @@ const RegistrationPage = () => {
         {/* Password Field */}
         <div className="registrationPage-input-group">
           <label>Enter Password :</label>
-          <label htmlFor="password"></label>
           <input
             type={showPassword ? 'text' : 'password'}
             id="password"
@@ -154,17 +156,18 @@ const RegistrationPage = () => {
             value={formData.password}
             onChange={handleChange}
             required
+            placeholder="Enter your password"
           />
-          <i
-            className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+          <FontAwesomeIcon
+            icon={showPassword ? faEyeSlash : faEye}
             onClick={togglePasswordVisibility}
-          ></i>
+            className="input-icon"
+          />
         </div>
 
         {/* Confirm Password Field */}
         <div className="registrationPage-input-group">
           <label>Confirm Password :</label>
-          <label htmlFor="confirmPassword"></label>
           <input
             type={showConfirmPassword ? 'text' : 'password'}
             id="confirmPassword"
@@ -172,11 +175,13 @@ const RegistrationPage = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
             required
+            placeholder="Confirm your password"
           />
-          <i
-            className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+          <FontAwesomeIcon
+            icon={showConfirmPassword ? faEyeSlash : faEye}
             onClick={toggleConfirmPasswordVisibility}
-          ></i>
+            className="input-icon"
+          />
         </div>
 
         {/* Agree to Terms Checkbox */}
@@ -191,8 +196,9 @@ const RegistrationPage = () => {
             required
           />
           <label htmlFor="agreeTerms">
-            <pre>I agree to the <Link to="/terms-of-service">Terms of service</Link></pre>
-          </label>
+            <pre>                        I agree to the <Link to="/terms-of-service">Terms of service</Link></pre>
+            <br/>
+          </label>  
         </div>
 
         {/* Register Button */}
@@ -205,13 +211,11 @@ const RegistrationPage = () => {
         <h4><p>Already a member?
           <Link to="/login">   Sign-in</Link>
         </p></h4>
-        
       </form>
-      <div className="registrationPage-illustration-container">
-        <img  className='register' src="/logowhite.png" alt="Sign up illustration" />
-      
-        <img className="register1" src="/register1.png" alt="Sign up illustration" />
 
+      <div className="registrationPage-illustration-container">
+        <img className='register' src="/logowhite.png" alt="Sign up illustration" />
+        <img className="register1" src="/register1.png" alt="Sign up illustration" />
       </div>
     </div>
   );
