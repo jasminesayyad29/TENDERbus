@@ -1,8 +1,8 @@
-// src/components/Tender/DeleteTenderPage.js
 import React, { useState } from 'react';
 import './DeleteTenderPage.css'; // Import the CSS file
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const DeleteTenderPage = () => {
   const [tenderId, setTenderId] = useState('');
@@ -11,6 +11,8 @@ const DeleteTenderPage = () => {
 
   // Get token from local storage or context
   const token = localStorage.getItem('token'); // Adjust as needed
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -23,6 +25,8 @@ const DeleteTenderPage = () => {
         title: "Tender deleted Successfully!",
         icon: "success",
         confirmButtonText: "OK"
+      }).then(() => {
+        navigate('/admin/tender-management'); // Navigate after successful deletion
       });
       setTenderId(''); // Clear form fields after deletion
       setReason('');
@@ -30,7 +34,7 @@ const DeleteTenderPage = () => {
       console.error('Error deleting tender:', error);
       Swal.fire({
         title: "Failed to delete Tender",
-        icon: "success",
+        icon: "error",
         confirmButtonText: "OK"
       });
     }
@@ -70,7 +74,7 @@ const DeleteTenderPage = () => {
           <div>
             <h3>Are you sure you want to delete this tender?</h3>
             <button type="submit" >Yes, Delete</button>
-            <button type="button" onClick={() => setConfirmDelete(false)}>No, Cancel</button>
+            <a href='/admin/tender-management'><button type="button" >No, Cancel</button></a>
           </div>
         ) : (
           <button type="submit">Confirm Deletion</button>
