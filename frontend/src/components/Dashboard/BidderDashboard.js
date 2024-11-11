@@ -128,13 +128,13 @@ const BidderDashboard = () => {
         <button onClick={toggleTableVisibility} className="bidder-dashboard-toggle-button">
           {showTable ? 'Hide Bid Table' : 'Show Bid Table'}
         </button>
-
         {showTable && bids.length > 0 && (
           <table className="bidder-dashboard-table">
             <thead>
               <tr>
                 <th>Bid ID</th>
                 <th>Evaluation Score</th>
+                <th>Status</th> {/* Added Status column */}
               </tr>
             </thead>
             <tbody>
@@ -142,12 +142,19 @@ const BidderDashboard = () => {
                 <tr key={bid._id}>
                   <td>{bid._id}</td>
                   <td>{bidScores[bid._id] ? bidScores[bid._id].toFixed(1) : 'Not Scored'}</td>
-                  {/* Display Evaluation Score or 'Not available' */}
+                  <td> {/* Conditional rendering for Status */}
+                  {bidScores[bid._id] && bidScores[bid._id] > 6 ? (
+                    <span style={{ color: 'green' }}>✔</span> // Green tick if score > 6
+                  ) : bidScores[bid._id] ? (
+                    <span style={{ color: 'red' }}>❌</span> // Red cross if score <= 6
+                  ) : (
+                    'N/A' // If sco~re is not available
+                  )}</td> {/* Display Status or 'Pending' if status is unavailable */}
                 </tr>
               ))}
             </tbody>
           </table>
-        )}
+)}
 
         {showTable && bids.length === 0 && <p className="bidder-dashboard-no-bids">No bids found for this Bidder ID.</p>}
       </div>
