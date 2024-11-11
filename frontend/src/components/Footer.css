@@ -1,7 +1,5 @@
 /* src/components/Footer.css */
-* {
-  margin-top: 0; /* Corrected margin to zero */
-}
+
 
 footer {
   background-color: #202021; /* Base background */
@@ -9,19 +7,24 @@ footer {
   font-size: 0.9rem;
   display: flex;
   justify-content: space-evenly;
-  padding: 15px 50px; /* Adjust padding */
+  padding: 10px 50px; /* Adjust padding */
+  max-height: 185px;
   font-family: 'Poppins', sans-serif; /* Set font family */
 }
 
 .footer nav {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
-
+.footerlogo{
+  height: 80px;
+  margin-top: 35px;
+  margin-bottom: 10px;
+  margin-left: 0px !important;
+}
 .footer-title {
-  font-weight: 600;
-  margin-bottom: 0.4rem;
+  font-weight: 500;
   font-size: 1.2rem;
 }
 

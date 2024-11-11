@@ -49,7 +49,7 @@ const UserProfilePage = () => {
   }
 
   return (
-    <>
+    <> <br/>   <br/>   <br/>   <br/>
       <div className="pro-user-profile-wrapper">
         <h2 className="pro-user-profile-header">User Details</h2>
         <div className="pro-user-profile-details">
@@ -64,6 +64,7 @@ const UserProfilePage = () => {
           </button>
         </div>
       </div>
+      <br/>   <br/>   <br/>   <br/>   <br/>   <br/>  
     </>
   );
 };

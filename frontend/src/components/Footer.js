@@ -5,6 +5,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer">
+          <a href='/'><img src="/logowhite.png" alt="TENDERbus Logo" class="footerlogo" /></a>
       <nav>
         <h6 className="footer-title">Go To</h6>
         <a href="/" className="link">Home</a>
@@ -56,7 +57,8 @@ const Footer = () => {
         <pre>&copy; 2024 TENDERbus. All Rights Reserved.</pre>
 
       </nav>
-    </footer>
+      </footer>
+   
   );
 };
 

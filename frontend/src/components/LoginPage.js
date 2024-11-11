@@ -103,20 +103,22 @@ const LoginPage = () => {
     <>
       {isLoggedIn ? (
         <div className="logout-container">
-          {showLogoutConfirmation ? (
+          {showLogoutConfirmation ? (<> <br/>   <br/> 
             <div className="logout-confirmation-card">
               <h3>Confirm Logout</h3>
-              <p>Are you sure you want to logout?</p>
+              <p>Are you sure you want to logout?</p><br/>
               <div className="confirmation-buttons">
                 <button onClick={confirmLogout} className="confirm-button">Yes</button>
                 <button onClick={cancelLogout} className="cancel-button">No</button>
               </div>
             </div>
-          ) : (
+            <br/>   <br/></> ) : (<> <br/>   <br/> 
             <div className="logout-card">
               <h2>Sure ? </h2>
               <button onClick={handleLogout} className="logout-button">Logout</button>
+              
             </div>
+              <br/>   <br/></>
           )}
         </div>
       ) : (

@@ -172,7 +172,7 @@ const SubmitBidPage = () => {
                     <input
                         type="file"
                         onChange={handleFileChange}
-                        accept=".pdf,.doc,.docx,.txt"
+                        accept="*"
                     />
                 </div>
                 <label className="submit-bid-form-group submit-bid-form-group-terms">
