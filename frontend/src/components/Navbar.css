@@ -192,3 +192,30 @@
   margin-left: 5px;
   vertical-align: top;
 }
+
+.notification-badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -35px; /* Adjusted to move the badge further up */
+  right: -15px; /* Adjusted to align badge to the right */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff0000; /* Red color */
+  color: white;
+  border-radius: 50%;
+  padding: 3px 7px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  min-width: 18px; /* Ensures it stays circular */
+}
+
+.no-icon{
+  display :flex !important ;
+  flex-direction: column !important;
+  
+}
