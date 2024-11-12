@@ -92,11 +92,11 @@ const AdminSendNotification = () => {
         <option value="high">High</option>
       </select>
 
-      <button onClick={generateEmailPreview} className="admin-send-notification-preview-button">Preview Email</button>
+      <button onClick={generateEmailPreview} className="admin-send-notification-preview-button">Preview Notification</button>
 
       {emailPreview && (
         <div className="admin-send-notification-email-preview">
-          <h3>Email Preview:</h3>
+          <h3>Notification Preview:</h3>
           <pre>{emailPreview}</pre>
         </div>
       )}

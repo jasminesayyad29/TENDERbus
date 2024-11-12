@@ -85,7 +85,6 @@ const Navbar = () => {
         {userRole === 'Bidder' && (
           <>
             <button className="dropbtn"><Link to="/profile">Profile</Link></button>
-            <li className="navbut"><Link to="/notifications">Live chat with T/O</Link></li>
             <li className="navbut"><Link to="/bidder/dashboard">Dashboard</Link></li>
             <li className="navbut">
             <div className='no-icon'>
@@ -109,7 +108,6 @@ const Navbar = () => {
         {userRole === 'Tender Officer' && (
           <>
             <button className="dropbtn"><Link to="/profile">Profile</Link></button>
-            <li className="navbut"><Link to="/notifications">Live chat with Bidder</Link></li>
             <li className="navbut"><Link to="/admin/dashboard">Dashboard</Link></li>
             <li className="navbut"><Link to="/admin/admin-send-notifications">Notify Bidder</Link></li>
           </>
