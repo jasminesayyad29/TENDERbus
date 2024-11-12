@@ -1,0 +1,129 @@
+/* BidderNotifications.css */
+
+/* General Reset and Layout */
+
+  
+  /* Main Container */
+  .bidder-notifications-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bidder-notifications-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  /* Loading State */
+  .bidder-notifications-loading-state {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #007bff;
+    padding: 1rem;
+  }
+  
+  /* Error Message */
+  .bidder-notifications-error-message {
+    color: #e74c3c;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Notification List */
+  .bidder-notifications-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .bidder-notifications-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .bidder-notifications-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Notification Message */
+  .bidder-notifications-item p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Notification Type */
+  .bidder-notifications-type {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .bidder-notifications-type.info {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .bidder-notifications-type.warning {
+    background-color: #f39c12;
+    color: white;
+  }
+  
+  .bidder-notifications-type.error {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  /* Priority Level */
+  .bidder-notifications-item strong {
+    font-weight: bold;
+  }
+  
+  /* No Notifications */
+  .bidder-notifications-no-notifications {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #95a5a6;
+    padding: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .bidder-notifications-container {
+      padding: 15px;
+    }
+  
+    .bidder-notifications-container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .bidder-notifications-item {
+      padding: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .bidder-notifications-container {
+      padding: 10px;
+    }
+  
+    .bidder-notifications-item {
+      padding: 10px;
+    }
+  
+    .bidder-notifications-container h1 {
+      font-size: 1.25rem;
+    }
+  }
+  

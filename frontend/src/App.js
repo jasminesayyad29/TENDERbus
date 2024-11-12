@@ -207,8 +207,8 @@ const App = () => {
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/tenders" element={<TenderListPage />} />
-            <Route path="/admin/admin-send-notifications" component={<AdminSendNotification />} />
-            <Route path="/Bidder/notifications" component={<MyNotificationsPage />} />
+            <Route path="/admin/admin-send-notifications" element={<AdminSendNotification />} />
+            <Route path="/Bidder/notifications" element={<MyNotificationsPage />} />
             {/* Fallback route for undefined paths */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

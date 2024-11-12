@@ -1,34 +1,117 @@
-// src/components/Admin/AdminSendNotification.js
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import './AdminSendNotification.css';
 
 const AdminSendNotification = () => {
   const [message, setMessage] = useState('');
+  const [recipientEmail, setRecipientEmail] = useState('');
+  const [notificationType, setNotificationType] = useState('info');
+  const [priority, setPriority] = useState('normal');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [emailStatus, setEmailStatus] = useState('');
+  const [confirmModalVisible, setConfirmModalVisible] = useState(false);
+  const [emailPreview, setEmailPreview] = useState('');
+
+  const generateEmailPreview = () => {
+    setEmailPreview(`Recipient: ${recipientEmail}\nMessage: ${message}\nType: ${notificationType}\nPriority: ${priority}`);
+  };
 
   const sendNotification = async () => {
+    if (!message || !recipientEmail) {
+      setError('Please enter a message and recipient email.');
+      return;
+    }
+
     try {
-      await axios.post('/api/notifications/send', {
+      setLoading(true);
+      setError('');
+      setEmailStatus('');
+      setConfirmModalVisible(false);
+
+      await axios.post('http://localhost:5000/api/notifications/send', {
         message,
-        recipientRole: 'bidder',  // Set to "bidder" for bidders to receive notifications
+        recipientEmail,
+        notificationType,
+        priority,
       });
+
+      setEmailStatus('Email sent successfully to the bidder.');
       setMessage('');
-      alert('Notification sent successfully');
+      setRecipientEmail('');
     } catch (error) {
       console.error('Error sending notification:', error);
+      setError('Failed to send notification. Please try again.');
+      setEmailStatus('Failed to send email.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div className="admin-send-notification-container">
       <h2>Send Notification</h2>
+
       <input
         type="text"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Enter notification message"
+        className="admin-send-notification-input-field"
       />
-      <button onClick={sendNotification}>Send</button>
+
+      <input
+        type="email"
+        value={recipientEmail}
+        onChange={(e) => setRecipientEmail(e.target.value)}
+        placeholder="Enter recipient email"
+        className="admin-send-notification-input-field"
+      />
+
+      <select
+        value={notificationType}
+        onChange={(e) => setNotificationType(e.target.value)}
+        className="admin-send-notification-select-field"
+      >
+        <option value="info">Info</option>
+        <option value="warning">Warning</option>
+        <option value="alert">Alert</option>
+      </select>
+
+      <select
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+        className="admin-send-notification-select-field"
+      >
+        <option value="normal">Normal</option>
+        <option value="high">High</option>
+      </select>
+
+      <button onClick={generateEmailPreview} className="admin-send-notification-preview-button">Preview Email</button>
+
+      {emailPreview && (
+        <div className="admin-send-notification-email-preview">
+          <h3>Email Preview:</h3>
+          <pre>{emailPreview}</pre>
+        </div>
+      )}
+
+      <button onClick={() => setConfirmModalVisible(true)} disabled={loading} className="admin-send-notification-send-button">
+        {loading ? 'Sending...' : 'Send'}
+      </button>
+
+      {error && <p className="admin-send-notification-error-message">{error}</p>}
+      {emailStatus && <p className="admin-send-notification-status-message">{emailStatus}</p>}
+
+      {confirmModalVisible && (
+        <div className="admin-send-notification-modal">
+          <div className="admin-send-notification-modal-content">
+            <p>Are you sure you want to send this notification?</p>
+            <button onClick={sendNotification} className="admin-send-notification-modal-button">Yes, Send</button>
+            <button onClick={() => setConfirmModalVisible(false)} className="admin-send-notification-modal-button">Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
