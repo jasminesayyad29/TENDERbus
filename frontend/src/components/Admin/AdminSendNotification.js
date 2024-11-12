@@ -49,6 +49,9 @@ const AdminSendNotification = () => {
   };
 
   return (
+    <>
+    <br/>
+    <br/>
     <div className="admin-send-notification-container">
       <h2>Send Notification</h2>
 
@@ -113,6 +116,10 @@ const AdminSendNotification = () => {
         </div>
       )}
     </div>
+    <br/>
+    <br/>
+    <br/>
+    </>
   );
 };
 
