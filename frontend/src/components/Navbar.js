@@ -1,11 +1,12 @@
 // src/components/Navbar.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 import './Navbar.css';
-
 
 const Navbar = () => {
   const [userRole, setUserRole] = useState('');
+  const [unreadCount, setUnreadCount] = useState(0); // New state for unread count
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -31,13 +32,46 @@ const Navbar = () => {
     };
   }, []);
 
+  // Fetch unread notifications count for Bidder role
+  useEffect(() => {
+    const fetchUnreadNotificationsCount = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || !user.email) {
+          setUnreadCount(0);
+          return;
+        }
+
+        const recipientEmail = user.email;
+        const response = await Axios.get('http://localhost:5000/api/notifications/notifications', {
+          params: { recipientEmail },
+        });
+
+        const unread = response.data.notifications.filter(n => !n.isRead);
+        setUnreadCount(unread.length);
+      } catch (err) {
+        //console.error('Error fetching unread notifications:', err);
+        setUnreadCount(0); // Fallback to 0 if there's an error
+      }
+    };
+
+    if (userRole === 'Bidder') {
+      fetchUnreadNotificationsCount();
+    }
+
+    // Polling for unread notifications every 30 seconds
+    const interval = setInterval(fetchUnreadNotificationsCount, 30000);
+
+    return () => clearInterval(interval); // Clean up the interval on component unmount
+  }, [userRole]);
+
   return (
     <nav className="navbar">
-  <div class="tender">
-  <a href="/">
-    <img src="/logowhite.png" alt="TENDERbus Logo" class="logotender" />
-  </a>
-</div>
+      <div className="tender">
+        <a href="/">
+          <img src="/logowhite.png" alt="TENDERbus Logo" className="logotender" />
+        </a>
+      </div>
 
       <ul className="nav-links">
         {!userRole && (
@@ -53,7 +87,14 @@ const Navbar = () => {
             <button className="dropbtn"><Link to="/profile">Profile</Link></button>
             <li className="navbut"><Link to="/notifications">Live chat with T/O</Link></li>
             <li className="navbut"><Link to="/bidder/dashboard">Dashboard</Link></li>
-            <li className="navbut"><Link to="/Bidder/notifications">T/O Suggestion</Link></li>
+            <li className="navbut">
+              <Link to="/Bidder/notifications">
+                T/O Suggestion
+                {unreadCount > 0 && (
+                  <span className="unread-count">{unreadCount}</span> // Display unread count
+                )}
+              </Link>
+            </li>
           </>
         )}
 

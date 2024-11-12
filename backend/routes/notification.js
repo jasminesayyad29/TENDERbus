@@ -40,27 +40,42 @@ router.post('/send', async (req, res) => {
 
 // Endpoint for bidders to fetch notifications
 router.get('/notifications', async (req, res) => {
-  const { recipientEmail } = req.query;  // Get the recipientEmail from the query string
+  const { recipientEmail, unread } = req.query;
 
   if (!recipientEmail) {
     return res.status(400).json({ error: 'Recipient email is required' });
   }
 
   try {
-    // Fetch notifications for the specified recipientEmail
-    const notifications = await Notification.find({ recipientEmail }).sort({ createdAt: -1 });
-    
-    if (notifications.length === 0) {
-      return res.status(404).json({ error: 'No notifications found for this email' });
+    const filter = { recipientEmail };
+    if (unread === 'true') {
+      filter.isRead = false; // Only fetch unread notifications if specified
     }
 
-    // Respond with the list of notifications
+    const notifications = await Notification.find(filter).sort({ createdAt: -1 });
     res.status(200).json({ success: true, notifications });
   } catch (error) {
     console.error('Error fetching notifications:', error);
     res.status(500).json({ success: false, error: 'Failed to fetch notifications' });
   }
 });
+
+// Mark notifications as read
+router.put('/notifications/mark-read', async (req, res) => {
+  const { notificationIds } = req.body; // Array of notification IDs
+
+  try {
+    await Notification.updateMany(
+      { _id: { $in: notificationIds } },
+      { $set: { isRead: true } }
+    );
+    res.status(200).json({ success: true, message: 'Notifications marked as read' });
+  } catch (error) {
+    console.error('Error marking notifications as read:', error);
+    res.status(500).json({ success: false, error: 'Failed to mark notifications as read' });
+  }
+});
+
 
 module.exports = router;
 

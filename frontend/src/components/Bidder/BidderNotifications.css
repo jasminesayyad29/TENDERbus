@@ -127,3 +127,21 @@
     }
   }
   
+  /* BidderNotifications.css */
+
+/* Alert for New Notifications */
+.new-notification-alert {
+  color: white;
+  background-color: #ff5e57;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* Unread Notification Style */
+.unread {
+  background-color: #eaf4ff;
+}

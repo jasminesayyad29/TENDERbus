@@ -181,3 +181,14 @@
   margin-bottom: 1px;
   margin-top: 6px;
 }
+.notification-badge {
+  display: inline-block;
+  background-color: #ff0000; /* Red color for the badge */
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-left: 5px;
+  vertical-align: top;
+}
