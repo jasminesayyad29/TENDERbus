@@ -125,7 +125,7 @@ router.post('/bids/:id/evaluate', async (req, res) => {
             bidId: id,
             ratings: ratings || {},
             comments: comments,
-            evaluationScore: evaluationScore, // Store the evaluation score
+            evaluationScore: evaluationScore.toFixed(1), // Store the evaluation score
         });
 
         await evaluation.save();

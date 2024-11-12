@@ -6,7 +6,7 @@ const NotificationSchema = new mongoose.Schema({
   recipientEmail: { type: String, required: true },        // Recipient's email address
   notificationType: {                                      // Type of notification (e.g., info, warning, alert)
     type: String,
-    enum: ['info', 'warning', 'alert'], 
+    enum: ['info', 'warning', 'alert'],
     default: 'info', // Default to 'info' if no type is provided
     required: true,
   },
@@ -16,7 +16,8 @@ const NotificationSchema = new mongoose.Schema({
     default: 'normal',  // Default to 'normal' priority
     required: true,
   },
-  createdAt: { type: Date, default: Date.now },             // Timestamp for when the notification was created
+  createdAt: { type: Date, default: Date.now },
+  isRead: { type: Boolean, default: false },        // Timestamp for when the notification was created
 });
 
 module.exports = mongoose.model('Notification', NotificationSchema);
