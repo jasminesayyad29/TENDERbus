@@ -1,6 +1,7 @@
 
 const express = require("express") ;
 const router = express.Router() ;
+const { getBidderEmails } = require('../controllers/Auth'); // Import the controller function
 
 const {login , signup} = require("../controllers/Auth") ;
 const {auth , isBidder, isAdmin} = require("../middlewares/auth") ;
@@ -34,5 +35,7 @@ router.get("/tenderofficer", auth, isAdmin , (req,res) => {
         message:'Welcome to the protected route of Tender Officer',
     }) ;
 }) ;
+
+router.get('/bidders/emails', getBidderEmails);
 
 module.exports = router ;

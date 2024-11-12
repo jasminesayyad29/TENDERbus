@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './CreateTenderPage.css'; // You can add your own styles here
+import emailjs from 'emailjs-com';
+import './CreateTenderPage.css';
 import Swal from 'sweetalert2';
 
 const CreateTenderPage = () => {
-  const[email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [title, setTitle] = useState('');
-  const [eligibility,setEligibility] = useState('');
+  const [eligibility, setEligibility] = useState('');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
   const [status, setStatus] = useState('Active');
@@ -19,10 +20,20 @@ const CreateTenderPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (new Date(startDate) >= new Date(endDate)) {
+      Swal.fire({
+        title: "End date must be greater than start date",
+        text: "Failed to create the tender",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
     const formData = new FormData();
-    formData.append('email',email);
+    formData.append('email', email);
     formData.append('title', title);
-    formData.append('eligibility',eligibility);
+    formData.append('eligibility', eligibility);
     formData.append('description', description);
     formData.append('type', type);
     formData.append('status', status);
@@ -31,7 +42,7 @@ const CreateTenderPage = () => {
     formData.append('document', document);
 
     try {
-       const response=await axios.post('http://localhost:5000/api/tenders', formData, {
+      const response = await axios.post('http://localhost:5000/api/tenders', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -42,9 +53,13 @@ const CreateTenderPage = () => {
         text: `Tender Created Successfully! with tenderId ${createdTenderId}`,
         icon: "success",
         confirmButtonText: "OK"
+      }).then(() => {
+        window.location.reload(); // Reloads the page after clicking "OK"
       });
-      // alert(`Tender created successfully! ID: ${createdTenderId}`);
       setTenderId(createdTenderId);
+
+      // Fetch emails of all bidders and send acknowledgment email
+      await sendAcknowledgmentEmail(createdTenderId);
 
       // Reset the form
       setEmail('');
@@ -65,17 +80,43 @@ const CreateTenderPage = () => {
         confirmButtonText: "OK"
       });
     }
-    if (new Date(startDate) >= new Date(endDate)) {
-      Swal.fire({
-        title: "End date must be greater than start",
-        text: `Failed to create the tender`,
-        icon: "error",
-        confirmButtonText: "OK"
-      });
-      return;
-  }
-  
   };
+
+  const sendAcknowledgmentEmail = async () => {
+    try {
+      // Fetch all bidder emails
+      const biddersResponse = await axios.get('http://localhost:5000/api/bidders/emails');
+      const bidderEmails = biddersResponse.data.emails;
+      console.log('bidder mails', bidderEmails);
+  
+      // Include the form filler’s email in the list
+      const recipients = [email, ...bidderEmails, ];  // Add form filler email to the recipients
+      console.log('all receipants mails', recipients);
+  
+      // Ensure emails are joined by commas as a string
+      const recipientsString = recipients.join(',');
+      console.log('All ', recipientsString);
+
+  
+      const emailParams = {
+        to_emails: recipientsString,  // Comma-separated list of emails
+        user_email: email,
+        tender_title: title,
+        tender_eligibility: eligibility,
+        tender_description: description,
+        tender_type: type,
+        tender_status: status,
+        tender_startDate: startDate,
+        tender_endDate: endDate,
+      };
+  
+      await emailjs.send('service_vnehurc', 'template_4qpjzma', emailParams, 'fn2uxIMhd1q5E1SW9');
+      console.log('Email sent successfully to all bidders and the form filler!');
+    } catch (error) {
+      console.error('Error fetching bidder emails or sending email:', error);
+    }
+  };
+  
 
   const handleDocumentChange = (e) => {
     setDocument(e.target.files[0]);
@@ -85,7 +126,7 @@ const CreateTenderPage = () => {
     <div className="create-tender">
       <h1>Create Tender</h1>
       <form onSubmit={handleSubmit}>
-      <div className="form-group">
+        <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -106,7 +147,7 @@ const CreateTenderPage = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="title">Eligibility Criteria</label>
+          <label htmlFor="eligibility">Eligibility Criteria</label>
           <textarea
             id="eligibility"
             value={eligibility}
@@ -114,7 +155,6 @@ const CreateTenderPage = () => {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="description">Description</label>
           <textarea
@@ -124,7 +164,6 @@ const CreateTenderPage = () => {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="type">Type</label>
           <select
@@ -141,7 +180,6 @@ const CreateTenderPage = () => {
             <option value="Emergency">Emergency</option>
           </select>
         </div>
-
         <div className="form-group">
           <label htmlFor="startDate">Start Date</label>
           <input
@@ -152,7 +190,6 @@ const CreateTenderPage = () => {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="endDate">End Date</label>
           <input
@@ -163,18 +200,15 @@ const CreateTenderPage = () => {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="document">Upload Document</label>
           <input type="file" id="document" onChange={handleDocumentChange} required />
         </div>
-
         <div className="form-actions">
           <button type="submit">Create Tender</button>
         </div>
       </form>
-       {/* Conditionally render the tender ID if it exists */}
-       {tenderId && (
+      {tenderId && (
         <div>
           <h2>Tender Created!</h2>
           <p>Your tender ID is: <strong>{tenderId}</strong></p>

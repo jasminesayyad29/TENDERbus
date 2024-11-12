@@ -119,3 +119,27 @@ exports.login = async (req,res) => {
         }) ;
     }
 }
+
+
+// Controller function to get emails of users with role "Bidder"
+exports.getBidderEmails = async (req, res) => {
+    try {
+        // Query users with role "Bidder" and select only the email field
+        const bidders = await User.find({ role: "Bidder" }).select("email");
+
+        // Extract emails from the result
+        const emails = bidders.map(bidder => bidder.email);
+
+        // Respond with the list of emails
+        return res.status(200).json({
+            success: true,
+            emails,
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: 'Failed to retrieve bidder emails',
+        });
+    }
+};
