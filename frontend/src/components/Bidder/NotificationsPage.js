@@ -1,4 +1,3 @@
-// BidderNotifications.js
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './BidderNotifications.css';
@@ -68,6 +67,37 @@ const BidderNotifications = () => {
     }
   };
 
+  // Clear all read notifications
+  const clearReadNotifications = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user || !user.email) {
+        setError('No user information found');
+        return;
+      }
+  
+      const recipientEmail = user.email;
+  
+      // Call the DELETE request to remove read notifications
+      await Axios.delete('http://localhost:5000/api/notifications/notifications', {
+        params: { recipientEmail, unread: 'false' }, // 'unread: false' to target read notifications
+      });
+  
+      setReadNotifications([]);
+      setUnreadNotifications(prevUnread => [
+        ...prevUnread
+      ]); // Keep unread notifications intact
+      setUnreadCount(prevUnread => prevUnread.length);
+  
+      // Reload the page after clearing read notifications
+      window.location.reload();
+    } catch (err) {
+      console.error('Failed to clear read notifications:', err);
+      setError('Please Mark Notifications as read , There are No Notifications to Clear ');
+    }
+  };
+  
+
   if (loading) {
     return <div className="bidder-notifications-loading-state">Loading notifications...</div>;
   }
@@ -75,6 +105,12 @@ const BidderNotifications = () => {
   return (
     <div className="bidder-notifications-container">
       <h1>Notifications</h1>
+
+      {/* Clear All Read Notifications Button */}
+      <button className="clear-read-btn" onClick={clearReadNotifications}>
+        Clear
+      </button>
+
       {newNotificationAlert && (
         <div className="new-notification-alert" onClick={markNotificationsAsRead}>
           You have new notifications! Click here to mark them as read.
@@ -96,7 +132,10 @@ const BidderNotifications = () => {
                 key={notification._id}
                 className={`bidder-notifications-item unread`}
               >
+                <p><strong>Sender:</strong> {notification.sendername}</p> {/* Show sender name */}
+                <p><strong>Email:</strong> {notification.senderemail}</p> {/* Show sender email */}
                 <p><strong>Message:</strong> {notification.message}</p>
+
                 <p><strong>Type:</strong> 
                   <span className={`bidder-notifications-type ${notification.notificationType}`}>
                     {notification.notificationType}
@@ -112,30 +151,33 @@ const BidderNotifications = () => {
         </ul>
       </section>
 
-      <section>
-        <h2>Read Notifications</h2>
-        <ul className="bidder-notifications-list">
-          {readNotifications.length > 0 ? (
-            readNotifications.map((notification) => (
-              <li
-                key={notification._id}
-                className="bidder-notifications-item"
-              >
-                <p><strong>Message:</strong> {notification.message}</p>
-                <p><strong>Type:</strong> 
-                  <span className={`bidder-notifications-type ${notification.notificationType}`}>
-                    {notification.notificationType}
-                  </span>
-                </p>
-                <p><strong>Priority:</strong> {notification.priority}</p>
-                <p><strong>Received At:</strong> {new Date(notification.createdAt).toLocaleString()}</p>
-              </li>
-            ))
-          ) : (
-            <p className="bidder-notifications-no-notifications">No read notifications available.</p>
-          )}
-        </ul>
-      </section>
+     <section>
+  {readNotifications.length > 0 && (
+    <>
+      <h2>Read Notifications</h2>
+      <ul className="bidder-notifications-list">
+        {readNotifications.map((notification) => (
+          <li
+            key={notification._id}
+            className="bidder-notifications-item"
+          >
+            <p><strong>Sender:</strong> {notification.sendername}</p>
+            <p><strong>Email:</strong> {notification.senderemail}</p>
+            <p><strong>Message:</strong> {notification.message}</p>
+            <p><strong>Type:</strong> 
+              <span className={`bidder-notifications-type ${notification.notificationType}`}>
+                {notification.notificationType}
+              </span>
+            </p>
+            <p><strong>Priority:</strong> {notification.priority}</p>
+            <p><strong>Received At:</strong> {new Date(notification.createdAt).toLocaleString()}</p>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+</section>
+
     </div>
   );
 };

@@ -80,6 +80,31 @@ router.put('/notifications/mark-read', async (req, res) => {
 });
 
 
+
+
+
+router.delete('/notifications', async (req, res) => {
+  const { recipientEmail } = req.query;
+
+  if (!recipientEmail) {
+    return res.status(400).json({ error: 'Recipient email is required' });
+  }
+
+  try {
+    // The filter now targets only read notifications (isRead: true)
+    const filter = { recipientEmail, isRead: true };
+
+    const deleteResult = await Notification.deleteMany(filter);
+
+    if (deleteResult.deletedCount === 0) {
+      return res.status(404).json({ success: false, message: 'No read notifications found to delete' });
+    }
+
+    res.status(200).json({ success: true, message: `${deleteResult.deletedCount} read notification(s) deleted` });
+  } catch (error) {
+    console.error('Error deleting notifications:', error);
+    res.status(500).json({ success: false, error: 'Failed to delete notifications' });
+  }
+});
+
 module.exports = router;
-
-

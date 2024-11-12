@@ -145,3 +145,18 @@
 .unread {
   background-color: #eaf4ff;
 }
+.clear-read-btn {
+  position: absolute;
+  top: 130px;
+  right: 420px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.clear-read-btn:hover {
+  background-color: darkred;
+}
