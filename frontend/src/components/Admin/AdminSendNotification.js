@@ -22,32 +22,46 @@ const AdminSendNotification = () => {
       setError('Please enter a message and recipient email.');
       return;
     }
-
+  
     try {
       setLoading(true);
       setError('');
       setEmailStatus('');
       setConfirmModalVisible(false);
-
+  
+      // Fetch user data from localStorage and parse it
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+  
+      // Check if the user data exists and has email and name
+      if (!storedUser || !storedUser.name || !storedUser.email) {
+        setError('Sender name or email is missing from localStorage. Please check your login session.');
+        setLoading(false);
+        return;
+      }
+  
+      const { name: sendername, email: senderemail } = storedUser;
+  
       await axios.post('http://localhost:5000/api/notifications/send', {
+        sendername,
+        senderemail,
         message,
         recipientEmail,
         notificationType,
         priority,
       });
-
-      setEmailStatus('Email sent successfully to the bidder.');
+  
+      setEmailStatus('Email sent successfully to the recipient.');
       setMessage('');
       setRecipientEmail('');
     } catch (error) {
-      console.error('Error sending notification:', error);
+      console.error('Error sending notification:', error.response?.data || error);
       setError('Failed to send notification. Please try again.');
       setEmailStatus('Failed to send email.');
     } finally {
       setLoading(false);
     }
   };
-
+  
   return (
     <>
     <br/>

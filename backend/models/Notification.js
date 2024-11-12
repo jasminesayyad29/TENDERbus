@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 
 // Define the Notification schema
 const NotificationSchema = new mongoose.Schema({
+
+  sendername: {
+    type: String, required: true
+  },
+  senderemail: {
+    type: String, required: true
+  },
+  
   message: { type: String, required: true },               // The notification message
   recipientEmail: { type: String, required: true },        // Recipient's email address
   notificationType: {                                      // Type of notification (e.g., info, warning, alert)

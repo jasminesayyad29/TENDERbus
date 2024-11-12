@@ -15,7 +15,8 @@ const transporter = nodemailer.createTransport({
 // Endpoint for admins to create notifications
 router.post('/send', async (req, res) => {
   try {
-    const { message, recipientEmail, notificationType, priority } = req.body;
+    const { sendername,
+      senderemail, message, recipientEmail, notificationType, priority } = req.body;
 
     // Check for missing fields
     if (!message || !recipientEmail || !notificationType || !priority) {
@@ -23,6 +24,8 @@ router.post('/send', async (req, res) => {
     }
 
     const newNotification = new Notification({
+      sendername,
+      senderemail,
       message,
       recipientEmail,
       notificationType,
