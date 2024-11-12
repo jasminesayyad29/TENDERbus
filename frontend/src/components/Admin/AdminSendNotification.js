@@ -54,7 +54,7 @@ const AdminSendNotification = () => {
     <br/>
     <div className="admin-send-notification-container">
       <h2>Send Notification</h2>
-
+      <label htmlFor="message">Message</label>
       <input
         type="text"
         value={message}
@@ -62,7 +62,7 @@ const AdminSendNotification = () => {
         placeholder="Enter notification message"
         className="admin-send-notification-input-field"
       />
-
+      <label htmlFor="email">Email</label>
       <input
         type="email"
         value={recipientEmail}
@@ -71,6 +71,7 @@ const AdminSendNotification = () => {
         className="admin-send-notification-input-field"
       />
 
+      <label htmlFor="">Notification Type</label>
       <select
         value={notificationType}
         onChange={(e) => setNotificationType(e.target.value)}
@@ -81,6 +82,7 @@ const AdminSendNotification = () => {
         <option value="alert">Alert</option>
       </select>
 
+      <label htmlFor="">Priority</label>
       <select
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
