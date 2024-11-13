@@ -32,7 +32,10 @@ const LandingPage = () => {
       <br />
       <br />
       <br />
-      <br /><br />
+      <br />
+      <br />   
+      <br />   
+      <br />   
       <br />   
       <br />
       <h1> The
