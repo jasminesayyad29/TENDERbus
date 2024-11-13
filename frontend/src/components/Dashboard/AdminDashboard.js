@@ -28,6 +28,9 @@ const AdminDashboard = () => {
                 <li>
                   <Link to="/admin/reports" className="admin-dashboard-link">Reports & Analytics</Link>
                 </li>
+                <li>
+                 <Link className="admin-dashboard-link" to="/admin/admin-send-notifications">Notify Bidder</Link>
+                </li>
               </ul>
             </div>
             <br/>

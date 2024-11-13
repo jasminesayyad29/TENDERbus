@@ -145,16 +145,17 @@
 .unread {
   background-color: #eaf4ff;
 }
-.clear-read-btn {
+.bidder-notifications-container .clear-read-btn {
   position: absolute;
   top: 130px;
-  right: 420px;
+  right: 470px;
   padding: 10px 20px;
   background-color: red;
   color: white;
   border: none;
   cursor: pointer;
   font-size: 14px;
+  border-radius: 50px;
 }
 
 .clear-read-btn:hover {

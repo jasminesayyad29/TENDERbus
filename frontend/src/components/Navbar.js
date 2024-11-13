@@ -109,7 +109,6 @@ const Navbar = () => {
           <>
             <button className="dropbtn"><Link to="/profile">Profile</Link></button>
             <li className="navbut"><Link to="/admin/dashboard">Dashboard</Link></li>
-            <li className="navbut"><Link to="/admin/admin-send-notifications">Notify Bidder</Link></li>
           </>
         )}
 
