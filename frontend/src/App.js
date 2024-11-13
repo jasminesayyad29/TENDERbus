@@ -158,12 +158,7 @@ const ProtectedRoute = ({ children, roleRequired }) => {
 
 const App = () => {
   return (
-<div style={{ 
-  transform: "scale(0.9)", 
-  transformOrigin: "top left", 
-  width: "111%",  /* Adjust width to avoid horizontal scroll */
-  height: "150%"  /* Adjust height to compensate for scaling */
-}}>
+<div>
     <TenderProvider>
       <Router>
         <div className="App">

@@ -87,7 +87,7 @@
   position: relative;
   z-index: 1001;
   overflow-y: auto;
-  max-height: 80vh;
+  max-height: 100vh;
   text-align: left; /* Add this line to align all text to the left */
 }
 
