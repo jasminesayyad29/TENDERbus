@@ -3,6 +3,8 @@ import { fetchTendersbymail, fetchBidsByTenderId, fetchScoreByBidId } from '../.
 import { CSVLink } from "react-csv";
 import './BidEvaluationPage.css';
 import Swal from 'sweetalert2';
+import emailjs from 'emailjs-com'; // Import EmailJS
+
 
 const BidEvaluationPage = () => {
   const [tenders, setTenders] = useState([]);
@@ -19,6 +21,8 @@ const BidEvaluationPage = () => {
   const [noBidsMessage, setNoBidsMessage] = useState('');
   const [bidScores, setBidScores] = useState({}); // New state for scores
   const [visibleBids, setVisibleBids] = useState({}); // Tracks visibility for each tender
+  const [acceptedBids, setAcceptedBids] = useState({}); // New state to track accepted bids
+
 
   const criteria = [
     { name: 'bidAmount', weight: 0.4 },
@@ -243,8 +247,49 @@ const BidEvaluationPage = () => {
     return csvData;
   };
   
+
+
+  // EmailJS function to send the acceptance email
+  const sendAcceptanceEmail = (bid, tender) => {
+    emailjs.send(
+      'service_vnehurc', // replace with your EmailJS service ID
+      'template_3pxnu0p', // replace with your EmailJS template ID
+      {
+        "tender_id": tender._id,
+        "tender_title": tender.title,
+        "tender_eligibility": tender.eligibility,
+        "tender_description": tender.description,
+        "tender_type": tender.type,
+        "tender_startDate": new Date(tender.startDate).toLocaleDateString(),
+        "tender_endDate": new Date(tender.endDate).toLocaleDateString(),
+        "bid_id": bid._id,
+        "bidder_name": bid.bidderName,
+        "bidder_email": bid.email,
+        "bid_amount": bid.bidAmount,
+      },
+      'fn2uxIMhd1q5E1SW9' // replace with your EmailJS user ID
+    ).then((response) => {
+      Swal.fire({
+        title: "Email Sent!",
+        text: "Acceptance email has been sent successfully.",
+        icon: "success",
+        confirmButtonText: "OK"
+      });
+    }).catch((error) => {
+      console.error("Failed to send email:", error);
+      Swal.fire({
+        title: "Failed to Send Email",
+        text: "There was an error sending the acceptance email.",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+    });
+  };
+
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
+
 
   return (
     <div className="bep-container">
@@ -305,50 +350,70 @@ const BidEvaluationPage = () => {
       ) : (
         <p>No tenders available.</p>
       )}
-   {bids.length > 0 && Object.keys(visibleBids).some((tenderId) => visibleBids[tenderId]) && (
+{bids.length > 0 && Object.keys(visibleBids).some((tenderId) => visibleBids[tenderId]) && (
   <table className="bep-table">
     <thead>
       <tr>
-        <th>Tender Title</th> {/* New column header for Tender Title */}
+        <th>Tender Title</th>
         <th>Bidder Name</th>
         <th>Company Name</th>
         <th>Bid Amount</th>
         <th>Evaluation Score</th>
         <th>Status</th>
         <th>Actions</th>
+        <th>Accept Bid</th>
       </tr>
     </thead>
     <tbody>
       {sortedBids
-        .filter((bid) => visibleBids[bid.tenderId]) // Filter bids based on visibility
-        .map((bid) => (
-          <tr key={bid._id}>
-            <td>{tenders.find(tender => tender._id === bid.tenderId)?.title || 'N/A'}</td> {/* Display tender title */}
-            <td>{bid.bidderName}</td>
-            <td>{bid.companyName}</td>
-            <td>{bid.bidAmount}</td>
-            <td>{bidScores[bid._id] ? bidScores[bid._id].toFixed(1) : 'Not Scored'}</td>
-            <td>
-              {/* Conditional rendering for Status */}
-              {bidScores[bid._id] && bidScores[bid._id] > 6 ? (
-                <span style={{ color: 'green' }}>✔</span> // Green tick if score > 6
-              ) : bidScores[bid._id] ? (
-                <span style={{ color: 'red' }}>❌</span> // Red cross if score <= 6
-              ) : (
-                'N/A' // If score is not available
-              )}
-            </td>
-            <td>
-              <button
-                className="bep-button"
-                disabled={bidScores[bid._id] && bidScores[bid._id] !== 'Not Scored'}
-                onClick={() => handleEvaluateClick(bid)} // Trigger modal only on Evaluate button click
-              >
-                Evaluate
-              </button>
-            </td>
-          </tr>
-        ))}
+        .filter((bid) => visibleBids[bid.tenderId])
+        .map((bid) => {
+          const tender = tenders.find(tender => tender._id === bid.tenderId);
+          return (
+            <tr key={bid._id}>
+              <td>{tender?.title || 'N/A'}</td>
+              <td>{bid.bidderName}</td>
+              <td>{bid.companyName}</td>
+              <td>{bid.bidAmount}</td>
+              <td>{bidScores[bid._id] ? bidScores[bid._id].toFixed(1) : 'Not Scored'}</td>
+              <td>
+                {bidScores[bid._id] && bidScores[bid._id] > 6 ? (
+                  <span style={{ color: 'green' }}>✔</span>
+                ) : bidScores[bid._id] ? (
+                  <span style={{ color: 'red' }}>❌</span>
+                ) : (
+                  'N/A'
+                )}
+              </td>
+              <td>
+                <button
+                  className="bep-button"
+                  disabled={bidScores[bid._id] && bidScores[bid._id] !== 'Not Scored'}
+                  onClick={() => handleEvaluateClick(bid)}
+                >
+                  Evaluate
+                </button>
+              </td>
+              <td>
+                {bidScores[bid._id] && bidScores[bid._id] > 5 ? (
+                  <button
+                    className="bep-button accept-bid-button"
+                    style={{ color: acceptedBids[bid._id] ? 'grey' : 'initial' }}
+                    disabled={!!acceptedBids[bid._id]} // Disable if accepted
+                    onClick={() => {
+                      sendAcceptanceEmail(bid, tender);
+                      setAcceptedBids((prev) => ({ ...prev, [bid._id]: true })); // Mark bid as accepted
+                    }}
+                  >
+                    Accept Bid
+                  </button>
+                ) : (
+                  <span style={{ color: 'grey' }}>N/A</span>
+                )}
+              </td>
+            </tr>
+          );
+        })}
     </tbody>
   </table>
 )}
