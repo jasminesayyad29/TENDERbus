@@ -181,7 +181,7 @@ const ReportsAnalyticsPage = () => {
 
   return (
     <div className="report-card">
-      <h1 className="reports-analytics-header">Reports and Analytics</h1>
+      <h1 className="reports-analytics-header">Reports and Analysis</h1>
 
       <div className="tablecontainer">
         <h2>Tender List with Individual Bid Charts</h2>
