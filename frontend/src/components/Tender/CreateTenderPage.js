@@ -4,6 +4,7 @@ import axios from 'axios';
 import emailjs from 'emailjs-com';
 import './CreateTenderPage.css';
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 const CreateTenderPage = () => {
   const [email, setEmail] = useState('');
@@ -17,6 +18,14 @@ const CreateTenderPage = () => {
   const [document, setDocument] = useState(null);
   const [tenderId, setTenderId] = useState(null);
 
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser && storedUser.email) {
+      setEmail(storedUser.email);
+    }
+  }, []);
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -126,16 +135,19 @@ const CreateTenderPage = () => {
     <div className="create-tender">
       <h1>Create Tender</h1>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={
+              const localmail = json.parse(localStorage.getItem('user').email);
+              (e) => setEmail(localmailmail);
+            }
             required
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input

@@ -67,6 +67,7 @@ const TenderPage = () => {
             <button className="tender-page-close-button" onClick={handleCloseModal}>×</button>
             <h2>Tender ID: {selectedTender._id}</h2>
             <h2>{selectedTender.title}</h2>
+            <p>Tender Created by: {selectedTender.email}</p>
             <p>{selectedTender.description}</p>
             <p>Type: {selectedTender.type}</p>
             <p>Status: {selectedTender.status}</p>

@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBuilding, faIdCard, faEnvelope, faPhone, faDollarSign, faFile, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import './SubmitBidPage.css';
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
+
 
 const SubmitBidPage = () => {
     const navigate = useNavigate();
@@ -23,6 +25,14 @@ const SubmitBidPage = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const [bidderId, setBidderId] = useState(null);
+
+
+     useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser && storedUser.email) {
+          setEmail(storedUser.email);
+        }
+      }, []);
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -115,7 +125,7 @@ const SubmitBidPage = () => {
                         onChange={(e) => setCompanyRegNumber(e.target.value)}
                     />
                 </div>
-                <div className="submit-bid-form-group submit-bid-form-group-email">
+                {/* <div className="submit-bid-form-group submit-bid-form-group-email">
                     <FontAwesomeIcon icon={faEnvelope} className="form-icon" />
                     <input
                         type="email"
@@ -124,7 +134,7 @@ const SubmitBidPage = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                </div>
+                </div> */}
                 <div className="submit-bid-form-group submit-bid-form-group-phone">
                     <FontAwesomeIcon icon={faPhone} className="form-icon" />
                     <input

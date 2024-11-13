@@ -80,6 +80,7 @@ const ViewTenderPage = () => {
             <h2 className="view-tender-page-id">
               Tender ID: <span className="highlighted-text">{selectedTender._id}</span>
             </h2>
+            <p className="view-tender-page-title">Created By: {selectedTender.email}</p>
             <h3 className="view-tender-page-title">{selectedTender.title}</h3>
             <p className="view-tender-page-desc">{selectedTender.description}</p>
             <p className="view-tender-page-type">Type: {selectedTender.type}</p>
