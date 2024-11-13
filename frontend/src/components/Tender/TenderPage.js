@@ -10,12 +10,14 @@ const TenderPage = () => {
   const [selectedTender, setSelectedTender] = useState(null);
   const { tenderId } = useParams();
   const navigate = useNavigate(); // For back button navigation
-
+  
   useEffect(() => {
     const getTenders = async () => {
       try {
         const data = await fetchTenders();
-        setTenders(data);
+        // Sort tenders by createdAt in descending order
+        const sortedData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setTenders(sortedData);
       } catch (err) {
         setError(`Failed to fetch tenders: ${err.message || err}`);
         console.error(err);
@@ -25,7 +27,8 @@ const TenderPage = () => {
     };
     getTenders();
   }, [tenderId]);
-
+  
+  
   const handleCardClick = (tender) => {
     setSelectedTender(tender);
   };
